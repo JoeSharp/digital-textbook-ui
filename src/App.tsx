@@ -1,6 +1,7 @@
 import React from "react";
 import { useCallback, useState } from "react";
 import Header from "./components/Header";
+import CoursesList from "./components/CoursesList";
 import {
   GoogleLogin,
   GoogleLoginResponse,
@@ -33,6 +34,7 @@ function App() {
   return (
     <div>
       <Header />
+      <CoursesList />
       <GoogleLogin
         clientId={GOOGLE_CLIENT_ID}
         buttonText={username || "Login"}
