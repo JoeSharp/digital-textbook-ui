@@ -15,7 +15,9 @@ const useCoursesApi = (): UseHelloApi => {
 
   const getCourses = useCallback(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:8080/courses");
+      const response = await fetch(
+        process.env.REACT_APP_SERVICE_BASE_URL + "/courses"
+      );
 
       setCourses((await response.json()) as Course[]);
     }
