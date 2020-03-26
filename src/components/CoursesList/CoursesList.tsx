@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { FunctionComponent, useEffect } from "react";
 
-import useCoursesApi from "../../lib/useCoursesApi";
+import { useCoursesApi } from "../../lib/api";
 
 const CoursesList: FunctionComponent = () => {
   const { courses, getCourses } = useCoursesApi();

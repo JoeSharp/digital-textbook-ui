@@ -1,17 +1,14 @@
 import { useCallback, useState } from "react";
 
-interface Course {
-  _id: string;
-  name: string;
-}
+import { CourseType } from "../../types";
 
-interface UseHelloApi {
+interface UseCoursesApi {
   getCourses: () => void;
-  courses: Course[];
+  courses: CourseType[];
 }
 
-const useCoursesApi = (): UseHelloApi => {
-  const [courses, setCourses] = useState<Course[]>([]);
+const useCoursesApi = (): UseCoursesApi => {
+  const [courses, setCourses] = useState<CourseType[]>([]);
 
   const getCourses = useCallback(() => {
     async function fetchData() {
@@ -19,7 +16,7 @@ const useCoursesApi = (): UseHelloApi => {
         process.env.REACT_APP_SERVICE_BASE_URL + "/courses"
       );
 
-      setCourses((await response.json()) as Course[]);
+      setCourses((await response.json()) as CourseType[]);
     }
 
     fetchData();
