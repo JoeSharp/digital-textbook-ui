@@ -15,11 +15,15 @@ const useLessonApi = ({ lessonId }: Props): UseLessonApi => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        `${process.env.REACT_APP_SERVICE_BASE_URL}/lesson/${lessonId}`
-      );
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVICE_BASE_URL}/lesson/${lessonId}`
+        );
 
-      setLesson((await response.json()) as LessonType);
+        setLesson((await response.json()) as LessonType);
+      } catch (err) {
+        setLesson(DEFAULT_LESSON);
+      }
     }
 
     fetchData();

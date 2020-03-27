@@ -7,4 +7,4 @@ export default {
   component: Lesson
 };
 
-export const SimpleLesson = <Lesson lessonId="1234" />;
+export const SimpleLesson = () => <Lesson lessonId="1234" />;
