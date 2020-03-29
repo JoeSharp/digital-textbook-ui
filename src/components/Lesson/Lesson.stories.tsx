@@ -1,10 +1,6 @@
 import * as React from "react";
+import { storiesOf } from "@storybook/react";
 
 import Lesson from "./Lesson";
 
-export default {
-  title: "Lesson",
-  component: Lesson
-};
-
-export const SimpleLesson = () => <Lesson lessonId="1234" />;
+storiesOf("Lesson", module).add("Basic", () => <Lesson lessonId="1234" />);

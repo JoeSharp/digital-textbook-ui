@@ -1,8 +1,13 @@
-export interface CourseType {
+export interface Document {
   _id: string;
+}
+
+export interface CourseType {
   name: string;
   description: string;
 }
+
+export type CourseDocument = Document & CourseType;
 
 export interface EmbeddedTrinketType {
   type: "trinket";
@@ -24,15 +29,22 @@ export interface LessonTaskType {
 }
 
 export interface LessonType {
-  _id: string;
   courseId: string;
   name: string;
   tasks: LessonTaskType[];
 }
 
+export type LessonDocument = Document & LessonType;
+
+const LOADING_TEXT = "LOADING";
+
+export const DEFAULT_COURSE: CourseType = {
+  name: LOADING_TEXT,
+  description: LOADING_TEXT
+};
+
 export const DEFAULT_LESSON: LessonType = {
-  _id: "LOADING",
-  courseId: "LOADING",
-  name: "LOADING",
+  courseId: LOADING_TEXT,
+  name: LOADING_TEXT,
   tasks: []
 };

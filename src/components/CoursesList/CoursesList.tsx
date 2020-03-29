@@ -3,10 +3,10 @@ import * as React from "react";
 import { FunctionComponent, useEffect, useMemo } from "react";
 
 import { useCoursesApi } from "../../lib/api";
-import { CourseType } from "../../types";
+import { CourseDocument } from "../../types";
 
 interface CourseWithHandlers {
-  course: CourseType;
+  course: CourseDocument;
   deleteThis: () => void;
 }
 
