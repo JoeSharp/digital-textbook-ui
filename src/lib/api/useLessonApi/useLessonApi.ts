@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { LessonType, DEFAULT_LESSON } from "../../types";
+import { LessonType, DEFAULT_LESSON } from "../../../types";
 
 interface Props {
   lessonId: string;

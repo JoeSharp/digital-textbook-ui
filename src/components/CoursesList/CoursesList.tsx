@@ -1,20 +1,52 @@
 import * as React from "react";
 
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useMemo } from "react";
 
 import { useCoursesApi } from "../../lib/api";
+import { CourseType } from "../../types";
+
+interface CourseWithHandlers {
+  course: CourseType;
+  deleteThis: () => void;
+}
 
 const CoursesList: FunctionComponent = () => {
-  const { courses, getCourses } = useCoursesApi();
+  const { courses, getCourses, deleteCourse } = useCoursesApi();
 
-  useEffect(() => getCourses(), [getCourses]);
+  useEffect(getCourses, [getCourses]);
+
+  const courseWithHandlers: CourseWithHandlers[] = useMemo(
+    () =>
+      courses.map(course => ({
+        course,
+        deleteThis: () => deleteCourse(course._id)
+      })),
+    [courses, deleteCourse]
+  );
 
   return (
-    <ul>
-      {courses.map(course => (
-        <li key={course._id}>{course.name}</li>
-      ))}
-    </ul>
+    <table className="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {courseWithHandlers.map(({ course, deleteThis }) => (
+          <tr key={course._id}>
+            <td>{course.name}</td>
+            <td>{course.description}</td>
+            <td>
+              <button className="btn btn-danger" onClick={deleteThis}>
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
