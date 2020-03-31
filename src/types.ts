@@ -2,9 +2,16 @@ export interface Document {
   _id: string;
 }
 
+export interface LessonInCourse {
+  id: string;
+  title: string;
+  description: string;
+}
+
 export interface CourseType {
   name: string;
   description: string;
+  lessons: LessonInCourse[];
 }
 
 export type CourseDocument = Document & CourseType;
@@ -22,11 +29,14 @@ export interface YouTubeLinkType {
 }
 
 export interface LessonTaskType {
+  lessonId: string;
   title: string;
   description: string;
   youTubeLink: YouTubeLinkType;
   embeddedIFrame: EmbeddedIFrameType;
 }
+
+export type LessonTaskDocument = Document & LessonTaskType;
 
 export interface LessonType {
   courseId: string;
@@ -40,7 +50,8 @@ const LOADING_TEXT = "LOADING";
 
 export const DEFAULT_COURSE: CourseType = {
   name: LOADING_TEXT,
-  description: LOADING_TEXT
+  description: LOADING_TEXT,
+  lessons: []
 };
 
 export const DEFAULT_LESSON: LessonType = {

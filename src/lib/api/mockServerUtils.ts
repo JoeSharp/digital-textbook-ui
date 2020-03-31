@@ -14,7 +14,7 @@ const ID_URLS: { [s: string]: MatchFunction<KeyId> } = {};
 export function getId(resourceUrl: string, requestUrl: string): string {
   let matchId: MatchFunction<KeyId> = ID_URLS[resourceUrl];
   if (!matchId) {
-    matchId = match<KeyId>(`/courses/:id`, {
+    matchId = match<KeyId>(`${resourceUrl}/:id`, {
       decode: decodeURIComponent
     });
     ID_URLS[resourceUrl] = matchId;

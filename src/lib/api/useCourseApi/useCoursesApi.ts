@@ -1,89 +1,59 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 import { CourseType, CourseDocument } from "../../../types";
+import useApi from "./useApi";
 
 interface UseCoursesApi {
-  getCourses: () => void;
-  getCourse: (id: string) => void;
   createCourse: (course: CourseType) => void;
-  deleteCourse: (id: string) => void;
+  deleteCourse: (courseId: string) => void;
   courses: CourseDocument[];
 }
 
-const COURSES_RESOURCE = `${process.env.REACT_APP_SERVICE_BASE_URL}/courses`;
-
 const useCoursesApi = (): UseCoursesApi => {
+  const { getCourses, createCourse, deleteCourse } = useApi();
+
   const [courses, setCourses] = useState<CourseDocument[]>([]);
 
-  const getCourses = useCallback(() => {
-    async function fetchData() {
-      const response = await fetch(COURSES_RESOURCE);
-      const courses = (await response.json()) as CourseDocument[];
+  useEffect(() => {
+    async function f() {
+      const courses = await getCourses();
       setCourses(courses);
     }
 
-    fetchData();
-  }, [setCourses]);
+    f();
+  }, [setCourses, getCourses]);
 
-  const getCourse = useCallback(
-    (id: string) => {
-      async function fetchData() {
-        // Find on client side
-        const course = courses.find(c => c._id === id);
-        if (!course) {
-          const response = await fetch(`${COURSES_RESOURCE}/${id}`);
-          if (response.status === 200) {
-            const course = (await response.json()) as CourseDocument;
-            setCourses([course, ...courses]);
-          }
-        }
-      }
-
-      fetchData();
-    },
-    [courses, setCourses]
-  );
-
-  const createCourse = useCallback(
+  const _createCourse = useCallback(
     (course: CourseType) => {
-      async function postData() {
-        const response = await fetch(COURSES_RESOURCE, {
-          method: "POST",
-          body: JSON.stringify(course)
-        });
-        const newCourse = (await response.json()) as CourseDocument;
+      async function f() {
+        const newCourse = await createCourse(course);
 
-        // Delete from client side...
+        // Add to client side
         setCourses([...courses, newCourse]);
       }
 
-      postData();
+      f();
     },
-    [courses, setCourses]
+    [courses, setCourses, createCourse]
   );
 
-  const deleteCourse = useCallback(
-    (id: string) => {
-      async function deleteData() {
-        await fetch(`${COURSES_RESOURCE}/${id}`, {
-          method: "DELETE"
-        });
-
+  const _deleteCourse = useCallback(
+    (courseId: string) => {
+      async function f() {
+        await deleteCourse(courseId);
         // Delete from client side...
-        setCourses(courses.filter(c => c._id !== id));
+        setCourses(courses.filter(c => c._id !== courseId));
       }
 
-      deleteData();
+      f();
     },
-    [courses, setCourses]
+    [courses, setCourses, deleteCourse]
   );
 
   return {
     courses,
-    getCourses,
-    getCourse,
-    createCourse,
-    deleteCourse
+    createCourse: _createCourse,
+    deleteCourse: _deleteCourse
   };
 };
 

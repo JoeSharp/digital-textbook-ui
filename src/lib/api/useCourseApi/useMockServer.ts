@@ -6,7 +6,7 @@ import { TEST_COURSES } from "./testData";
 import { CourseDocument, CourseType } from "../../../types";
 import { MockServer, getId } from "../mockServerUtils";
 
-const resource = "/courses";
+const resource = "/course";
 const resourceUrl = `${process.env.REACT_APP_SERVICE_BASE_URL}${resource}`;
 
 export const useMockServer = (): MockServer => {
@@ -14,7 +14,7 @@ export const useMockServer = (): MockServer => {
 
   const setup = useCallback(() => {
     fetchMock.get(resourceUrl, courses);
-    fetchMock.get(`express:/courses/:id`, url => {
+    fetchMock.get(`express:${resource}/:id`, url => {
       const id = getId(resource, url);
       const course = courses.find(c => c._id === id);
       if (!!course) {
@@ -35,7 +35,7 @@ export const useMockServer = (): MockServer => {
       }
       return 401;
     });
-    fetchMock.delete(`express:/courses/:id`, url => {
+    fetchMock.delete(`express:${resource}/:id`, url => {
       const id = getId(resource, url);
       setCourses(courses.filter(c => c._id !== id));
       return 204;

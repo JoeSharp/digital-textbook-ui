@@ -2,9 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
+import { AuthenticationContextProvider } from "./lib/authentication";
+import { ErrorReportingContextProvider } from "./lib/ErrorPage";
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <ErrorReportingContextProvider>
+    <AuthenticationContextProvider>
+      <App />
+    </AuthenticationContextProvider>
+  </ErrorReportingContextProvider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { FunctionComponent, useEffect, useMemo } from "react";
+import { FunctionComponent, useMemo } from "react";
 
 import { useCoursesApi } from "../../lib/api";
 import { CourseDocument } from "../../types";
@@ -11,9 +11,7 @@ interface CourseWithHandlers {
 }
 
 const CoursesList: FunctionComponent = () => {
-  const { courses, getCourses, deleteCourse } = useCoursesApi();
-
-  useEffect(getCourses, [getCourses]);
+  const { courses, deleteCourse } = useCoursesApi();
 
   const courseWithHandlers: CourseWithHandlers[] = useMemo(
     () =>
