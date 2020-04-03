@@ -1,4 +1,4 @@
-import * as React from "./node_modules/react";
+import * as React from "react";
 
 interface AuthenticationContextApi {
   idToken?: string;
@@ -14,8 +14,8 @@ const defaultContext: AuthenticationContextApi = {
   },
 };
 
-const AuthenticationContext: React.Context<
-  AuthenticationContextApi
-> = React.createContext(defaultContext);
+const AuthenticationContext: React.Context<AuthenticationContextApi> = React.createContext(
+  defaultContext
+);
 
 export default AuthenticationContext;
