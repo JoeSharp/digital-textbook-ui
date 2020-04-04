@@ -1,59 +1,81 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { CourseType, CourseDocument } from "../../../types";
 import useApi from "./useApi";
+import useObjectReducer from "../../useObjectReducer";
+import { ObjWithStringKey } from "../../useObjectReducer/useObjectReducer";
 
 interface UseCoursesApi {
+  getCourse: (courseId: string) => void;
   createCourse: (course: CourseType) => void;
   deleteCourse: (courseId: string) => void;
   courses: CourseDocument[];
+  coursesById: ObjWithStringKey<CourseDocument>;
 }
 
 const useCoursesApi = (): UseCoursesApi => {
-  const { getCourses, createCourse, deleteCourse } = useApi();
+  const { getCourses, getCourse, createCourse, deleteCourse } = useApi();
 
-  const [courses, setCourses] = useState<CourseDocument[]>([]);
+  const {
+    items: coursesById,
+    itemsInList: courses,
+    addItem,
+    receiveListOfItems,
+    removeItem,
+  } = useObjectReducer<CourseDocument>((course) => course._id, {});
 
   useEffect(() => {
     async function f() {
       const courses = await getCourses();
-      setCourses(courses);
+      receiveListOfItems(courses);
     }
 
     f();
-  }, [setCourses, getCourses]);
+  }, [receiveListOfItems, getCourses]);
+
+  const _getCourse = useCallback(
+    (courseId: string) => {
+      let course = undefined;
+      async function f() {
+        course = await getCourse(courseId);
+        return course;
+      }
+
+      f();
+    },
+    [getCourse]
+  );
 
   const _createCourse = useCallback(
     (course: CourseType) => {
       async function f() {
         const newCourse = await createCourse(course);
-
-        // Add to client side
-        setCourses([...courses, newCourse]);
+        addItem(newCourse);
       }
 
       f();
     },
-    [courses, setCourses, createCourse]
+    [addItem, createCourse]
   );
 
   const _deleteCourse = useCallback(
     (courseId: string) => {
       async function f() {
         await deleteCourse(courseId);
-        // Delete from client side...
-        setCourses(courses.filter(c => c._id !== courseId));
+        removeItem(courseId);
       }
 
       f();
     },
-    [courses, setCourses, deleteCourse]
+    [removeItem, deleteCourse]
   );
 
   return {
     courses,
+    coursesById,
+    getCourse: _getCourse,
     createCourse: _createCourse,
-    deleteCourse: _deleteCourse
+    deleteCourse: _deleteCourse,
   };
 };
 

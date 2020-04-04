@@ -6,18 +6,23 @@ const COURSES_RESOURCE = `${process.env.REACT_APP_SERVICE_BASE_URL}/course`;
 
 interface UseApi {
   getCourses: () => Promise<CourseDocument[]>;
+  getCourse: (courseId: string) => Promise<CourseDocument>;
   createCourse: (updates: CourseType) => Promise<CourseDocument>;
-  deleteCourse: (courseId: string) => void;
+  deleteCourse: (courseId: string) => Promise<void>;
 }
 
 const useApi = (): UseApi => {
   const {
     httpGetJson,
     httpPostJsonResponse,
-    httpDeleteEmptyResponse
+    httpDeleteEmptyResponse,
   } = useHttpClient();
   return {
     getCourses: useCallback(() => httpGetJson(COURSES_RESOURCE), [httpGetJson]),
+    getCourse: useCallback(
+      (courseId: string) => httpGetJson(`${COURSES_RESOURCE}/${courseId}`),
+      [httpGetJson]
+    ),
     createCourse: useCallback(
       (newCourse: CourseType) =>
         httpPostJsonResponse(COURSES_RESOURCE, newCourse),
@@ -27,7 +32,7 @@ const useApi = (): UseApi => {
       (courseId: string) =>
         httpDeleteEmptyResponse(`${COURSES_RESOURCE}/${courseId}`),
       [httpDeleteEmptyResponse]
-    )
+    ),
   };
 };
 
