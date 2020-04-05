@@ -3,10 +3,10 @@ import * as React from "react";
 import { FunctionComponent, useMemo } from "react";
 
 import { useCoursesApi } from "../../lib/api";
-import { CourseDocument } from "../../types";
+import { ICourseDoc } from "../../types";
 
 interface CourseWithHandlers {
-  course: CourseDocument;
+  course: ICourseDoc;
   deleteThis: () => void;
 }
 
@@ -15,9 +15,9 @@ const CoursesList: FunctionComponent = () => {
 
   const courseWithHandlers: CourseWithHandlers[] = useMemo(
     () =>
-      courses.map(course => ({
+      courses.map((course) => ({
         course,
-        deleteThis: () => deleteCourse(course._id)
+        deleteThis: () => deleteCourse(course._id),
       })),
     [courses, deleteCourse]
   );

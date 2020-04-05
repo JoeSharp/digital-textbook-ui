@@ -1,13 +1,13 @@
 import { useCallback } from "react";
 import useHttpClient from "../../useHttpClient";
-import { CourseDocument, CourseType } from "../../../types";
+import { ICourseDoc, ICourse } from "../../../types";
 
 const COURSES_RESOURCE = `${process.env.REACT_APP_SERVICE_BASE_URL}/course`;
 
 interface UseApi {
-  getCourses: () => Promise<CourseDocument[]>;
-  getCourse: (courseId: string) => Promise<CourseDocument>;
-  createCourse: (updates: CourseType) => Promise<CourseDocument>;
+  getCourses: () => Promise<ICourseDoc[]>;
+  getCourse: (courseId: string) => Promise<ICourseDoc>;
+  createCourse: (updates: ICourse) => Promise<ICourseDoc>;
   deleteCourse: (courseId: string) => Promise<void>;
 }
 
@@ -24,8 +24,7 @@ const useApi = (): UseApi => {
       [httpGetJson]
     ),
     createCourse: useCallback(
-      (newCourse: CourseType) =>
-        httpPostJsonResponse(COURSES_RESOURCE, newCourse),
+      (newCourse: ICourse) => httpPostJsonResponse(COURSES_RESOURCE, newCourse),
       [httpPostJsonResponse]
     ),
     deleteCourse: useCallback(

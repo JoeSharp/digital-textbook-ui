@@ -1,20 +1,11 @@
-export interface Document {
-  _id: string;
-}
+import { Document } from "mongoose";
 
-export interface LessonInCourse {
-  id: string;
-  title: string;
-  description: string;
-}
-
-export interface CourseType {
+export interface ICourse {
   name: string;
   description: string;
-  lessons: LessonInCourse[];
 }
 
-export type CourseDocument = Document & CourseType;
+export type ICourseDoc = Document & ICourse;
 
 export interface EmbeddedTrinketType {
   type: "trinket";
@@ -51,11 +42,10 @@ const LOADING_TEXT = "LOADING";
 export const DEFAULT_COURSE: CourseType = {
   name: LOADING_TEXT,
   description: LOADING_TEXT,
-  lessons: []
 };
 
 export const DEFAULT_LESSON: LessonType = {
   courseId: LOADING_TEXT,
   name: LOADING_TEXT,
-  tasks: []
+  tasks: [],
 };

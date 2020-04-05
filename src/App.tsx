@@ -5,11 +5,8 @@ import CoursesList from "./components/CoursesList";
 import {
   GoogleLogin,
   GoogleLoginResponse,
-  GoogleLoginResponseOffline
+  GoogleLoginResponseOffline,
 } from "react-google-login";
-
-const GOOGLE_CLIENT_ID =
-  "685048422867-m7m7shdedhcf8qqm495o1k5rdv45ec04.apps.googleusercontent.com";
 
 const tg = (tbd: any): tbd is GoogleLoginResponse => {
   if ((tbd as GoogleLoginResponse).profileObj) {
@@ -36,7 +33,7 @@ function App() {
       <Header />
       <CoursesList />
       <GoogleLogin
-        clientId={GOOGLE_CLIENT_ID}
+        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText={username || "Login"}
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
