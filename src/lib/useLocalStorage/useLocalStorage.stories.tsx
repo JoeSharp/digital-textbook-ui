@@ -14,7 +14,7 @@ const TestHarnessSetValue: React.FunctionComponent = () => {
   const { value, setValue, resetValue } = useLocalStorage<TestStore1>(
     storageKey,
     {
-      name: "someName"
+      name: "someName",
     },
     useStoreObjectFactory()
   );
@@ -25,10 +25,6 @@ const TestHarnessSetValue: React.FunctionComponent = () => {
     },
     [setValue]
   );
-
-  const resetStorage = React.useCallback(() => {
-    resetValue();
-  }, [resetValue]);
 
   return (
     <div>
@@ -41,7 +37,7 @@ const TestHarnessSetValue: React.FunctionComponent = () => {
       </form>
 
       <div>
-        <button onClick={resetStorage}>Reset All Storage</button>
+        <button onClick={resetValue}>Reset All Storage</button>
       </div>
       <JsonDebug value={{ storageKey, value }} />
     </div>
@@ -64,23 +60,23 @@ const TestHarnessReducer: React.FunctionComponent = () => {
   const { value, reduceValue, resetValue } = useLocalStorage<TestStore2>(
     storageKey,
     {
-      names: ["lister", "rimmer", "cat", "kryten"]
+      names: ["lister", "rimmer", "cat", "kryten"],
     },
     useStoreObjectFactory()
   );
 
   const onAddValue = React.useCallback(
-    e => {
-      reduceValue(existing => ({ names: [newValue, ...existing.names] }));
+    (e) => {
+      reduceValue((existing) => ({ names: [newValue, ...existing.names] }));
       e.preventDefault();
     },
     [newValue, reduceValue]
   );
 
   const onRemoveValue = React.useCallback(
-    e => {
-      reduceValue(existing => ({
-        names: existing.names.filter(e => e !== newValue)
+    (e) => {
+      reduceValue((existing) => ({
+        names: existing.names.filter((e) => e !== newValue),
       }));
       e.preventDefault();
     },

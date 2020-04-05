@@ -18,15 +18,12 @@ import * as React from "react";
 import { Route, RouteComponentProps, Switch } from "react-router";
 import CoursesList from "./components/CoursesList";
 import EditCourse from "./components/EditCourse";
-import useAppNavigation, { useRouter } from "./lib/useAppNavigation";
+import useAppNavigation from "./lib/useAppNavigation";
 
 const Routes: React.FunctionComponent = () => {
   const { urlGenerator } = useAppNavigation();
-  const { history } = useRouter();
-  console.log(history.location);
   return (
     <Switch>
-      <Route exact path="/funky" render={() => <div>Funky</div>} />
       <Route
         exact
         path={urlGenerator.goToCourses()}

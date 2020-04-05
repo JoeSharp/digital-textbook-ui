@@ -12,6 +12,7 @@ const EditCourse: React.FunctionComponent<Props> = ({ courseId }) => {
   const { courses, getCourse } = useCourseApi();
 
   useEffect(() => getCourse(courseId), [courseId, getCourse]);
+
   const course: ICourseDoc = useMemo(
     () =>
       courses.find((c) => c._id === courseId) || {

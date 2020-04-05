@@ -31,7 +31,6 @@ function App() {
   return (
     <div>
       <Header />
-      <Routes />
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText={username || "Login"}
@@ -40,6 +39,7 @@ function App() {
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
       />
+      <Routes />
     </div>
   );
 }
