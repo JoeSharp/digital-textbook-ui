@@ -8,14 +8,15 @@ interface TestStore1 {
   name: string;
 }
 
-const TestHarnessSetValue: React.FunctionComponent = () => {
-  const storageKey = "testWithSetValue";
+const STORAGE_KEY_1 = "testWithSetValue";
+const DEFAULT_VALUE_1 = {
+  name: "someName",
+};
 
+const TestHarnessSetValue: React.FunctionComponent = () => {
   const { value, setValue, resetValue } = useLocalStorage<TestStore1>(
-    storageKey,
-    {
-      name: "someName",
-    },
+    STORAGE_KEY_1,
+    DEFAULT_VALUE_1,
     useStoreObjectFactory()
   );
 
@@ -39,7 +40,7 @@ const TestHarnessSetValue: React.FunctionComponent = () => {
       <div>
         <button onClick={resetValue}>Reset All Storage</button>
       </div>
-      <JsonDebug value={{ storageKey, value }} />
+      <JsonDebug value={{ STORAGE_KEY_1, value }} />
     </div>
   );
 };
@@ -48,9 +49,12 @@ interface TestStore2 {
   names: string[];
 }
 
-const TestHarnessReducer: React.FunctionComponent = () => {
-  const storageKey = "testWithReducer";
+const STORAGE_KEY_2 = "testWithReducer";
+const DEFAULT_VALUE_2 = {
+  names: ["lister", "rimmer", "cat", "kryten"],
+};
 
+const TestHarnessReducer: React.FunctionComponent = () => {
   const [newValue, setNewValue] = React.useState<string>("kochanski");
   const onNewValueChange: React.ChangeEventHandler<HTMLInputElement> = React.useCallback(
     ({ target: { value } }) => setNewValue(value),
@@ -58,10 +62,8 @@ const TestHarnessReducer: React.FunctionComponent = () => {
   );
 
   const { value, reduceValue, resetValue } = useLocalStorage<TestStore2>(
-    storageKey,
-    {
-      names: ["lister", "rimmer", "cat", "kryten"],
-    },
+    STORAGE_KEY_2,
+    DEFAULT_VALUE_2,
     useStoreObjectFactory()
   );
 
@@ -111,7 +113,7 @@ const TestHarnessReducer: React.FunctionComponent = () => {
       <div>
         <button onClick={resetStorage}>Reset All Storage</button>
       </div>
-      <JsonDebug value={{ storageKey, value }} />
+      <JsonDebug value={{ STORAGE_KEY_2, value }} />
     </div>
   );
 };

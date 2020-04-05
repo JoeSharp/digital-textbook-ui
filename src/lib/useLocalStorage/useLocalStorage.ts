@@ -18,24 +18,24 @@ interface StringConversion<T> {
  * Pre-made utility string conversion for storing boolean
  */
 export const storeBoolean: StringConversion<boolean> = {
-  toString: v => (v ? "true" : "false"),
-  fromString: s => s === "true",
+  toString: (v) => (v ? "true" : "false"),
+  fromString: (s) => s === "true",
 };
 
 /**
  * Pre-made utility string conversion for storing string (no transform)
  */
 export const storeString: StringConversion<string> = {
-  toString: v => v,
-  fromString: s => s,
+  toString: (v) => v,
+  fromString: (s) => s,
 };
 
 /**
  * Pre-made utility string conversion for storing number
  */
 export const storeNumber: StringConversion<number> = {
-  toString: n => `${n}`,
-  fromString: v => Number.parseInt(v),
+  toString: (n) => `${n}`,
+  fromString: (v) => Number.parseInt(v),
 };
 
 /**
@@ -47,14 +47,14 @@ export const useStoreObjectFactory = <T>(): StringConversion<T> => {
       toString: (v: T) => JSON.stringify(v),
       fromString: (v: string) => JSON.parse(v),
     }),
-    [],
+    []
   );
 };
 
-const useLocalStorage = function<T>(
+const useLocalStorage = function <T>(
   stateName: string,
   noLocalStorageInitialState: T,
-  stringConversion: StringConversion<T>,
+  stringConversion: StringConversion<T>
 ): OutProps<T> {
   const [value, setStateValue] = React.useState<T>(noLocalStorageInitialState);
 
@@ -79,7 +79,7 @@ const useLocalStorage = function<T>(
       localStorage.setItem(stateName, asString);
       setStateValue(valueToSet);
     },
-    [stateName, stringConversion, setStateValue],
+    [stateName, stringConversion, setStateValue]
   );
 
   const reduceValue = React.useCallback(
@@ -88,7 +88,7 @@ const useLocalStorage = function<T>(
       const newValue = reducer(existingValue);
       setValue(newValue);
     },
-    [setValue, getFromStorage],
+    [setValue, getFromStorage]
   );
 
   const resetValue = React.useCallback(() => {

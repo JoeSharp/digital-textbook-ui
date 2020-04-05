@@ -6,7 +6,6 @@ const useUrlGenerator = (): RawNavigateApp<string | undefined, string> => {
     () => ({
       goToCourse: (courseId: string = ":courseId") => `/course/${courseId}`,
       goToCourses: () => `/course`,
-      goToWelcome: () => `/welcome`,
     }),
     []
   );
