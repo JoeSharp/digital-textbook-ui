@@ -1,4 +1,6 @@
-import { Document } from "mongoose";
+export interface Document {
+  _id: string;
+}
 
 export interface ICourse {
   name: string;
@@ -39,7 +41,7 @@ export type LessonDocument = Document & LessonType;
 
 const LOADING_TEXT = "LOADING";
 
-export const DEFAULT_COURSE: CourseType = {
+export const DEFAULT_COURSE: ICourse = {
   name: LOADING_TEXT,
   description: LOADING_TEXT,
 };

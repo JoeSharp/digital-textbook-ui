@@ -1,12 +1,12 @@
 import React from "react";
 import { useCallback, useState } from "react";
 import Header from "./components/Header";
-import CoursesList from "./components/CoursesList";
 import {
   GoogleLogin,
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from "react-google-login";
+import Routes from "./Routes";
 
 const tg = (tbd: any): tbd is GoogleLoginResponse => {
   if ((tbd as GoogleLoginResponse).profileObj) {
@@ -31,7 +31,7 @@ function App() {
   return (
     <div>
       <Header />
-      <CoursesList />
+      <Routes />
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText={username || "Login"}

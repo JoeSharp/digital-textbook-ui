@@ -2,35 +2,39 @@ import * as React from "react";
 import { useEffect, useMemo } from "react";
 
 import useCourseApi from "../../lib/api/useCourseApi";
-import { CourseDocument, DEFAULT_COURSE } from "../../types";
+import { ICourseDoc, DEFAULT_COURSE } from "../../types";
 
 interface Props {
-  id: string;
+  courseId: string;
 }
 
-const EditCourse: React.FunctionComponent<Props> = ({ id }) => {
+const EditCourse: React.FunctionComponent<Props> = ({ courseId }) => {
   const { courses, getCourse } = useCourseApi();
 
-  useEffect(() => getCourse(id), [id, getCourse]);
-  const course: CourseDocument = useMemo(
-    () => courses.find(c => c._id === id) || { _id: id, ...DEFAULT_COURSE },
-    [id, courses]
+  useEffect(() => getCourse(courseId), [courseId, getCourse]);
+  const course: ICourseDoc = useMemo(
+    () =>
+      courses.find((c) => c._id === courseId) || {
+        _id: courseId,
+        ...DEFAULT_COURSE,
+      },
+    [courseId, courses]
   );
 
   return (
     <div>
       <form>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+          <label htmlFor="courseName">Name</label>
           <input
-            type="email"
+            type="text"
             className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            id={`editCourseName-${courseId}`}
+            aria-describedby="courseNameHelp"
             value={course.name}
           />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
+          <small id="courseNameHelp" className="form-text text-muted">
+            This is the name of your course
           </small>
         </div>
         <button type="submit" className="btn btn-primary">

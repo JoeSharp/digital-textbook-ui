@@ -1,16 +1,16 @@
 import { useCallback, useEffect } from "react";
 
-import { CourseType, CourseDocument } from "../../../types";
+import { ICourseDoc, ICourse } from "../../../types";
 import useApi from "./useApi";
 import useObjectReducer from "../../useObjectReducer";
 import { ObjWithStringKey } from "../../useObjectReducer/useObjectReducer";
 
 interface UseCoursesApi {
   getCourse: (courseId: string) => void;
-  createCourse: (course: CourseType) => void;
+  createCourse: (course: ICourse) => void;
   deleteCourse: (courseId: string) => void;
-  courses: CourseDocument[];
-  coursesById: ObjWithStringKey<CourseDocument>;
+  courses: ICourseDoc[];
+  coursesById: ObjWithStringKey<ICourseDoc>;
 }
 
 const useCoursesApi = (): UseCoursesApi => {
@@ -22,12 +22,14 @@ const useCoursesApi = (): UseCoursesApi => {
     addItem,
     receiveListOfItems,
     removeItem,
-  } = useObjectReducer<CourseDocument>((course) => course._id, {});
+  } = useObjectReducer<ICourseDoc>((course) => course._id, {});
 
   useEffect(() => {
     async function f() {
       const courses = await getCourses();
-      receiveListOfItems(courses);
+      if (!!courses) {
+        receiveListOfItems(courses);
+      }
     }
 
     f();
@@ -47,7 +49,7 @@ const useCoursesApi = (): UseCoursesApi => {
   );
 
   const _createCourse = useCallback(
-    (course: CourseType) => {
+    (course: ICourse) => {
       async function f() {
         const newCourse = await createCourse(course);
         addItem(newCourse);

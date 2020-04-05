@@ -5,11 +5,17 @@ import App from "./App";
 import { AuthenticationContextProvider } from "./lib/authentication";
 import { ErrorReportingContextProvider } from "./lib/ErrorPage";
 import * as serviceWorker from "./serviceWorker";
+import { createBrowserHistory as createHistory } from "history";
+import { CustomRouter } from "./lib/useAppNavigation";
+
+export const history = createHistory();
 
 ReactDOM.render(
   <ErrorReportingContextProvider>
     <AuthenticationContextProvider>
-      <App />
+      <CustomRouter history={history}>
+        <App />
+      </CustomRouter>
     </AuthenticationContextProvider>
   </ErrorReportingContextProvider>,
   document.getElementById("root")

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ValueType } from "react-select/lib/types";
+import { ValueType } from "react-select";
 import { BasicOption } from "./types";
 
 interface PropsIn {
@@ -21,23 +21,23 @@ const useReactSelect = ({
 }: PropsIn): UseReactSelect => {
   const _options = React.useMemo(
     () =>
-      options.map(o => ({
+      options.map((o) => ({
         label: o,
         value: o,
       })),
-    [options],
+    [options]
   );
   const _value: BasicOption | undefined = React.useMemo(
-    () => _options.find(o => o.value === value),
-    [_options, value],
+    () => _options.find((o) => o.value === value),
+    [_options, value]
   );
   const _onChange: (v: ValueType<BasicOption>) => void = React.useCallback(
-    v => {
+    (v) => {
       if (!!v && (v as BasicOption).value) {
         onChange((v as BasicOption).value);
       }
     },
-    [onChange],
+    [onChange]
   );
 
   return {

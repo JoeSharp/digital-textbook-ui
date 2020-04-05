@@ -76,9 +76,9 @@ export const useHttpClient = (): HttpClient => {
           reportError({
             errorMessage: error.message,
             stackTrace: error.stack,
-            httpErrorCode: error.status
+            httpErrorCode: error.status,
           });
-        }
+        },
       });
     },
     [reportError]
@@ -102,7 +102,7 @@ export const useHttpClient = (): HttpClient => {
       let headers = {
         Accept: "application/json",
         "Content-Type": "application/json",
-        ...(options ? options.headers : {})
+        ...(options ? options.headers : {}),
       };
 
       if (addAuthentication) {
@@ -115,10 +115,10 @@ export const useHttpClient = (): HttpClient => {
           method: "get",
           mode: "cors",
           ...options,
-          headers
+          headers,
         })
           .then(handle200)
-          .then(r => r.json())
+          .then((r) => r.json())
           .catch(catchImpl);
       }
 
@@ -146,7 +146,7 @@ export const useHttpClient = (): HttpClient => {
         const headers = {
           Accept: "application/json",
           "Content-Type": "application/json",
-          ...(options ? options.headers : {})
+          ...(options ? options.headers : {}),
         };
 
         if (addAuthentication) {
@@ -157,10 +157,10 @@ export const useHttpClient = (): HttpClient => {
           mode: "cors",
           ...options,
           method,
-          headers
+          headers,
         })
           .then(handle200)
-          .then(r => r.json())
+          .then((r) => r.json())
           .catch(catchImpl);
       },
       [method]
@@ -183,7 +183,7 @@ export const useHttpClient = (): HttpClient => {
 
         const headers = {
           "Content-Type": "application/json",
-          ...(options ? options.headers : {})
+          ...(options ? options.headers : {}),
         };
 
         if (addAuthentication) {
@@ -194,7 +194,7 @@ export const useHttpClient = (): HttpClient => {
           mode: "cors",
           ...options,
           method,
-          headers
+          headers,
         })
           .then(handle204)
           .catch(catchImpl);
@@ -215,7 +215,7 @@ export const useHttpClient = (): HttpClient => {
     httpPatchEmptyResponse: useFetchWithBodyAndEmptyResponse("patch"),
     clearCache: () => {
       cache = {};
-    }
+    },
   };
 };
 
