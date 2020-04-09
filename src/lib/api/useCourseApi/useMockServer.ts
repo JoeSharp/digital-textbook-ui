@@ -1,20 +1,25 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import fetchMock from "fetch-mock";
 import { v4 as uuidv4 } from "uuid";
 
 import { TEST_COURSES } from "./testData";
 import { ICourseDoc, ICourse } from "../../../types";
 import { MockServer, getId } from "../mockServerUtils";
+import useListReducer from "../../useListReducer";
 
 const resource = "/course";
 const resourceUrl = `${process.env.REACT_APP_SERVICE_BASE_URL}${resource}`;
+const resourceUrlWithId = `express:${resource}/:id`;
 
 export const useMockServer = (): MockServer => {
-  const [courses, setCourses] = useState<ICourseDoc[]>(TEST_COURSES);
+  const { items: courses, addItem, removeItem } = useListReducer<ICourseDoc>(
+    (c) => c._id,
+    TEST_COURSES
+  );
 
   const setup = useCallback(() => {
     fetchMock.get(resourceUrl, courses);
-    fetchMock.get(`express:${resource}/:id`, (url) => {
+    fetchMock.get(resourceUrlWithId, (url) => {
       const id = getId(resource, url);
       const course = courses.find((c) => c._id === id);
       if (!!course) {
@@ -24,23 +29,31 @@ export const useMockServer = (): MockServer => {
       }
     });
     fetchMock.post(resourceUrl, (url, options) => {
-      if (options.body instanceof String) {
-        const courseBody = JSON.parse(options.body as string) as ICourse;
-        const course: ICourseDoc = {
-          _id: uuidv4(),
-          ...courseBody,
-        };
+      const courseBody = JSON.parse(options.body as string) as ICourse;
+      const course: ICourseDoc = {
+        _id: uuidv4(),
+        ...courseBody,
+      };
+      addItem(course);
 
-        return course;
-      }
-      return 401;
+      return course;
     });
-    fetchMock.delete(`express:${resource}/:id`, (url) => {
+    fetchMock.patch(resourceUrlWithId, (url, options) => {
+      const _id = getId(resource, url);
+      const courseBody = JSON.parse(options.body as string) as ICourse;
+      const course: ICourseDoc = {
+        _id,
+        ...courseBody,
+      };
+      addItem(course);
+      return course;
+    });
+    fetchMock.delete(resourceUrlWithId, (url) => {
       const id = getId(resource, url);
-      setCourses(courses.filter((c) => c._id !== id));
+      removeItem(id);
       return 204;
     });
-  }, [courses, setCourses]);
+  }, [courses, addItem, removeItem]);
 
   return { setup, data: courses };
 };

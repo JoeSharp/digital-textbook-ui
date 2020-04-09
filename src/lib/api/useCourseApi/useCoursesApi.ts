@@ -8,13 +8,20 @@ import { ObjWithStringKey } from "../../useObjectReducer/useObjectReducer";
 interface UseCoursesApi {
   getCourse: (courseId: string) => void;
   createCourse: (course: ICourse) => void;
+  updateCourse: (courseId: string, updates: ICourse) => void;
   deleteCourse: (courseId: string) => void;
   courses: ICourseDoc[];
   coursesById: ObjWithStringKey<ICourseDoc>;
 }
 
 const useCoursesApi = (): UseCoursesApi => {
-  const { getCourses, getCourse, createCourse, deleteCourse } = useApi();
+  const {
+    getCourses,
+    getCourse,
+    createCourse,
+    updateCourse,
+    deleteCourse,
+  } = useApi();
 
   const {
     items: coursesById,
@@ -60,6 +67,18 @@ const useCoursesApi = (): UseCoursesApi => {
     [addItem, createCourse]
   );
 
+  const _updateCourse = useCallback(
+    (courseId: string, updates: ICourse) => {
+      async function f() {
+        const updatedCourse = await updateCourse(courseId, updates);
+        addItem(updatedCourse);
+      }
+
+      f();
+    },
+    [addItem, updateCourse]
+  );
+
   const _deleteCourse = useCallback(
     (courseId: string) => {
       async function f() {
@@ -77,6 +96,7 @@ const useCoursesApi = (): UseCoursesApi => {
     coursesById,
     getCourse: _getCourse,
     createCourse: _createCourse,
+    updateCourse: _updateCourse,
     deleteCourse: _deleteCourse,
   };
 };

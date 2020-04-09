@@ -16,8 +16,8 @@
 
 import * as React from "react";
 import { Route, RouteComponentProps, Switch } from "react-router";
-import CoursesList from "./components/CoursesList";
-import EditCourse from "./components/EditCourse";
+import CoursesList from "./components/Courses/CoursesList";
+import EditCourse from "./components/Courses/EditCourse";
 import useAppNavigation from "./lib/useAppNavigation";
 
 const Routes: React.FunctionComponent = () => {
