@@ -1,4 +1,4 @@
-import { ICourseDoc } from "../../../types";
+import { ICourseDoc } from "../../types";
 
 import { loremIpsum } from "lorem-ipsum";
 

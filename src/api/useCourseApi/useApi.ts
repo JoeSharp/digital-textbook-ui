@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import useHttpClient from "../../useHttpClient";
-import { ICourseDoc, ICourse } from "../../../types";
+import useHttpClient from "../../lib/useHttpClient";
+import { ICourseDoc, ICourse } from "../../types";
 
 const COURSES_RESOURCE = `${process.env.REACT_APP_SERVICE_BASE_URL}/course`;
 

@@ -1,9 +1,10 @@
 import { useCallback, useEffect } from "react";
 
-import { ICourseDoc, ICourse } from "../../../types";
+import { ICourseDoc, ICourse } from "../../types";
 import useApi from "./useApi";
-import useObjectReducer from "../../useObjectReducer";
-import { ObjWithStringKey } from "../../useObjectReducer/useObjectReducer";
+import useObjectReducer, {
+  ObjWithStringKey,
+} from "../../lib/useObjectReducer/useObjectReducer";
 
 interface UseCoursesApi {
   getCourse: (courseId: string) => void;

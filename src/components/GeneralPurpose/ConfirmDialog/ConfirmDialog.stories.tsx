@@ -42,6 +42,6 @@ let TestHarness: React.FunctionComponent = () => {
   );
 };
 
-storiesOf("General Purpose/Themed Confirm", module).add("basic", () => (
+storiesOf("General Purpose/Confirm Dialog", module).add("basic", () => (
   <TestHarness />
 ));

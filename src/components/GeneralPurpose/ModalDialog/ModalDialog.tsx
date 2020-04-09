@@ -17,6 +17,7 @@
 import * as React from "react";
 import Modal from "react-modal";
 import customStyles from "./customStyles";
+import "./ModalDialog.css";
 
 interface ContentProps {
   header: JSX.Element;

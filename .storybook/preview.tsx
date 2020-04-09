@@ -2,6 +2,8 @@ import * as React from "react";
 import { addDecorator } from "@storybook/react";
 import { withRouter, RouteComponentProps } from "react-router";
 
+import "../src/index.css";
+
 import useMockServer from "../src/lib/api/useMockServer";
 import { AuthenticationContextProvider } from "../src/lib/authentication";
 import { ErrorReportingContextProvider } from "../src/lib/ErrorPage";

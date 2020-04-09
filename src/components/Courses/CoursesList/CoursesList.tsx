@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { FunctionComponent, useMemo } from "react";
 
-import { useCoursesApi } from "../../../lib/api";
+import { useCoursesApi } from "../../../api";
 import { ICourseDoc } from "../../../types";
 import useAppNavigation from "../../../lib/useAppNavigation";
 import ConfirmDialog, { useDialog } from "../../GeneralPurpose/ConfirmDialog";

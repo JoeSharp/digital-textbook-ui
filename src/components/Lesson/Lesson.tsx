@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { useLessonApi } from "../../lib/api";
+import { useLessonApi } from "../../api";
 import LessonTask from "./LessonTask";
 
 interface Props {

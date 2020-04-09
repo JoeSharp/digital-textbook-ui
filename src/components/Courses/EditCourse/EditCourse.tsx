@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useMemo, useCallback } from "react";
 
-import useCourseApi from "../../../lib/api/useCourseApi";
+import useCourseApi from "../../../api/useCourseApi";
 import useForm from "../../../lib/useForm";
 import { ICourseDoc, DEFAULT_COURSE, ICourse } from "../../../types";
 

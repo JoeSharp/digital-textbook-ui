@@ -15,9 +15,7 @@
  */
 
 import * as React from "react";
-import Modal from "react-modal";
-
-import customStyles from "../ModalDialog/customStyles";
+import ModalDialog from "../ModalDialog";
 
 interface NewProps<T> {
   getQuestion: () => string;
@@ -40,11 +38,12 @@ const ConfirmDialog: React.FunctionComponent<Props> = ({
   ...rest
 }) => {
   return (
-    <Modal className={`themed-modal light`} {...rest} style={customStyles}>
-      <div className="themed-modal__container">
-        <header className="themed-modal__header">{question}</header>
-        {details && <div className="themed-modal__content">{details}</div>}
-        <div className="themed-modal__footer__actions">
+    <ModalDialog
+      {...rest}
+      header={<h3>{question}</h3>}
+      content={<div>{details}</div>}
+      actions={
+        <React.Fragment>
           <button className="btn btn-primary" onClick={onCloseDialog}>
             Cancel
           </button>
@@ -57,9 +56,9 @@ const ConfirmDialog: React.FunctionComponent<Props> = ({
           >
             Confirm
           </button>
-        </div>
-      </div>
-    </Modal>
+        </React.Fragment>
+      }
+    />
   );
 };
 

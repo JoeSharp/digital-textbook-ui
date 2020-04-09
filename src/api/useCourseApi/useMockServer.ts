@@ -3,9 +3,9 @@ import fetchMock from "fetch-mock";
 import { v4 as uuidv4 } from "uuid";
 
 import { TEST_COURSES } from "./testData";
-import { ICourseDoc, ICourse } from "../../../types";
+import { ICourseDoc, ICourse } from "../../types";
 import { MockServer, getId } from "../mockServerUtils";
-import useListReducer from "../../useListReducer";
+import useListReducer from "../../lib/useListReducer";
 
 const resource = "/course";
 const resourceUrl = `${process.env.REACT_APP_SERVICE_BASE_URL}${resource}`;

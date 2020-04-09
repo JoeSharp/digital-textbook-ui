@@ -53,6 +53,6 @@ const TestHarness: React.FunctionComponent = () => {
   );
 };
 
-storiesOf("General Purpose/Themed Modal", module).add("basic", () => (
+storiesOf("General Purpose/Modal Dialog", module).add("basic", () => (
   <TestHarness />
 ));

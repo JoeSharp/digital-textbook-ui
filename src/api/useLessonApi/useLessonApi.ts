@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { LessonType, DEFAULT_LESSON } from "../../../types";
+import { LessonType, DEFAULT_LESSON } from "../../types";
 
 interface Props {
   lessonId: string;
@@ -30,7 +30,7 @@ const useLessonApi = ({ lessonId }: Props): UseLessonApi => {
   }, [lessonId, setLesson]);
 
   return {
-    lesson
+    lesson,
   };
 };
 

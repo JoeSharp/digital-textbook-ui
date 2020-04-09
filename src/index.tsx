@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./App";
+import App from "./components/App";
 import { AuthenticationContextProvider } from "./lib/authentication";
 import { ErrorReportingContextProvider } from "./lib/ErrorPage";
 import * as serviceWorker from "./serviceWorker";
 import { createBrowserHistory as createHistory } from "history";
 import { CustomRouter } from "./lib/useAppNavigation";
+import Modal from "react-modal";
+
+import "./index.css";
 
 export const history = createHistory();
+
+Modal.setAppElement("#root");
 
 ReactDOM.render(
   <ErrorReportingContextProvider>

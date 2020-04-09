@@ -1,7 +1,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import App from "./App";
-import useAppNavigation from "./lib/useAppNavigation";
+import useAppNavigation from "../../lib/useAppNavigation";
 
 const TestHarness: React.FunctionComponent = () => {
   const {
@@ -13,4 +13,4 @@ const TestHarness: React.FunctionComponent = () => {
   return <App />;
 };
 
-storiesOf("App", module).add("Basic", () => <TestHarness />);
+storiesOf("App/Main", module).add("Basic", () => <TestHarness />);

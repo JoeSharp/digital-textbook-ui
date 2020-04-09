@@ -1,6 +1,6 @@
 import React from "react";
 import { FunctionComponent } from "react";
-import useAppNavigation from "../../lib/useAppNavigation";
+import useAppNavigation from "../../../lib/useAppNavigation";
 
 const Header: FunctionComponent = () => {
   const {
