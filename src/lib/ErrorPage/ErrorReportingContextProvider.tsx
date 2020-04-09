@@ -1,13 +1,25 @@
 import * as React from "react";
+import cogoToast from "cogo-toast";
 
-import { SingleError } from "./types";
 import ErrorReportingContext from "./ErrorReportingContext";
+import { AppError } from "./AppError";
 
 const ErrorReportingContextProvider: React.FunctionComponent = ({
   children,
 }) => {
-  const [error, reportError] = React.useState<SingleError | undefined>(
-    undefined,
+  const [error, setError] = React.useState<AppError | undefined>(undefined);
+
+  const reportError = React.useCallback(
+    (error: AppError) => {
+      const msg = `Error, Code ${error.status}, Msg: ${error.message}`;
+      cogoToast.error(msg, {
+        hideAfter: 5,
+        onClick: () => {
+          setError(error);
+        },
+      });
+    },
+    [setError]
   );
 
   return (

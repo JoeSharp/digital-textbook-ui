@@ -19,6 +19,9 @@ export const useMockServer = (): MockServer => {
 
   const setup = useCallback(() => {
     fetchMock.get(resourceUrl, courses);
+    // fetchMock.get(resourceUrl, () => {
+    //   return 404;
+    // });
     fetchMock.get(resourceUrlWithId, (url) => {
       const id = getId(resource, url);
       const course = courses.find((c) => c._id === id);

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export class HttpError {
+export class AppError {
   status: number;
   message: string;
   stack: string;

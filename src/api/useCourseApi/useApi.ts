@@ -1,6 +1,7 @@
 import { useCallback } from "react";
-import useHttpClient from "../../lib/useHttpClient";
 import { ICourseDoc, ICourse } from "../../types";
+import { useAuthenticationContext } from "../../lib/authentication";
+import useCheckHttpStatus from "../../lib/useCheckHttpStatus";
 
 const COURSES_RESOURCE = `${process.env.REACT_APP_SERVICE_BASE_URL}/course`;
 
@@ -16,36 +17,82 @@ interface UseApi {
 }
 
 const useApi = (): UseApi => {
-  const {
-    httpGetJson,
-    httpPostJsonResponse,
-    httpPutJsonResponse,
-    httpDeleteEmptyResponse,
-  } = useHttpClient();
+  const { idToken } = useAuthenticationContext();
+  const handle200 = useCheckHttpStatus(200);
+  const handle204 = useCheckHttpStatus(204);
+
   return {
-    getCourses: useCallback(() => httpGetJson(COURSES_RESOURCE), [httpGetJson]),
+    getCourses: useCallback(() => {
+      let headers = {
+        Accept: "application/json",
+        Authorization: `Bearer ${idToken}`,
+      };
+      return fetch(COURSES_RESOURCE, {
+        headers,
+      })
+        .then(handle200)
+        .then((r) => r.json());
+    }, [idToken, handle200]),
     getCourse: useCallback(
-      (courseId: string) => httpGetJson(getCoursesResourceWithId(courseId)),
-      [httpGetJson]
+      async (courseId: string) => {
+        let headers = {
+          Accept: "application/json",
+          Authorization: `Bearer ${idToken}`,
+        };
+        const response = await fetch(getCoursesResourceWithId(courseId), {
+          headers,
+        });
+        const r = await handle200(response);
+        return r.json();
+      },
+      [idToken, handle200]
     ),
     createCourse: useCallback(
-      (newCourse: ICourse) =>
-        httpPostJsonResponse(COURSES_RESOURCE, {
+      async (newCourse: ICourse) => {
+        let headers = {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        };
+        const response = await fetch(COURSES_RESOURCE, {
+          method: "post",
           body: JSON.stringify(newCourse),
-        }),
-      [httpPostJsonResponse]
+          headers,
+        });
+        const r = await handle200(response);
+        return r.json();
+      },
+      [idToken, handle200]
     ),
     updateCourse: useCallback(
-      (courseId: string, updates: ICourse) =>
-        httpPutJsonResponse(getCoursesResourceWithId(courseId), {
+      async (courseId: string, updates: ICourse) => {
+        let headers = {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        };
+        const response = await fetch(getCoursesResourceWithId(courseId), {
+          method: "put",
           body: JSON.stringify(updates),
-        }),
-      [httpPutJsonResponse]
+          headers,
+        });
+        const r = await handle200(response);
+        return r.json();
+      },
+      [idToken, handle200]
     ),
     deleteCourse: useCallback(
-      (courseId: string) =>
-        httpDeleteEmptyResponse(`${COURSES_RESOURCE}/${courseId}`),
-      [httpDeleteEmptyResponse]
+      async (courseId: string) => {
+        let headers = {
+          Authorization: `Bearer ${idToken}`,
+        };
+        const response = await fetch(getCoursesResourceWithId(courseId), {
+          method: "delete",
+          headers,
+        });
+        return await handle204(response);
+      },
+      [idToken, handle204]
     ),
   };
 };

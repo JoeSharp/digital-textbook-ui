@@ -5,6 +5,7 @@ import useApi from "./useApi";
 import useObjectReducer, {
   ObjWithStringKey,
 } from "../../lib/useObjectReducer/useObjectReducer";
+import { useErrorReporting } from "../../lib/ErrorPage";
 
 interface UseCoursesApi {
   getCourse: (courseId: string) => void;
@@ -16,6 +17,8 @@ interface UseCoursesApi {
 }
 
 const useCoursesApi = (): UseCoursesApi => {
+  const { reportError } = useErrorReporting();
+
   const {
     getCourses,
     getCourse,
@@ -34,38 +37,48 @@ const useCoursesApi = (): UseCoursesApi => {
 
   useEffect(() => {
     async function f() {
-      const courses = await getCourses();
-      if (!!courses) {
+      try {
+        const courses = await getCourses();
         receiveListOfItems(courses);
+      } catch (err) {
+        reportError(err);
       }
     }
 
     f();
-  }, [receiveListOfItems, getCourses]);
+  }, [receiveListOfItems, getCourses, reportError]);
 
   const _getCourse = useCallback(
     (courseId: string) => {
       let course = undefined;
       async function f() {
-        course = await getCourse(courseId);
-        return course;
+        try {
+          course = await getCourse(courseId);
+          return course;
+        } catch (err) {
+          reportError(err);
+        }
       }
 
       f();
     },
-    [getCourse]
+    [getCourse, reportError]
   );
 
   const _createCourse = useCallback(
     (course: ICourse) => {
       async function f() {
-        const newCourse = await createCourse(course);
-        addItem(newCourse);
+        try {
+          const newCourse = await createCourse(course);
+          addItem(newCourse);
+        } catch (err) {
+          reportError(err);
+        }
       }
 
       f();
     },
-    [addItem, createCourse]
+    [addItem, createCourse, reportError]
   );
 
   const _updateCourse = useCallback(
@@ -76,26 +89,30 @@ const useCoursesApi = (): UseCoursesApi => {
           const updatedCourse = await updateCourse(courseId, updates);
           console.log("UPDATED", updatedCourse);
           addItem(updatedCourse);
-        } catch (e) {
-          console.log(e);
+        } catch (err) {
+          reportError(err);
         }
       }
 
       f();
     },
-    [addItem, updateCourse]
+    [addItem, updateCourse, reportError]
   );
 
   const _deleteCourse = useCallback(
     (courseId: string) => {
       async function f() {
-        await deleteCourse(courseId);
-        removeItem(courseId);
+        try {
+          await deleteCourse(courseId);
+          removeItem(courseId);
+        } catch (err) {
+          reportError(err);
+        }
       }
 
       f();
     },
-    [removeItem, deleteCourse]
+    [removeItem, deleteCourse, reportError]
   );
 
   return {

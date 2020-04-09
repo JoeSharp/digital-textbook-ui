@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from "react-router";
 
 import "../src/index.css";
 
-import useMockServer from "../src/lib/api/useMockServer";
+import useMockServer from "../src/api/useMockServer";
 import { AuthenticationContextProvider } from "../src/lib/authentication";
 import { ErrorReportingContextProvider } from "../src/lib/ErrorPage";
 import { CustomRouter } from "../src/lib/useAppNavigation";
