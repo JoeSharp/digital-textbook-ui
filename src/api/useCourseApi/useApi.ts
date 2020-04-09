@@ -19,7 +19,7 @@ const useApi = (): UseApi => {
   const {
     httpGetJson,
     httpPostJsonResponse,
-    httpPatchJsonResponse,
+    httpPutJsonResponse,
     httpDeleteEmptyResponse,
   } = useHttpClient();
   return {
@@ -34,8 +34,8 @@ const useApi = (): UseApi => {
     ),
     updateCourse: useCallback(
       (courseId: string, updates: ICourse) =>
-        httpPatchJsonResponse(getCoursesResourceWithId(courseId), updates),
-      [httpPatchJsonResponse]
+        httpPutJsonResponse(getCoursesResourceWithId(courseId), updates),
+      [httpPutJsonResponse]
     ),
     deleteCourse: useCallback(
       (courseId: string) =>

@@ -29,7 +29,7 @@ function App() {
   );
 
   return (
-    <div>
+    <div className="container">
       <Header />
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}

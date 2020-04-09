@@ -71,8 +71,12 @@ const useCoursesApi = (): UseCoursesApi => {
   const _updateCourse = useCallback(
     (courseId: string, updates: ICourse) => {
       async function f() {
-        const updatedCourse = await updateCourse(courseId, updates);
-        addItem(updatedCourse);
+        try {
+          const updatedCourse = await updateCourse(courseId, updates);
+          addItem(updatedCourse);
+        } catch (e) {
+          console.log(e);
+        }
       }
 
       f();

@@ -32,7 +32,10 @@ const EditCourse: React.FunctionComponent<Props> = ({ courseId }) => {
   const descriptionProps = useTextInput("description");
 
   const onSave = useCallback(
-    () => updateCourse(courseId, { ...course, ...courseUpdates }),
+    (e) => {
+      updateCourse(courseId, { ...course, ...courseUpdates });
+      e.preventDefault();
+    },
     [course, courseUpdates, courseId, updateCourse]
   );
 
