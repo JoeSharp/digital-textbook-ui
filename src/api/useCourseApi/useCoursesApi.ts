@@ -72,7 +72,9 @@ const useCoursesApi = (): UseCoursesApi => {
     (courseId: string, updates: ICourse) => {
       async function f() {
         try {
+          console.log("updating course", updates);
           const updatedCourse = await updateCourse(courseId, updates);
+          console.log("UPDATED", updatedCourse);
           addItem(updatedCourse);
         } catch (e) {
           console.log(e);

@@ -38,7 +38,7 @@ export const useMockServer = (): MockServer => {
 
       return course;
     });
-    fetchMock.patch(resourceUrlWithId, (url, options) => {
+    fetchMock.put(resourceUrlWithId, (url, options) => {
       const _id = getId(resource, url);
       const courseBody = JSON.parse(options.body as string) as ICourse;
       const course: ICourseDoc = {

@@ -23,20 +23,18 @@ const EditCourse: React.FunctionComponent<Props> = ({ courseId }) => {
     [courseId, courses]
   );
 
-  const [courseUpdates, onValidate] = React.useState<object>(course);
-  const { useTextInput } = useForm<ICourse>({
+  const { useTextInput, value } = useForm<ICourse>({
     initialValues: course,
-    onValidate,
   });
   const nameProps = useTextInput("name");
   const descriptionProps = useTextInput("description");
 
   const onSave = useCallback(
     (e) => {
-      updateCourse(courseId, { ...course, ...courseUpdates });
+      updateCourse(courseId, { ...course, ...value });
       e.preventDefault();
     },
-    [course, courseUpdates, courseId, updateCourse]
+    [course, value, courseId, updateCourse]
   );
 
   return (

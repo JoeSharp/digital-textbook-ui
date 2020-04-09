@@ -29,12 +29,17 @@ const useApi = (): UseApi => {
       [httpGetJson]
     ),
     createCourse: useCallback(
-      (newCourse: ICourse) => httpPostJsonResponse(COURSES_RESOURCE, newCourse),
+      (newCourse: ICourse) =>
+        httpPostJsonResponse(COURSES_RESOURCE, {
+          body: JSON.stringify(newCourse),
+        }),
       [httpPostJsonResponse]
     ),
     updateCourse: useCallback(
       (courseId: string, updates: ICourse) =>
-        httpPutJsonResponse(getCoursesResourceWithId(courseId), updates),
+        httpPutJsonResponse(getCoursesResourceWithId(courseId), {
+          body: JSON.stringify(updates),
+        }),
       [httpPutJsonResponse]
     ),
     deleteCourse: useCallback(
