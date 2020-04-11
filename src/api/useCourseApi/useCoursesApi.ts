@@ -18,7 +18,15 @@ interface UseCoursesApi {
 
 const useCoursesApi = (): UseCoursesApi => {
   const { reportError } = useErrorReporting();
-  const { courses } = useClientSideData();
+  const {
+    courses: {
+      items: coursesById,
+      itemsInList: coursesInList,
+      addItem,
+      receiveListOfItems,
+      removeItem,
+    },
+  } = useClientSideData();
 
   const {
     getCourses,
@@ -27,14 +35,6 @@ const useCoursesApi = (): UseCoursesApi => {
     updateCourse,
     deleteCourse,
   } = useApi();
-
-  const {
-    items: coursesById,
-    itemsInList: coursesInList,
-    addItem,
-    receiveListOfItems,
-    removeItem,
-  } = courses;
 
   const _refreshCourses = useCallback(() => {
     async function f() {

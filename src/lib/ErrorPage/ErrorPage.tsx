@@ -31,22 +31,18 @@ const ErrorPage = () => {
     );
   }
 
-  const { errorMessage, httpErrorCode, stackTrace } = error;
+  const { message, status, stack } = error;
 
   return (
     <div>
       <h1>There has been an error!"</h1>
 
       <div className="ErrorPage__details">
-        {errorMessage && (
-          <ErrorSection errorData={errorMessage} title="Error Message" />
+        {message && <ErrorSection errorData={message} title="Error Message" />}
+        {status !== 0 && status && (
+          <ErrorSection errorData={status} title="HTTP error code" />
         )}
-        {httpErrorCode !== 0 && httpErrorCode && (
-          <ErrorSection errorData={httpErrorCode} title="HTTP error code" />
-        )}
-        {stackTrace && (
-          <ErrorSection errorData={stackTrace} title="Stack trace" />
-        )}
+        {stack && <ErrorSection errorData={stack} title="Stack trace" />}
       </div>
     </div>
   );

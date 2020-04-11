@@ -16,7 +16,7 @@
 
 import * as React from "react";
 import { Route, RouteComponentProps, Switch } from "react-router";
-import CoursesList from "../../Courses/CoursesList";
+import CoursesPage from "../../Courses";
 import EditCourse from "../../Courses/EditCourse";
 import useAppNavigation from "../../../lib/useAppNavigation";
 
@@ -27,7 +27,7 @@ const Routes: React.FunctionComponent = () => {
       <Route
         exact
         path={urlGenerator.goToCourses()}
-        render={() => <CoursesList />}
+        render={() => <CoursesPage />}
       />
       <Route
         exact
