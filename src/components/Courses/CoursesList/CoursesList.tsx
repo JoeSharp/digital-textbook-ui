@@ -26,13 +26,18 @@ const CoursesList: FunctionComponent = () => {
   const {
     componentProps: confirmDeleteProps,
     showDialog: showDeleteDialog,
-  } = useDialog<ConfirmDeleteData>({
-    getQuestion: () => "Are you sure you wish to delete this course?",
-    getDetails: ({ courseId }) => `Course: ${courseId}`,
-    onConfirm: ({ courseId }) => {
-      deleteCourse(courseId);
-    },
-  });
+  } = useDialog<ConfirmDeleteData>(
+    React.useMemo(
+      () => ({
+        getQuestion: () => "Are you sure you wish to delete this course?",
+        getDetails: ({ courseId }) => `Course: ${courseId}`,
+        onConfirm: ({ courseId }) => {
+          deleteCourse(courseId);
+        },
+      }),
+      [deleteCourse]
+    )
+  );
 
   const courseWithHandlers: CourseWithHandlers[] = useMemo(
     () =>

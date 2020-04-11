@@ -9,6 +9,7 @@ import { useErrorReporting } from "../../lib/ErrorPage";
 
 interface UseCoursesApi {
   getCourse: (courseId: string) => void;
+  refreshCourses: () => void;
   createCourse: (course: ICourse) => void;
   updateCourse: (courseId: string, updates: ICourse) => void;
   deleteCourse: (courseId: string) => void;
@@ -35,7 +36,7 @@ const useCoursesApi = (): UseCoursesApi => {
     removeItem,
   } = useObjectReducer<ICourseDoc>((course) => course._id, {});
 
-  useEffect(() => {
+  const _refreshCourses = useCallback(() => {
     async function f() {
       try {
         const courses = await getCourses();
@@ -47,6 +48,8 @@ const useCoursesApi = (): UseCoursesApi => {
 
     f();
   }, [receiveListOfItems, getCourses, reportError]);
+
+  useEffect(_refreshCourses, [_refreshCourses]);
 
   const _getCourse = useCallback(
     (courseId: string) => {
@@ -118,6 +121,7 @@ const useCoursesApi = (): UseCoursesApi => {
   return {
     courses,
     coursesById,
+    refreshCourses: _refreshCourses,
     getCourse: _getCourse,
     createCourse: _createCourse,
     updateCourse: _updateCourse,

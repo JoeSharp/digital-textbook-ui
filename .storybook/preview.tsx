@@ -1,6 +1,7 @@
 import * as React from "react";
 import { addDecorator } from "@storybook/react";
 import { withRouter, RouteComponentProps } from "react-router";
+import Modal from "react-modal";
 
 import "../src/index.css";
 
@@ -17,6 +18,8 @@ const RouteWrapper: React.StatelessComponent<RouteComponentProps> = ({
   return <CustomRouter history={history}>{children}</CustomRouter>;
 };
 const RouteWrapperReady = withRouter(RouteWrapper);
+
+Modal.setAppElement("#root");
 
 addDecorator((storyFn) => {
   const isMockServerReady = useMockServer();
