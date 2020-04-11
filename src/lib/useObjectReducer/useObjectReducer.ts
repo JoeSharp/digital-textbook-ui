@@ -27,6 +27,22 @@ interface RemovedAction {
   itemKey: string;
 }
 
+export const getDefaultObjectReducer = <T extends {}>(): UseObjectReducer<
+  T
+> => {
+  return {
+    addItem: (item: T) => console.log("no", item),
+    items: {},
+    itemsInList: [] as T[],
+    receiveKeyedItems: (items: ObjWithStringKey<T>) =>
+      console.log("Default Implementation", items),
+    receiveListOfItems: (items: T[]) =>
+      console.log("Default Implementation", items),
+    removeItem: (itemKey: string) =>
+      console.log("Default Implementation", itemKey),
+  };
+};
+
 const createObjectReducer = <T extends {}>(getKey: (item: T) => string) => {
   return (
     state: ObjWithStringKey<T>,
@@ -59,7 +75,7 @@ const createObjectReducer = <T extends {}>(getKey: (item: T) => string) => {
   };
 };
 
-interface UseObjectReducer<T extends {}> {
+export interface UseObjectReducer<T extends {}> {
   items: ObjWithStringKey<T>;
   itemsInList: T[];
   receiveKeyedItems: (items: ObjWithStringKey<T>) => void;

@@ -2,6 +2,8 @@ export interface Document {
   _id: string;
 }
 
+export const getDocumentId = (doc: Document) => doc._id;
+
 export interface ICourse {
   name: string;
   description: string;

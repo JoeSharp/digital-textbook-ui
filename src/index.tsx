@@ -10,6 +10,7 @@ import { CustomRouter } from "./lib/useAppNavigation";
 import Modal from "react-modal";
 
 import "./index.css";
+import { ClientSideDataProvider } from "./api/useClientSideData/useClientSideData";
 
 export const history = createHistory();
 
@@ -17,11 +18,13 @@ Modal.setAppElement("#root");
 
 ReactDOM.render(
   <ErrorReportingContextProvider>
-    <AuthenticationContextProvider>
-      <CustomRouter history={history}>
-        <App />
-      </CustomRouter>
-    </AuthenticationContextProvider>
+    <ClientSideDataProvider>
+      <AuthenticationContextProvider>
+        <CustomRouter history={history}>
+          <App />
+        </CustomRouter>
+      </AuthenticationContextProvider>
+    </ClientSideDataProvider>
   </ErrorReportingContextProvider>,
   document.getElementById("root")
 );

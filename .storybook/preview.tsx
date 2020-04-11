@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import "../src/index.css";
 
 import useMockServer from "../src/api/useMockServer";
+import { ClientSideDataProvider } from "../src/api/useClientSideData/useClientSideData";
 import { AuthenticationContextProvider } from "../src/lib/authentication";
 import { ErrorReportingContextProvider } from "../src/lib/ErrorPage";
 import { CustomRouter } from "../src/lib/useAppNavigation";
@@ -26,11 +27,13 @@ addDecorator((storyFn) => {
 
   return isMockServerReady ? (
     <ErrorReportingContextProvider>
-      <RouteWrapperReady>
-        <AuthenticationContextProvider>
-          {storyFn()}
-        </AuthenticationContextProvider>
-      </RouteWrapperReady>
+      <ClientSideDataProvider>
+        <RouteWrapperReady>
+          <AuthenticationContextProvider>
+            {storyFn()}
+          </AuthenticationContextProvider>
+        </RouteWrapperReady>
+      </ClientSideDataProvider>
     </ErrorReportingContextProvider>
   ) : (
     <div>waiting for mock server...</div>

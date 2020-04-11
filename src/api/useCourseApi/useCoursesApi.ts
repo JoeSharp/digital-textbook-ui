@@ -2,9 +2,8 @@ import { useCallback, useEffect } from "react";
 
 import { ICourseDoc, ICourse } from "../../types";
 import useApi from "./useApi";
-import useObjectReducer, {
-  ObjWithStringKey,
-} from "../../lib/useObjectReducer/useObjectReducer";
+import { ObjWithStringKey } from "../../lib/useObjectReducer/useObjectReducer";
+import useClientSideData from "../useClientSideData/useClientSideData";
 import { useErrorReporting } from "../../lib/ErrorPage";
 
 interface UseCoursesApi {
@@ -19,6 +18,7 @@ interface UseCoursesApi {
 
 const useCoursesApi = (): UseCoursesApi => {
   const { reportError } = useErrorReporting();
+  const { courses } = useClientSideData();
 
   const {
     getCourses,
@@ -30,11 +30,11 @@ const useCoursesApi = (): UseCoursesApi => {
 
   const {
     items: coursesById,
-    itemsInList: courses,
+    itemsInList: coursesInList,
     addItem,
     receiveListOfItems,
     removeItem,
-  } = useObjectReducer<ICourseDoc>((course) => course._id, {});
+  } = courses;
 
   const _refreshCourses = useCallback(() => {
     async function f() {
@@ -119,7 +119,7 @@ const useCoursesApi = (): UseCoursesApi => {
   );
 
   return {
-    courses,
+    courses: coursesInList,
     coursesById,
     refreshCourses: _refreshCourses,
     getCourse: _getCourse,

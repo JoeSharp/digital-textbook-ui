@@ -21,11 +21,9 @@ import NewCourseDialog, { useDialog } from "./NewCourseDialog";
 import { useCoursesApi } from "../../../api";
 
 let TestHarness: React.FunctionComponent = () => {
-  const { courses, refreshCourses } = useCoursesApi();
+  const { courses } = useCoursesApi();
 
   const { showDialog, componentProps } = useDialog();
-
-  componentProps.onAfterClose = refreshCourses;
 
   return (
     <React.Fragment>
