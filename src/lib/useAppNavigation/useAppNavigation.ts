@@ -11,8 +11,17 @@ const useAppNavigation = (): NavigateApp => {
     () => ({
       urlGenerator: u,
       nav: {
-        goToCourse: (courseId: string) => h.push(u.goToCourse(courseId)),
-        goToCourses: () => h.push(u.goToCourses()),
+        goToAdminCourse: (courseId: string) =>
+          h.push(u.goToAdminCourse(courseId)),
+        goToAdminCourses: () => h.push(u.goToAdminCourses()),
+
+        goToTeachCourse: (courseId: string) =>
+          h.push(u.goToTeachCourse(courseId)),
+        goToTeachCourses: () => h.push(u.goToTeachCourses()),
+
+        goToStudyCourse: (courseId: string) =>
+          h.push(u.goToStudyCourse(courseId)),
+        goToStudyCourses: () => h.push(u.goToStudyCourses()),
       },
     }),
     [h, u]

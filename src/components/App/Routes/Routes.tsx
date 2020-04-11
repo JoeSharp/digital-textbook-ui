@@ -26,12 +26,12 @@ const Routes: React.FunctionComponent = () => {
     <Switch>
       <Route
         exact
-        path={urlGenerator.goToCourses()}
+        path={urlGenerator.goToAdminCourses()}
         render={() => <CoursesPage />}
       />
       <Route
         exact
-        path={urlGenerator.goToCourse(undefined)}
+        path={urlGenerator.goToAdminCourse(undefined)}
         render={({
           match: {
             params: { courseId },

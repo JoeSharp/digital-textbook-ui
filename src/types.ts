@@ -11,6 +11,11 @@ export interface ICourse {
 
 export type ICourseDoc = Document & ICourse;
 
+export const DEFAULT_COURSE: ICourse = {
+  name: "",
+  description: "",
+};
+
 export interface EmbeddedTrinketType {
   type: "trinket";
   trinketId: string;
@@ -41,15 +46,8 @@ export interface LessonType {
 
 export type LessonDocument = Document & LessonType;
 
-const LOADING_TEXT = "LOADING";
-
-export const DEFAULT_COURSE: ICourse = {
-  name: LOADING_TEXT,
-  description: LOADING_TEXT,
-};
-
 export const DEFAULT_LESSON: LessonType = {
-  courseId: LOADING_TEXT,
-  name: LOADING_TEXT,
+  courseId: "",
+  name: "",
   tasks: [],
 };

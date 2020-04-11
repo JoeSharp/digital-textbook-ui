@@ -5,10 +5,10 @@ import useAppNavigation from "../../lib/useAppNavigation";
 
 const TestHarness: React.FunctionComponent = () => {
   const {
-    nav: { goToCourses },
+    nav: { goToAdminCourses },
   } = useAppNavigation();
 
-  React.useEffect(() => goToCourses(), [goToCourses]);
+  React.useEffect(() => goToAdminCourses(), [goToAdminCourses]);
 
   return <App />;
 };

@@ -4,6 +4,8 @@ import ModalDialog from "../../GeneralPurpose/ModalDialog";
 import useForm from "../../../lib/useForm";
 import { useCoursesApi } from "../../../api";
 import { ICourse } from "../../../types";
+import ButtonBar from "../../GeneralPurpose/Buttons/ButtonBar";
+import { Props as ButtonProps } from "../../GeneralPurpose/Buttons/Button";
 
 interface Props extends ReactModal.Props {
   isOpen: boolean;
@@ -30,10 +32,24 @@ const NewCourseDialog: React.FunctionComponent<Props> = (props) => {
 
   const { onCloseDialog } = props;
 
-  const onConfirm = React.useCallback(() => {
-    createCourse(value);
-    onCloseDialog();
-  }, [value, createCourse, onCloseDialog]);
+  const buttons: ButtonProps[] = React.useMemo(
+    () => [
+      {
+        text: "Create",
+        styleType: "primary",
+        onClick: () => {
+          createCourse(value);
+          onCloseDialog();
+        },
+      },
+      {
+        text: "Cancel",
+        styleType: "danger",
+        onClick: onCloseDialog,
+      },
+    ],
+    [value, createCourse, onCloseDialog]
+  );
 
   return (
     <ModalDialog
@@ -55,20 +71,7 @@ const NewCourseDialog: React.FunctionComponent<Props> = (props) => {
           </div>
         </form>
       }
-      actions={
-        <div className="btn-toolbar">
-          <button type="button" className="btn btn-primary" onClick={onConfirm}>
-            Create
-          </button>
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={onCloseDialog}
-          >
-            Cancel
-          </button>
-        </div>
-      }
+      actions={<ButtonBar buttons={buttons} />}
     />
   );
 };

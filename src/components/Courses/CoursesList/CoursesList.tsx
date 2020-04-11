@@ -6,11 +6,13 @@ import { useCoursesApi } from "../../../api";
 import { ICourseDoc } from "../../../types";
 import useAppNavigation from "../../../lib/useAppNavigation";
 import ConfirmDialog, { useDialog } from "../../GeneralPurpose/ConfirmDialog";
+import ButtonBar, {
+  Props as ButtonBarProps,
+} from "../../GeneralPurpose/Buttons/ButtonBar";
 
 interface CourseWithHandlers {
   course: ICourseDoc;
-  editThis: () => void;
-  deleteThis: () => void;
+  buttonBarProps: ButtonBarProps;
 }
 
 interface ConfirmDeleteData {
@@ -20,7 +22,7 @@ interface ConfirmDeleteData {
 const CoursesList: FunctionComponent = () => {
   const { courses, deleteCourse } = useCoursesApi();
   const {
-    nav: { goToCourse },
+    nav: { goToAdminCourse },
   } = useAppNavigation();
 
   const {
@@ -43,10 +45,22 @@ const CoursesList: FunctionComponent = () => {
     () =>
       courses.map((course) => ({
         course,
-        editThis: () => goToCourse(course._id),
-        deleteThis: () => showDeleteDialog({ courseId: course._id }),
+        buttonBarProps: {
+          buttons: [
+            {
+              text: "Edit",
+              styleType: "primary",
+              onClick: () => goToAdminCourse(course._id),
+            },
+            {
+              text: "Delete",
+              styleType: "danger",
+              onClick: () => showDeleteDialog({ courseId: course._id }),
+            },
+          ],
+        },
       })),
-    [courses, goToCourse, showDeleteDialog]
+    [courses, goToAdminCourse, showDeleteDialog]
   );
 
   return (
@@ -61,17 +75,12 @@ const CoursesList: FunctionComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {courseWithHandlers.map(({ course, editThis, deleteThis }) => (
+          {courseWithHandlers.map(({ course, buttonBarProps }) => (
             <tr key={course._id}>
               <td>{course.name}</td>
               <td>{course.description}</td>
               <td>
-                <button className="btn btn-primary" onClick={editThis}>
-                  Edit
-                </button>
-                <button className="btn btn-danger" onClick={deleteThis}>
-                  Delete
-                </button>
+                <ButtonBar {...buttonBarProps} />
               </td>
             </tr>
           ))}
