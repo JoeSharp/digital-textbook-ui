@@ -1,6 +1,6 @@
 import React from "react";
 import { useCallback, useState } from "react";
-import Header from "./Header";
+import NavBar from "./NavBar";
 import {
   GoogleLogin,
   GoogleLoginResponse,
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
+      <NavBar />
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText={username || "Login"}

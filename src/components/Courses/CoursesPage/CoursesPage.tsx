@@ -7,7 +7,7 @@ const CoursesPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      Courses CoursesPage
+      <h1>Courses</h1>
       <NewCourseDialog {...componentProps} />
       <button className="btn btn-primary" onClick={showDialog}>
         Add Course

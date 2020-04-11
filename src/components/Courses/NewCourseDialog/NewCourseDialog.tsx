@@ -1,5 +1,4 @@
 import * as React from "react";
-import { loremIpsum } from "lorem-ipsum";
 
 import ModalDialog from "../../GeneralPurpose/ModalDialog";
 import useForm from "../../../lib/useForm";
@@ -16,8 +15,8 @@ const NewCourseDialog: React.FunctionComponent<Props> = (props) => {
 
   const defaultDetails: ICourse = React.useMemo(
     () => ({
-      name: `New Course ${loremIpsum({ units: "word", count: 2 })}`,
-      description: loremIpsum({ units: "word", count: 4 }),
+      name: "",
+      description: "",
     }),
     []
   );
@@ -41,26 +40,34 @@ const NewCourseDialog: React.FunctionComponent<Props> = (props) => {
       {...props}
       header={<h4>New Course</h4>}
       content={
-        <form>
+        <form className="form">
           <div className="form-group">
             <label htmlFor="newCourseName">Name</label>
-            <input id="newCourseName" {...nameProps} />
+            <input id="newCourseName" className="form-control" {...nameProps} />
           </div>
           <div className="form-group">
             <label htmlFor="newCourseDescription">Description</label>
-            <input id="newCourseDescription" {...descriptionProps} />
+            <input
+              id="newCourseDescription"
+              className="form-control"
+              {...descriptionProps}
+            />
           </div>
         </form>
       }
       actions={
-        <React.Fragment>
-          <button className="btn btn-primary" onClick={onConfirm}>
+        <div className="btn-toolbar">
+          <button type="button" className="btn btn-primary" onClick={onConfirm}>
             Create
           </button>
-          <button className="btn btn-danger" onClick={onCloseDialog}>
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={onCloseDialog}
+          >
             Cancel
           </button>
-        </React.Fragment>
+        </div>
       }
     />
   );

@@ -19,7 +19,6 @@ interface UseApi {
 const useApi = (): UseApi => {
   const { idToken } = useAuthenticationContext();
   const handle200 = useCheckHttpStatus(200);
-  const handle204 = useCheckHttpStatus(204);
 
   return {
     getCourses: useCallback(() => {
@@ -90,9 +89,9 @@ const useApi = (): UseApi => {
           method: "delete",
           headers,
         });
-        return await handle204(response);
+        return await handle200(response);
       },
-      [idToken, handle204]
+      [idToken, handle200]
     ),
   };
 };
