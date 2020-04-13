@@ -20,11 +20,19 @@ import CoursesPage from "../../Administrator/Courses";
 import EditCourse from "../../Administrator/Courses/EditCourse";
 import CourseSelection from "../../Student/CourseSelection";
 import useAppNavigation from "../../../lib/useAppNavigation";
+import { RoleSelectionWithNav } from "../RoleSelection";
+import StudyCourse from "../../Student/StudyCourse";
 
 const Routes: React.FunctionComponent = () => {
   const { urlGenerator } = useAppNavigation();
   return (
     <Switch>
+      <Route
+        exact
+        path={urlGenerator.goToRoleSelection()}
+        render={() => <RoleSelectionWithNav />}
+      />
+
       <Route
         exact
         path={urlGenerator.goToAdminCourses()}
@@ -43,6 +51,15 @@ const Routes: React.FunctionComponent = () => {
         exact
         path={urlGenerator.goToStudyCourses()}
         render={() => <CourseSelection />}
+      />
+      <Route
+        exact
+        path={urlGenerator.goToStudyCourse(undefined)}
+        render={({
+          match: {
+            params: { courseId },
+          },
+        }: RouteComponentProps<any>) => <StudyCourse courseId={courseId} />}
       />
 
       {/* Default route */}

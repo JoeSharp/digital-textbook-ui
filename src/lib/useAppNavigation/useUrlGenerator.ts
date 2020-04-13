@@ -10,6 +10,7 @@ import {
 const useUrlGenerator = (): RawNavigateApp<string | undefined, string> => {
   return React.useMemo(
     () => ({
+      goToRoleSelection: () => "/",
       goToAdminCourse: (courseId: string = ":courseId") =>
         `/${APP_ROLE_ADMIN}/course/${courseId}`,
       goToAdminCourses: () => `/${APP_ROLE_ADMIN}/course`,

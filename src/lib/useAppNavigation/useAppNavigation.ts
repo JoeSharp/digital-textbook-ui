@@ -11,6 +11,7 @@ const useAppNavigation = (): NavigateApp => {
     () => ({
       urlGenerator: u,
       nav: {
+        goToRoleSelection: () => h.push(u.goToRoleSelection()),
         goToAdminCourse: (courseId: string) =>
           h.push(u.goToAdminCourse(courseId)),
         goToAdminCourses: () => h.push(u.goToAdminCourses()),

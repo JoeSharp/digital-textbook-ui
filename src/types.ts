@@ -16,6 +16,30 @@ export const DEFAULT_COURSE: ICourse = {
   description: "",
 };
 
+export interface ILesson {
+  title: string;
+  description: string;
+}
+
+export type ILessonDoc = Document & ILesson;
+
+export const DEFAULT_LESSON: ILesson = {
+  title: "",
+  description: "",
+};
+
+export interface ITask {
+  title: string;
+  instruction: string;
+}
+
+export type ITaskDoc = Document & ITask;
+
+export const DEFAULT_TASK: ITask = {
+  title: "",
+  instruction: "",
+};
+
 export interface EmbeddedTrinketType {
   type: "trinket";
   trinketId: string;
@@ -35,19 +59,3 @@ export interface LessonTaskType {
   youTubeLink: YouTubeLinkType;
   embeddedIFrame: EmbeddedIFrameType;
 }
-
-export type LessonTaskDocument = Document & LessonTaskType;
-
-export interface LessonType {
-  courseId: string;
-  name: string;
-  tasks: LessonTaskType[];
-}
-
-export type LessonDocument = Document & LessonType;
-
-export const DEFAULT_LESSON: LessonType = {
-  courseId: "",
-  name: "",
-  tasks: [],
-};

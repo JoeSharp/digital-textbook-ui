@@ -5,11 +5,12 @@ import Card from "../../GeneralPurpose/Card";
 import {
   ApplicationRole,
   APPLICATION_ROLES,
-  ApplicationRoleType,
+  OnApplicationRoleSelection,
 } from "./types";
+import useAppNavigation from "../../../lib/useAppNavigation";
 
 interface Props {
-  onRoleSelection: (role: ApplicationRoleType) => void;
+  onRoleSelection: OnApplicationRoleSelection;
 }
 
 interface RoleWithHandler {
@@ -41,5 +42,28 @@ const RoleSelection: React.FunctionComponent<Props> = ({ onRoleSelection }) => {
     </div>
   );
 };
+
+const RoleSelectionWithNav: React.FunctionComponent = () => {
+  const {
+    nav: { goToAdminCourses, goToStudyCourses, goToTeachCourses },
+  } = useAppNavigation();
+
+  const onRoleSelection: OnApplicationRoleSelection = React.useCallback(
+    (applicationRole) => {
+      const rolePages = {
+        Administrator: goToAdminCourses,
+        Teacher: goToTeachCourses,
+        Student: goToStudyCourses,
+      };
+
+      rolePages[applicationRole]();
+    },
+    [goToAdminCourses, goToStudyCourses, goToTeachCourses]
+  );
+
+  return <RoleSelection onRoleSelection={onRoleSelection} />;
+};
+
+export { RoleSelectionWithNav };
 
 export default RoleSelection;

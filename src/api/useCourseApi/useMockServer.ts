@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import * as React from "react";
 import fetchMock from "fetch-mock";
 import { v4 as uuidv4 } from "uuid";
 
@@ -17,11 +17,8 @@ export const useMockServer = (): MockServer => {
     TEST_COURSES
   );
 
-  const setup = useCallback(() => {
+  const setup = React.useCallback(() => {
     fetchMock.get(resourceUrl, courses);
-    // fetchMock.get(resourceUrl, () => {
-    //   return 404;
-    // });
     fetchMock.get(resourceUrlWithId, (url) => {
       const id = getId(resource, url);
       const course = courses.find((c) => c._id === id);

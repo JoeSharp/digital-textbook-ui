@@ -1,13 +1,9 @@
 import * as React from "react";
+import { storiesOf } from "@storybook/react";
 
 import LessonTask from "./LessonTask";
 
-export default {
-  title: "Lesson Task",
-  component: LessonTask,
-};
-
-export const SimpleTrinket = () => (
+storiesOf("Student/Lesson", module).add("Basic", () => (
   <LessonTask
     task={{
       title: "Draw a Hexagon",
@@ -23,4 +19,4 @@ export const SimpleTrinket = () => (
       },
     }}
   />
-);
+));

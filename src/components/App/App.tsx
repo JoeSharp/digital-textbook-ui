@@ -1,5 +1,4 @@
 import React from "react";
-import { useCallback, useState } from "react";
 import NavBar from "./NavBar";
 import {
   GoogleLogin,
@@ -16,9 +15,9 @@ const tg = (tbd: any): tbd is GoogleLoginResponse => {
 };
 
 function App() {
-  const [username, setUsername] = useState<string | undefined>();
+  const [username, setUsername] = React.useState<string | undefined>();
 
-  const responseGoogle = useCallback(
+  const responseGoogle = React.useCallback(
     (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
       console.log(response);
       if (tg(response)) {

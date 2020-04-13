@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { LessonTaskType } from "../../../types";
-import EmbeddedIFrame from "../../EmbeddedIFrame";
-import { YouTubeButton } from "../../YouTube";
+import { LessonTaskType } from "../../../../types";
+import EmbeddedIFrame from "../../../EmbeddedIFrame";
+import { YouTubeButton } from "../../../YouTube";
 
 interface Props {
   task: LessonTaskType;

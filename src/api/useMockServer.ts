@@ -1,20 +1,20 @@
-import { useState, useEffect, useMemo } from "react";
+import * as React from "react";
 import { useMockServer as useMockCoursesApi } from "./useCourseApi/useMockServer";
 import fetchMock from "fetch-mock";
 
 export default (): boolean => {
-  const [isReady, setReady] = useState<boolean>(false);
+  const [isReady, setReady] = React.useState<boolean>(false);
 
   const { setup: setupCourses, data: dataCourses } = useMockCoursesApi();
 
-  const allData = useMemo(
+  const allData = React.useMemo(
     () => ({
-      courses: dataCourses
+      courses: dataCourses,
     }),
     [dataCourses]
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     console.log("Resetting API With New Data", allData);
 
     fetchMock.restore();

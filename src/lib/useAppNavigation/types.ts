@@ -1,4 +1,6 @@
 export interface RawNavigateApp<IN, OUT> {
+  goToRoleSelection: () => OUT;
+
   goToAdminCourses: () => OUT;
   goToAdminCourse: (courseId: IN) => OUT;
 

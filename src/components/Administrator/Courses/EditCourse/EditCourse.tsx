@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect, useMemo, useCallback } from "react";
 
 import useCourseApi from "../../../../api/useCourseApi";
 import useForm from "../../../../lib/useForm";
@@ -12,9 +11,9 @@ interface Props {
 const EditCourse: React.FunctionComponent<Props> = ({ courseId }) => {
   const { courses, getCourse, updateCourse } = useCourseApi();
 
-  useEffect(() => getCourse(courseId), [courseId, getCourse]);
+  React.useEffect(() => getCourse(courseId), [courseId, getCourse]);
 
-  const course: ICourseDoc = useMemo(
+  const course: ICourseDoc = React.useMemo(
     () =>
       courses.find((c) => c._id === courseId) || {
         _id: courseId,
@@ -29,7 +28,7 @@ const EditCourse: React.FunctionComponent<Props> = ({ courseId }) => {
   const nameProps = useTextInput("name");
   const descriptionProps = useTextInput("description");
 
-  const onSave = useCallback(
+  const onSave = React.useCallback(
     (e) => {
       updateCourse(courseId, { ...course, ...value });
       e.preventDefault();

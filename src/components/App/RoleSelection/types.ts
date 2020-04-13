@@ -3,6 +3,7 @@ export const APP_ROLE_TEACHER = "Teacher";
 export const APP_ROLE_STUDENT = "Student";
 
 export type ApplicationRoleType = "Administrator" | "Teacher" | "Student";
+export type OnApplicationRoleSelection = (role: ApplicationRoleType) => void;
 
 export class ApplicationRole {
   type: ApplicationRoleType;

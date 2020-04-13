@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import * as React from "react";
 
 import { ICourseDoc, ICourse } from "../../types";
 import useApi from "./useApi";
@@ -36,7 +36,7 @@ const useCoursesApi = (): UseCoursesApi => {
     deleteCourse,
   } = useApi();
 
-  const _refreshCourses = useCallback(() => {
+  const _refreshCourses = React.useCallback(() => {
     async function f() {
       try {
         const courses = await getCourses();
@@ -49,14 +49,14 @@ const useCoursesApi = (): UseCoursesApi => {
     f();
   }, [receiveListOfItems, getCourses, reportError]);
 
-  useEffect(_refreshCourses, [_refreshCourses]);
+  React.useEffect(_refreshCourses, [_refreshCourses]);
 
-  const _getCourse = useCallback(
+  const _getCourse = React.useCallback(
     (courseId: string) => {
-      let course = undefined;
       async function f() {
         try {
-          course = await getCourse(courseId);
+          const course = await getCourse(courseId);
+          addItem(course);
           return course;
         } catch (err) {
           reportError(err);
@@ -65,10 +65,10 @@ const useCoursesApi = (): UseCoursesApi => {
 
       f();
     },
-    [getCourse, reportError]
+    [getCourse, addItem, reportError]
   );
 
-  const _createCourse = useCallback(
+  const _createCourse = React.useCallback(
     (course: ICourse) => {
       async function f() {
         try {
@@ -84,7 +84,7 @@ const useCoursesApi = (): UseCoursesApi => {
     [addItem, createCourse, reportError]
   );
 
-  const _updateCourse = useCallback(
+  const _updateCourse = React.useCallback(
     (courseId: string, updates: ICourse) => {
       async function f() {
         try {
@@ -102,7 +102,7 @@ const useCoursesApi = (): UseCoursesApi => {
     [addItem, updateCourse, reportError]
   );
 
-  const _deleteCourse = useCallback(
+  const _deleteCourse = React.useCallback(
     (courseId: string) => {
       async function f() {
         try {

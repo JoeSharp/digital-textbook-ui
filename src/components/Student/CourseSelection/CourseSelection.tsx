@@ -11,7 +11,7 @@ interface CourseWithHandlers {
 
 const CourseSelection: React.FunctionComponent = () => {
   const {
-    nav: { goToAdminCourse },
+    nav: { goToStudyCourse },
   } = useAppNavigation();
 
   const { courses } = useCoursesApi();
@@ -20,9 +20,9 @@ const CourseSelection: React.FunctionComponent = () => {
     () =>
       courses.map((course) => ({
         course,
-        onClick: () => goToAdminCourse(course._id),
+        onClick: () => goToStudyCourse(course._id),
       })),
-    [courses, goToAdminCourse]
+    [courses, goToStudyCourse]
   );
 
   return (
