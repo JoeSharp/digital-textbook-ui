@@ -18,7 +18,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 
 import NewCourseDialog, { useDialog } from "./NewCourseDialog";
-import { useCoursesApi } from "../../../api";
+import { useCoursesApi } from "../../../../api";
 
 let TestHarness: React.FunctionComponent = () => {
   const { courses } = useCoursesApi();
@@ -39,6 +39,7 @@ let TestHarness: React.FunctionComponent = () => {
   );
 };
 
-storiesOf("Courses/New Course Dialog", module).add("basic", () => (
-  <TestHarness />
-));
+storiesOf("Administrator/Courses/New Course Dialog", module).add(
+  "basic",
+  () => <TestHarness />
+);

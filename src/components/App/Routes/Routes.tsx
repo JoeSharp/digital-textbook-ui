@@ -16,8 +16,9 @@
 
 import * as React from "react";
 import { Route, RouteComponentProps, Switch } from "react-router";
-import CoursesPage from "../../Courses";
-import EditCourse from "../../Courses/EditCourse";
+import CoursesPage from "../../Administrator/Courses";
+import EditCourse from "../../Administrator/Courses/EditCourse";
+import CourseSelection from "../../Student/CourseSelection";
 import useAppNavigation from "../../../lib/useAppNavigation";
 
 const Routes: React.FunctionComponent = () => {
@@ -37,6 +38,11 @@ const Routes: React.FunctionComponent = () => {
             params: { courseId },
           },
         }: RouteComponentProps<any>) => <EditCourse courseId={courseId} />}
+      />
+      <Route
+        exact
+        path={urlGenerator.goToStudyCourses()}
+        render={() => <CourseSelection />}
       />
 
       {/* Default route */}

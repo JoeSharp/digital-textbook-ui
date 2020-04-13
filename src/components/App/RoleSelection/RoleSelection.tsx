@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import Card from "../../GeneralPurpose/Card";
+
 import {
   ApplicationRole,
   APPLICATION_ROLES,
@@ -29,15 +31,11 @@ const RoleSelection: React.FunctionComponent<Props> = ({ onRoleSelection }) => {
     <div className="row">
       {roleWithHandlers.map(({ appRole: { type, description }, onClick }) => (
         <div className="col-sm-4">
-          <div className="card" style={{ width: "18rem" }}>
-            <div className="card-body">
-              <h5 className="card-title">{type}</h5>
-              <p className="card-text">{description}</p>
-              <button className="card-link" onClick={onClick}>
-                Select
-              </button>
-            </div>
-          </div>
+          <Card
+            title={type}
+            text={description}
+            buttonProps={{ text: "Select", styleType: "light", onClick }}
+          />
         </div>
       ))}
     </div>

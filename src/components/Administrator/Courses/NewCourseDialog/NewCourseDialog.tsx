@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import ModalDialog from "../../GeneralPurpose/ModalDialog";
-import useForm from "../../../lib/useForm";
-import { useCoursesApi } from "../../../api";
-import { ICourse } from "../../../types";
-import ButtonBar from "../../GeneralPurpose/Buttons/ButtonBar";
-import { Props as ButtonProps } from "../../GeneralPurpose/Buttons/Button";
+import ModalDialog from "../../../GeneralPurpose/ModalDialog";
+import useForm from "../../../../lib/useForm";
+import { useCoursesApi } from "../../../../api";
+import { ICourse } from "../../../../types";
+import ButtonBar from "../../../GeneralPurpose/Buttons/ButtonBar";
+import { Props as ButtonProps } from "../../../GeneralPurpose/Buttons/Button";
 
 interface Props extends ReactModal.Props {
   isOpen: boolean;

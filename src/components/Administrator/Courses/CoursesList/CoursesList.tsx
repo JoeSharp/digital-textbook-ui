@@ -2,13 +2,15 @@ import * as React from "react";
 
 import { FunctionComponent, useMemo } from "react";
 
-import { useCoursesApi } from "../../../api";
-import { ICourseDoc } from "../../../types";
-import useAppNavigation from "../../../lib/useAppNavigation";
-import ConfirmDialog, { useDialog } from "../../GeneralPurpose/ConfirmDialog";
+import { useCoursesApi } from "../../../../api";
+import { ICourseDoc } from "../../../../types";
+import useAppNavigation from "../../../../lib/useAppNavigation";
+import ConfirmDialog, {
+  useDialog,
+} from "../../../GeneralPurpose/ConfirmDialog";
 import ButtonBar, {
   Props as ButtonBarProps,
-} from "../../GeneralPurpose/Buttons/ButtonBar";
+} from "../../../GeneralPurpose/Buttons/ButtonBar";
 
 interface CourseWithHandlers {
   course: ICourseDoc;
