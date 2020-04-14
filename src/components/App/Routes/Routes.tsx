@@ -16,8 +16,8 @@
 
 import * as React from "react";
 import { Route, RouteComponentProps, Switch } from "react-router";
-import CoursesPage from "../../Administrator/Courses";
-import EditCourse from "../../Administrator/Courses/EditCourse";
+import ManageCourses from "../../Administrator/ManageCourses";
+import EditCourse from "../../Administrator/ManageCourses/EditCourse";
 import CourseSelection from "../../Student/CourseSelection";
 import useAppNavigation from "../../../lib/useAppNavigation";
 import { RoleSelectionWithNav } from "../RoleSelection";
@@ -36,7 +36,7 @@ const Routes: React.FunctionComponent = () => {
       <Route
         exact
         path={urlGenerator.goToAdminCourses()}
-        render={() => <CoursesPage />}
+        render={() => <ManageCourses />}
       />
       <Route
         exact

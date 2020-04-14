@@ -19,6 +19,7 @@ import { storiesOf } from "@storybook/react";
 
 import NewCourseDialog, { useDialog } from "./NewCourseDialog";
 import { useCoursesApi } from "../../../../api";
+import JsonDebug from "../../../../lib/JsonDebug";
 
 let TestHarness: React.FunctionComponent = () => {
   const { courses } = useCoursesApi();
@@ -30,16 +31,12 @@ let TestHarness: React.FunctionComponent = () => {
       <NewCourseDialog {...componentProps} />
       <button onClick={showDialog}>Add</button>
       <h4>Courses from API</h4>
-      <ul>
-        {courses.map((c) => (
-          <li key={c._id}>{JSON.stringify(c)}</li>
-        ))}
-      </ul>
+      <JsonDebug value={{ courses }} />
     </React.Fragment>
   );
 };
 
-storiesOf("Administrator/Courses/New Course Dialog", module).add(
+storiesOf("Administrator/ManageCourses/New Course Dialog", module).add(
   "basic",
   () => <TestHarness />
 );

@@ -21,7 +21,7 @@ interface ConfirmDeleteData {
   courseId: string;
 }
 
-const CoursesList: FunctionComponent = () => {
+const CoursesTable: FunctionComponent = () => {
   const { courses, deleteCourse } = useCoursesApi();
   const {
     nav: { goToAdminCourse },
@@ -92,4 +92,4 @@ const CoursesList: FunctionComponent = () => {
   );
 };
 
-export default CoursesList;
+export default CoursesTable;

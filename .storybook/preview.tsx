@@ -5,7 +5,7 @@ import Modal from "react-modal";
 
 import "../src/index.css";
 
-import useMockServer from "../src/api/useMockServer";
+import useMockServer from "../src/testing/server/useMockServer";
 import { ClientSideDataProvider } from "../src/api/useClientSideData/useClientSideData";
 import { AuthenticationContextProvider } from "../src/lib/authentication";
 import { ErrorReportingContextProvider } from "../src/lib/ErrorPage";

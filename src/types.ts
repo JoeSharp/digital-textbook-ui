@@ -1,44 +1,40 @@
-export interface Document {
+export interface IMongoDocument {
   _id: string;
 }
 
-export const getDocumentId = (doc: Document) => doc._id;
+export const getDocumentId = (doc: IMongoDocument) => doc._id;
 
 export interface ICourse {
   name: string;
   description: string;
 }
 
-export type ICourseDoc = Document & ICourse;
-
-export const DEFAULT_COURSE: ICourse = {
-  name: "",
-  description: "",
-};
+export type ICourseDoc = IMongoDocument & ICourse;
 
 export interface ILesson {
+  courseId: string;
   title: string;
   description: string;
 }
 
-export type ILessonDoc = Document & ILesson;
+export type ILessonDoc = IMongoDocument & ILesson;
 
-export const DEFAULT_LESSON: ILesson = {
-  title: "",
-  description: "",
-};
+export type ITaskType =
+  | "Trinket"
+  | "p5js"
+  | "codepen"
+  | "code.org"
+  | "OtherSite"
+  | "FreeFlowText";
 
 export interface ITask {
+  lessonId: string;
+  type: ITaskType;
   title: string;
   instruction: string;
 }
 
-export type ITaskDoc = Document & ITask;
-
-export const DEFAULT_TASK: ITask = {
-  title: "",
-  instruction: "",
-};
+export type ITaskDoc = IMongoDocument & ITask;
 
 export interface EmbeddedTrinketType {
   type: "trinket";

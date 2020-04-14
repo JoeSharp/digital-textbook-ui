@@ -1,6 +1,6 @@
 import * as React from "react";
-import CoursesList from "../CoursesList";
-import NewCourseDialog, { useDialog } from "../NewCourseDialog";
+import CoursesTable from "./CoursesTable";
+import NewCourseDialog, { useDialog } from "./NewCourseDialog";
 
 const CoursesPage: React.FunctionComponent = () => {
   const { componentProps, showDialog } = useDialog();
@@ -12,7 +12,7 @@ const CoursesPage: React.FunctionComponent = () => {
       <button className="btn btn-primary" onClick={showDialog}>
         Add Course
       </button>
-      <CoursesList />
+      <CoursesTable />
     </div>
   );
 };

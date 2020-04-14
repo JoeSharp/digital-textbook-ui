@@ -1,11 +1,11 @@
 import * as React from "react";
 import fetchMock from "fetch-mock";
-import { v4 as uuidv4 } from "uuid";
 
-import { TEST_COURSES } from "./testData";
+import { courses as initialCourses } from "../data";
 import { ICourseDoc, ICourse } from "../../types";
-import { MockServer, getId } from "../mockServerUtils";
+import { MockServer, getId } from "./mockServerUtils";
 import useListReducer from "../../lib/useListReducer";
+import { createDocument } from "../data/testDataUtils";
 
 const resource = "/course";
 const resourceUrl = `${process.env.REACT_APP_SERVICE_BASE_URL}${resource}`;
@@ -14,7 +14,7 @@ const resourceUrlWithId = `express:${resource}/:id`;
 export const useMockServer = (): MockServer => {
   const { items: courses, addItem, removeItem } = useListReducer<ICourseDoc>(
     (c) => c._id,
-    TEST_COURSES
+    initialCourses
   );
 
   const setup = React.useCallback(() => {
@@ -30,10 +30,7 @@ export const useMockServer = (): MockServer => {
     });
     fetchMock.post(resourceUrl, (url, options) => {
       const courseBody = JSON.parse(options.body as string) as ICourse;
-      const course: ICourseDoc = {
-        _id: uuidv4(),
-        ...courseBody,
-      };
+      const course: ICourseDoc = createDocument(courseBody);
       addItem(course);
 
       return course;

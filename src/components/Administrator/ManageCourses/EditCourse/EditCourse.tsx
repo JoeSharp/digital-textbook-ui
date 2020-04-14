@@ -2,7 +2,7 @@ import * as React from "react";
 
 import useCourseApi from "../../../../api/useCourseApi";
 import useForm from "../../../../lib/useForm";
-import { ICourseDoc, DEFAULT_COURSE, ICourse } from "../../../../types";
+import { ICourseDoc, ICourse } from "../../../../types";
 
 interface Props {
   courseId: string;
@@ -13,12 +13,8 @@ const EditCourse: React.FunctionComponent<Props> = ({ courseId }) => {
 
   React.useEffect(() => getCourse(courseId), [courseId, getCourse]);
 
-  const course: ICourseDoc = React.useMemo(
-    () =>
-      courses.find((c) => c._id === courseId) || {
-        _id: courseId,
-        ...DEFAULT_COURSE,
-      },
+  const course: ICourseDoc | undefined = React.useMemo(
+    () => courses.find((c) => c._id === courseId),
     [courseId, courses]
   );
 
@@ -41,11 +37,11 @@ const EditCourse: React.FunctionComponent<Props> = ({ courseId }) => {
       <form>
         <div className="form-group">
           <label htmlFor="courseName">Name</label>
-          <input {...nameProps} />
+          <input className="form-control" {...nameProps} />
         </div>
         <div className="form-group">
           <label htmlFor="courseDescription">Description</label>
-          <input {...descriptionProps} />
+          <input className="form-control" {...descriptionProps} />
         </div>
         <button type="submit" className="btn btn-primary" onClick={onSave}>
           Save
