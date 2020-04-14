@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ICourseDoc, getDocumentId } from "../../types";
+import { ICourseDoc, getDocumentId, ITaskDoc, ILessonDoc } from "../../types";
 import useObjectReducer from "../../lib/useObjectReducer/useObjectReducer";
 
 import { ClientSideData } from "./types";
@@ -7,8 +7,10 @@ import ClientSideDataContext from "./ClientSideDataContext";
 
 const ClientSideDataProvider: React.FunctionComponent = ({ children }) => {
   const courses = useObjectReducer<ICourseDoc>(getDocumentId, {});
+  const lessons = useObjectReducer<ILessonDoc>(getDocumentId, {});
+  const tasks = useObjectReducer<ITaskDoc>(getDocumentId, {});
 
-  const value: ClientSideData = { courses };
+  const value: ClientSideData = { courses, lessons, tasks };
 
   return (
     <ClientSideDataContext.Provider value={value}>
