@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ValueType } from "react-select";
 import { BasicOption } from "./types";
 

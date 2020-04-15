@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { ICourseDoc, ICourse } from "../../types";
 import useApi from "./useApi";
@@ -57,7 +57,6 @@ const useCoursesApi = (): UseCoursesApi => {
         try {
           const course = await getCourse(courseId);
           addItem(course);
-          return course;
         } catch (err) {
           reportError(err);
         }

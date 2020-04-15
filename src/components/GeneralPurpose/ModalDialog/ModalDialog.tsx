@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import * as React from "react";
+import React from "react";
 import Modal from "react-modal";
 import customStyles from "./customStyles";
 import "./ModalDialog.css";

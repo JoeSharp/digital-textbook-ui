@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 /**
  * An updateable state, the value is available, and a function that can accept partial updates.
@@ -11,7 +11,7 @@ interface UseUpdateableState<T extends object> {
 
 const reducer = <T extends object>(state: T, action: Partial<T>) => ({
   ...state,
-  ...action
+  ...action,
 });
 
 /**
@@ -26,7 +26,7 @@ export const useUpdateableState = <T extends object>(
 
   return {
     value: value as T,
-    update
+    update,
   };
 };
 

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { LessonTaskType } from "../../../../types";
 import EmbeddedIFrame from "../../../EmbeddedIFrame";

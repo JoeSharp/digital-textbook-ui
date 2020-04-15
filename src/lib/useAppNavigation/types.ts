@@ -4,6 +4,9 @@ export interface RawNavigateApp<IN, OUT> {
   goToAdminCourses: () => OUT;
   goToAdminCourse: (courseId: IN) => OUT;
 
+  goToEditLesson: (lessonId: IN) => OUT;
+  goToEditTask: (taskId: IN) => OUT;
+
   goToTeachCourses: () => OUT;
   goToTeachCourse: (courseId: IN) => OUT;
 

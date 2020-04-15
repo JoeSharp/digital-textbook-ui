@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { storiesOf } from "@storybook/react";
 import Select from "react-select";
 import useReactSelect from "./useReactSelect";
@@ -12,7 +12,7 @@ const TestHarness: React.FunctionComponent = () => {
   const { _onChange, _value, _options } = useReactSelect({
     value,
     onChange,
-    options: OPTIONS
+    options: OPTIONS,
   });
 
   return (

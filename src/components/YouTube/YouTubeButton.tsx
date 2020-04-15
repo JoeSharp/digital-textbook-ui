@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import youTubeLogo from "./youtube.png";
 import { YouTubeLinkType } from "../../types";
@@ -8,7 +8,7 @@ interface Props {
 }
 
 const YouTubeButton: React.FunctionComponent<Props> = ({
-  youTubeLink: { youTubeId, startTime = 0 }
+  youTubeLink: { youTubeId, startTime = 0 },
 }) => (
   <a
     target="video_instructions"

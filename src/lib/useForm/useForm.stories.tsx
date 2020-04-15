@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { storiesOf } from "@storybook/react";
 import useForm from ".";
 import JsonDebug from "../JsonDebug";
@@ -10,14 +10,14 @@ interface SimpleInputsFormValues {
 
 const SIMPLE_INITIAL_VALUES: SimpleInputsFormValues = {
   firstName: "John",
-  surname: "Wick"
+  surname: "Wick",
 };
 
 const SimpleInputsTestHarness: React.FunctionComponent = () => {
   const [validatedValue, onValidate] = React.useState<object>({});
   const { useTextInput, value } = useForm<SimpleInputsFormValues>({
     initialValues: SIMPLE_INITIAL_VALUES,
-    onValidate
+    onValidate,
   });
   const firstNameProps = useTextInput("firstName");
   const surnameProps = useTextInput("surname");

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import useCourseApi from "../../../../api/useCourseApi";
 import useForm from "../../../../lib/useForm";

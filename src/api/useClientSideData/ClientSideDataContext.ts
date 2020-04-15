@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ICourseDoc, ILessonDoc, ITaskDoc } from "../../types";
 import { ClientSideData } from "./types";
 import { getDefaultObjectReducer } from "../../lib/useObjectReducer/useObjectReducer";

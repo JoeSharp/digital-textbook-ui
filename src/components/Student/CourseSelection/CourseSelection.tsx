@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useCoursesApi } from "../../../api";
 import Card from "../../GeneralPurpose/Card";
 import { ICourseDoc } from "../../../types";

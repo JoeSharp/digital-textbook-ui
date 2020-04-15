@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import fetchMock from "fetch-mock";
 
 import { lessons as initialLessons } from "../data";
@@ -8,7 +8,7 @@ import useListReducer from "../../lib/useListReducer";
 import { createDocument } from "../data/testDataUtils";
 
 const resource = "/lesson";
-const resourceForCourseId = `express:${process.env.REACT_APP_SERVICE_BASE_URL}${resource}/forCourse/:id`;
+const resourceForCourseId = `express:${resource}/forCourse/:id`;
 const resourceWithLessonId = `express:${resource}/:id`;
 
 export const useMockServer = (): MockServer => {
@@ -56,8 +56,9 @@ export const useMockServer = (): MockServer => {
     });
     fetchMock.delete(resourceWithLessonId, (url) => {
       const id = getId(resource, url);
+      const removed = lessons.find((l) => l._id === id);
       removeItem(id);
-      return 204;
+      return removed;
     });
   }, [lessons, addItem, removeItem]);
 

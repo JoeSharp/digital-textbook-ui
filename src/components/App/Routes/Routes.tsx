@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import * as React from "react";
+import React from "react";
 import { Route, RouteComponentProps, Switch } from "react-router";
 import ManageCourses from "../../Administrator/ManageCourses";
 import EditCourse from "../../Administrator/ManageCourses/EditCourse";

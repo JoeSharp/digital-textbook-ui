@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { KeyDownState } from "./types";
 
 export const DEFAULT_FILTERS = ["Control", "Shift", "Alt", "Meta"];
@@ -10,7 +10,7 @@ interface KeyAction {
 
 const reducer = (
   state: KeyDownState,
-  { key, isDown }: KeyAction,
+  { key, isDown }: KeyAction
 ): KeyDownState => {
   return {
     ...state,
@@ -18,12 +18,12 @@ const reducer = (
   };
 };
 
-const useKeyIsDown = function(
-  filters: string[] = DEFAULT_FILTERS,
+const useKeyIsDown = function (
+  filters: string[] = DEFAULT_FILTERS
 ): KeyDownState {
   const [keysDown, dispatch] = React.useReducer(
     reducer,
-    filters.reduce((acc, c) => ({ ...acc, [c]: false }), {}),
+    filters.reduce((acc, c) => ({ ...acc, [c]: false }), {})
   );
 
   React.useEffect(() => {

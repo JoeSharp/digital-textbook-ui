@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ICourseDoc, getDocumentId, ITaskDoc, ILessonDoc } from "../../types";
 import useObjectReducer from "../../lib/useObjectReducer/useObjectReducer";
 

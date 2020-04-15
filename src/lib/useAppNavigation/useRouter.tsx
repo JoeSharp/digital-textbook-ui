@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { History } from "history";
 import { RouteProps } from "react-router";
 import { RouterContext, HistoryContext } from "./BrowserRouter";

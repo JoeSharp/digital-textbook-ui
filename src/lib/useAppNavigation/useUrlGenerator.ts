@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { RawNavigateApp } from "./types";
 
 import {
@@ -14,6 +14,11 @@ const useUrlGenerator = (): RawNavigateApp<string | undefined, string> => {
       goToAdminCourse: (courseId: string = ":courseId") =>
         `/${APP_ROLE_ADMIN}/course/${courseId}`,
       goToAdminCourses: () => `/${APP_ROLE_ADMIN}/course`,
+
+      goToEditLesson: (lessonId: string = ":lessonId") =>
+        `/${APP_ROLE_ADMIN}/lesson/${lessonId}`,
+      goToEditTask: (taskId: string = ":taskId") =>
+        `/${APP_ROLE_ADMIN}/task/${taskId}`,
 
       goToTeachCourse: (courseId: string = ":courseId") =>
         `/${APP_ROLE_TEACHER}/course/${courseId}`,

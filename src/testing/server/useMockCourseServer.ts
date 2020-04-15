@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import fetchMock from "fetch-mock";
 
 import { courses as initialCourses } from "../data";
@@ -47,8 +47,9 @@ export const useMockServer = (): MockServer => {
     });
     fetchMock.delete(resourceUrlWithId, (url) => {
       const id = getId(resource, url);
+      const removed = courses.find((c) => c._id === id);
       removeItem(id);
-      return 204;
+      return removed;
     });
   }, [courses, addItem, removeItem]);
 

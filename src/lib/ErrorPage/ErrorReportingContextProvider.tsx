@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import cogoToast from "cogo-toast";
 
 import ErrorReportingContext from "./ErrorReportingContext";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 /**
  * This file exports a custom hook that can be used to manage a object

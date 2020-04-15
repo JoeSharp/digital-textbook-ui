@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Form, ControlledInput } from "./types";
 
 /**
@@ -17,7 +17,7 @@ const reducer = <T extends {}>(state: T, action: Partial<T>) => {
 
 export const useForm = <T extends {}>({
   initialValues,
-  onValidate
+  onValidate,
 }: UseForm<T>): Form<T> => {
   const [v, onUpdate] = React.useReducer(reducer, initialValues || {});
   const value = v as T;
@@ -42,7 +42,7 @@ export const useForm = <T extends {}>({
       ({ target: { value } }) => onUpdate({ [s]: value } as T),
       [s]
     ),
-    value: `${value[s]}`
+    value: `${value[s]}`,
   });
 
   const useCheckboxInput = (s: keyof T) => ({
@@ -50,18 +50,18 @@ export const useForm = <T extends {}>({
     checked: value[s],
     onChange: React.useCallback(() => {
       onUpdate(({
-        [s]: !value[s]
+        [s]: !value[s],
       } as unknown) as Partial<T>);
-    }, [s])
+    }, [s]),
   });
 
   const useControlledInputProps = <FIELD_TYPE>(
     s: keyof T
   ): ControlledInput<FIELD_TYPE> => ({
     value: (value[s] as unknown) as FIELD_TYPE,
-    onChange: React.useCallback(v => onUpdate(({ [s]: v } as unknown) as T), [
-      s
-    ])
+    onChange: React.useCallback((v) => onUpdate(({ [s]: v } as unknown) as T), [
+      s,
+    ]),
   });
 
   return {
@@ -69,7 +69,7 @@ export const useForm = <T extends {}>({
     value,
     useTextInput,
     useCheckboxInput,
-    useControlledInputProps
+    useControlledInputProps,
   };
 };
 

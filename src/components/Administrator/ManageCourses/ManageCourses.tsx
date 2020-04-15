@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import CoursesTable from "./CoursesTable";
 import NewCourseDialog, { useDialog } from "./NewCourseDialog";
 

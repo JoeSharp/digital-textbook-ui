@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import * as React from "react";
+import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import ConfirmDialog, { useDialog } from "./ConfirmDialog";

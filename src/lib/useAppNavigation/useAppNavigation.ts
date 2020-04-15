@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { NavigateApp } from "./types";
 import useRouter from "./useRouter";
@@ -15,6 +15,10 @@ const useAppNavigation = (): NavigateApp => {
         goToAdminCourse: (courseId: string) =>
           h.push(u.goToAdminCourse(courseId)),
         goToAdminCourses: () => h.push(u.goToAdminCourses()),
+
+        goToEditTask: (taskId: string) => h.push(u.goToEditTask(taskId)),
+        goToEditLesson: (lessonId: string) =>
+          h.push(u.goToEditLesson(lessonId)),
 
         goToTeachCourse: (courseId: string) =>
           h.push(u.goToTeachCourse(courseId)),

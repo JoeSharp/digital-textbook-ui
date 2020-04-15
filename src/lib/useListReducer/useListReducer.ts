@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 /**
  * This file exports a custom hook that can be used to manage a list
@@ -36,17 +36,17 @@ const createListReducer = <T extends {}>(getKey: (item: T) => string) => {
       | AddAction<T>
       | RemovedAction
       | UpdatedAtIndexAction<T>
-      | RemovedByIndexAction,
+      | RemovedByIndexAction
   ): T[] => {
     switch (action.type) {
       case "itemsReceived":
         return action.items;
       case "itemAdded":
         return state
-          .filter(d => getKey(d) !== getKey(action.item)) // remove any existing item with same key
+          .filter((d) => getKey(d) !== getKey(action.item)) // remove any existing item with same key
           .concat([action.item]);
       case "itemRemoved":
-        return state.filter(u => getKey(u) !== action.itemKey);
+        return state.filter((u) => getKey(u) !== action.itemKey);
       case "itemUpdatedAtIndex":
         return state.map((u, i) => (i === action.index ? action.newValue : u));
       case "itemRemovedByIndex":
@@ -68,11 +68,11 @@ interface UseListReducer<T extends {}> {
 
 const useListReducer = <T extends {}>(
   getKey: (item: T) => string,
-  initialItems: T[] = [],
+  initialItems: T[] = []
 ): UseListReducer<T> => {
   const [items, dispatch] = React.useReducer(
     createListReducer<T>(getKey),
-    initialItems,
+    initialItems
   );
 
   return {
@@ -83,7 +83,7 @@ const useListReducer = <T extends {}>(
           type: "itemsReceived",
           items,
         }),
-      [dispatch],
+      [dispatch]
     ),
     addItem: React.useCallback(
       (item: T) =>
@@ -91,7 +91,7 @@ const useListReducer = <T extends {}>(
           type: "itemAdded",
           item,
         }),
-      [dispatch],
+      [dispatch]
     ),
     removeItem: React.useCallback(
       (itemKey: string) =>
@@ -99,12 +99,12 @@ const useListReducer = <T extends {}>(
           type: "itemRemoved",
           itemKey,
         }),
-      [dispatch],
+      [dispatch]
     ),
     updateItemAtIndex: React.useCallback(
       (index: number, newValue: T) =>
         dispatch({ type: "itemUpdatedAtIndex", index, newValue }),
-      [dispatch],
+      [dispatch]
     ),
     removeItemAtIndex: React.useCallback(
       (index: number) =>
@@ -112,7 +112,7 @@ const useListReducer = <T extends {}>(
           type: "itemRemovedByIndex",
           index,
         }),
-      [dispatch],
+      [dispatch]
     ),
   };
 };

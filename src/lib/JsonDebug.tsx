@@ -1,15 +1,13 @@
-import * as React from "react";
+import React from "react";
 
 export interface Props {
   value: any;
 }
 
 const JsonDebug: React.FunctionComponent<Props> = ({ value }) => (
-  <div
-    style={{ margin: "3rem 0", }}
-  >
-  <hr/>
-  <h1>Debug information</h1>
+  <div style={{ margin: "3rem 0" }}>
+    <hr />
+    <h1>Debug information</h1>
     <pre
       style={{
         fontSize: "1rem",

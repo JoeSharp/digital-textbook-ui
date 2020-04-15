@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useMockServer as useMockCoursesApi } from "./useMockCourseServer";
 import { useMockServer as useMockLessonApi } from "./useMockLessonServer";
 import { useMockServer as useMockTaskApi } from "./useMockTaskServer";

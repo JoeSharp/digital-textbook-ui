@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ITaskDoc, ITask } from "../../types";
 import { useAuthenticationContext } from "../../lib/authentication";
 import useCheckHttpStatus from "../../lib/useCheckHttpStatus";

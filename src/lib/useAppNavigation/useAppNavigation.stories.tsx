@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Switch, Route, RouteComponentProps } from "react-router";
 
@@ -18,7 +18,7 @@ const TestNavigated: React.FunctionComponent<Props> = ({ routing }) => {
       <h1>App Navigation Demo</h1>
       <p>Location: {routing.location.pathname}</p>
       {Object.entries(appNav)
-        .map(k => ({
+        .map((k) => ({
           name: k[0],
           navigationFn: k[1],
         }))

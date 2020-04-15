@@ -1,9 +1,9 @@
-import * as React from "react";
+import React from "react";
 
 import AuthenticationContext from "./AuthenticationContext";
 
 const AuthenticationContextProvider: React.FunctionComponent = ({
-  children
+  children,
 }) => {
   const [idToken, setIdToken] = React.useState<string | undefined>(
     "REMOVE EVENTUALLY"

@@ -1,30 +1,31 @@
 import React from "react";
-
-import { FunctionComponent, useMemo } from "react";
-
-import { useCoursesApi } from "../../../../api";
-import { ICourseDoc } from "../../../../types";
-import useAppNavigation from "../../../../lib/useAppNavigation";
+import useTaskApi from "../../../../api/useTaskApi";
+import { ITaskDoc } from "../../../../types";
 import ConfirmDialog, {
   useDialog,
 } from "../../../GeneralPurpose/ConfirmDialog";
 import ButtonBar, {
   Props as ButtonBarProps,
 } from "../../../GeneralPurpose/Buttons/ButtonBar";
+import useAppNavigation from "../../../../lib/useAppNavigation";
 
-interface CourseWithHandlers {
-  course: ICourseDoc;
+interface Props {
+  lessonId: string;
+}
+
+interface TaskWithHandlers {
+  task: ITaskDoc;
   buttonBarProps: ButtonBarProps;
 }
 
 interface ConfirmDeleteData {
-  courseId: string;
+  taskId: string;
 }
 
-const CoursesTable: FunctionComponent = () => {
-  const { courses, deleteCourse } = useCoursesApi();
+const TaskTable: React.FunctionComponent<Props> = ({ lessonId }) => {
+  const { tasks, deleteTask } = useTaskApi(lessonId);
   const {
-    nav: { goToAdminCourse },
+    nav: { goToEditTask },
   } = useAppNavigation();
 
   const {
@@ -33,36 +34,36 @@ const CoursesTable: FunctionComponent = () => {
   } = useDialog<ConfirmDeleteData>(
     React.useMemo(
       () => ({
-        getQuestion: () => "Are you sure you wish to delete this course?",
-        getDetails: ({ courseId }) => `Course: ${courseId}`,
-        onConfirm: ({ courseId }) => {
-          deleteCourse(courseId);
+        getQuestion: () => "Are you sure you wish to delete this task?",
+        getDetails: ({ taskId }) => `Task: ${taskId}`,
+        onConfirm: ({ taskId }) => {
+          deleteTask(taskId);
         },
       }),
-      [deleteCourse]
+      [deleteTask]
     )
   );
 
-  const courseWithHandlers: CourseWithHandlers[] = useMemo(
+  const tasksWithHandlers: TaskWithHandlers[] = React.useMemo(
     () =>
-      courses.map((course) => ({
-        course,
+      tasks.map((task) => ({
+        task,
         buttonBarProps: {
           buttons: [
             {
               text: "Edit",
               styleType: "primary",
-              onClick: () => goToAdminCourse(course._id),
+              onClick: () => goToEditTask(task._id),
             },
             {
               text: "Delete",
               styleType: "danger",
-              onClick: () => showDeleteDialog({ courseId: course._id }),
+              onClick: () => showDeleteDialog({ taskId: task._id }),
             },
           ],
         },
       })),
-    [courses, goToAdminCourse, showDeleteDialog]
+    [tasks, goToEditTask, showDeleteDialog]
   );
 
   return (
@@ -71,16 +72,16 @@ const CoursesTable: FunctionComponent = () => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Title</th>
+            <th>Instruction</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {courseWithHandlers.map(({ course, buttonBarProps }) => (
-            <tr key={course._id}>
-              <td>{course.name}</td>
-              <td>{course.description}</td>
+          {tasksWithHandlers.map(({ task, buttonBarProps }) => (
+            <tr key={task._id}>
+              <td>{task.title}</td>
+              <td>{task.instruction}</td>
               <td>
                 <ButtonBar {...buttonBarProps} />
               </td>
@@ -92,4 +93,4 @@ const CoursesTable: FunctionComponent = () => {
   );
 };
 
-export default CoursesTable;
+export default TaskTable;
