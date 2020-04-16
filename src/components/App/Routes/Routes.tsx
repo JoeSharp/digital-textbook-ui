@@ -22,6 +22,8 @@ import CourseSelection from "../../Student/CourseSelection";
 import useAppNavigation from "../../../lib/useAppNavigation";
 import { RoleSelectionWithNav } from "../RoleSelection";
 import StudyCourse from "../../Student/StudyCourse";
+import EditLesson from "../../Administrator/EditLesson";
+import EditTask from "../../Administrator/EditTask";
 
 const Routes: React.FunctionComponent = () => {
   const { urlGenerator } = useAppNavigation();
@@ -32,7 +34,6 @@ const Routes: React.FunctionComponent = () => {
         path={urlGenerator.goToRoleSelection()}
         render={() => <RoleSelectionWithNav />}
       />
-
       <Route
         exact
         path={urlGenerator.goToAdminCourses()}
@@ -46,6 +47,24 @@ const Routes: React.FunctionComponent = () => {
             params: { courseId },
           },
         }: RouteComponentProps<any>) => <EditCourse courseId={courseId} />}
+      />
+      <Route
+        exact
+        path={urlGenerator.goToEditLesson(undefined)}
+        render={({
+          match: {
+            params: { lessonId },
+          },
+        }: RouteComponentProps<any>) => <EditLesson lessonId={lessonId} />}
+      />
+      <Route
+        exact
+        path={urlGenerator.goToEditTask(undefined)}
+        render={({
+          match: {
+            params: { taskId },
+          },
+        }: RouteComponentProps<any>) => <EditTask taskId={taskId} />}
       />
       <Route
         exact

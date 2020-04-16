@@ -1,6 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import useObjectReducer, { ObjWithStringKey } from "./useObjectReducer";
+import useObjectReducer from "./useObjectReducer";
+import { ObjWithStringKey } from "./types";
 import { loremIpsum } from "lorem-ipsum";
 import { v4 as uuidv4 } from "uuid";
 

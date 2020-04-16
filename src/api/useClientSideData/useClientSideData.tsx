@@ -6,7 +6,7 @@ import {
   ILessonDoc,
   ITaskDoc,
 } from "../../types";
-import useObjectReducer from "../../lib/useObjectReducer/useObjectReducer";
+import useObjectReducer from "../../lib/useObjectReducer";
 
 import { ClientSideData } from "./types";
 import ClientSideDataContext from "./ClientSideDataContext";

@@ -1,6 +1,6 @@
 import React from "react";
 import { ITask, ITaskDoc } from "../../types";
-import { ObjWithStringKey } from "../../lib/useObjectReducer/useObjectReducer";
+import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
 import { useErrorReporting } from "../../lib/ErrorPage";
