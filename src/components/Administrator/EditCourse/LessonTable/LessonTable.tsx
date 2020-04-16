@@ -1,30 +1,31 @@
 import React from "react";
-
-import { FunctionComponent, useMemo } from "react";
-
-import { useCourseApi } from "../../../../api";
-import { ICourseDoc } from "../../../../types";
-import useAppNavigation from "../../../../lib/useAppNavigation";
+import useLessonApi from "../../../../api/useLessonApi";
+import { ILessonDoc } from "../../../../types";
 import ConfirmDialog, {
   useDialog,
 } from "../../../GeneralPurpose/ConfirmDialog";
 import ButtonBar, {
   Props as ButtonBarProps,
 } from "../../../GeneralPurpose/Buttons/ButtonBar";
+import useAppNavigation from "../../../../lib/useAppNavigation";
 
-interface CourseWithHandlers {
-  course: ICourseDoc;
+interface Props {
+  courseId: string;
+}
+
+interface LessonWithHandlers {
+  lesson: ILessonDoc;
   buttonBarProps: ButtonBarProps;
 }
 
 interface ConfirmDeleteData {
-  courseId: string;
+  lessonId: string;
 }
 
-const CoursesTable: FunctionComponent = () => {
-  const { courses, deleteCourse } = useCourseApi();
+const TaskTable: React.FunctionComponent<Props> = ({ courseId }) => {
+  const { lessons, deleteLesson } = useLessonApi(courseId);
   const {
-    nav: { goToAdminCourse },
+    nav: { goToEditLesson },
   } = useAppNavigation();
 
   const {
@@ -33,36 +34,36 @@ const CoursesTable: FunctionComponent = () => {
   } = useDialog<ConfirmDeleteData>(
     React.useMemo(
       () => ({
-        getQuestion: () => "Are you sure you wish to delete this course?",
-        getDetails: ({ courseId }) => `Course: ${courseId}`,
-        onConfirm: ({ courseId }) => {
-          deleteCourse(courseId);
+        getQuestion: () => "Are you sure you wish to delete this lesson?",
+        getDetails: ({ lessonId }) => `Lesson: ${lessonId}`,
+        onConfirm: ({ lessonId }) => {
+          deleteLesson(lessonId);
         },
       }),
-      [deleteCourse]
+      [deleteLesson]
     )
   );
 
-  const courseWithHandlers: CourseWithHandlers[] = useMemo(
+  const lessonsWithHandlers: LessonWithHandlers[] = React.useMemo(
     () =>
-      courses.map((course) => ({
-        course,
+      lessons.map((lesson) => ({
+        lesson,
         buttonBarProps: {
           buttons: [
             {
               text: "Edit",
               styleType: "primary",
-              onClick: () => goToAdminCourse(course._id),
+              onClick: () => goToEditLesson(lesson._id),
             },
             {
               text: "Delete",
               styleType: "danger",
-              onClick: () => showDeleteDialog({ courseId: course._id }),
+              onClick: () => showDeleteDialog({ lessonId: lesson._id }),
             },
           ],
         },
       })),
-    [courses, goToAdminCourse, showDeleteDialog]
+    [lessons, goToEditLesson, showDeleteDialog]
   );
 
   return (
@@ -71,16 +72,16 @@ const CoursesTable: FunctionComponent = () => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Title</th>
             <th>Description</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {courseWithHandlers.map(({ course, buttonBarProps }) => (
-            <tr key={course._id}>
-              <td>{course.name}</td>
-              <td>{course.description}</td>
+          {lessonsWithHandlers.map(({ lesson, buttonBarProps }) => (
+            <tr key={lesson._id}>
+              <td>{lesson.title}</td>
+              <td>{lesson.description}</td>
               <td>
                 <ButtonBar {...buttonBarProps} />
               </td>
@@ -92,4 +93,4 @@ const CoursesTable: FunctionComponent = () => {
   );
 };
 
-export default CoursesTable;
+export default TaskTable;

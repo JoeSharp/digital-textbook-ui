@@ -2,35 +2,36 @@ import React from "react";
 
 import ModalDialog from "../../../GeneralPurpose/ModalDialog";
 import useForm from "../../../../lib/useForm";
-import { useCourseApi } from "../../../../api";
-import { ICourse } from "../../../../types";
+import { useLessonApi } from "../../../../api";
+import { ILesson } from "../../../../types";
 import ButtonBar from "../../../GeneralPurpose/Buttons/ButtonBar";
 import { Props as ButtonProps } from "../../../GeneralPurpose/Buttons/Button";
 
 interface Props extends ReactModal.Props {
+  courseId: string;
   isOpen: boolean;
   onCloseDialog: () => void;
 }
 
-const NewCourseDialog: React.FunctionComponent<Props> = (props) => {
-  const { createCourse } = useCourseApi();
+const NewLessonDialog: React.FunctionComponent<Props> = (props) => {
+  const { courseId, onCloseDialog } = props;
+  const { createLesson } = useLessonApi(courseId);
 
-  const defaultDetails: ICourse = React.useMemo(
+  const defaultDetails: ILesson = React.useMemo(
     () => ({
-      name: "",
+      courseId,
+      title: "",
       description: "",
     }),
-    []
+    [courseId]
   );
 
-  const { useTextInput, value } = useForm<ICourse>({
+  const { useTextInput, value } = useForm<ILesson>({
     initialValues: defaultDetails,
   });
 
-  const nameProps = useTextInput("name");
+  const titleProps = useTextInput("title");
   const descriptionProps = useTextInput("description");
-
-  const { onCloseDialog } = props;
 
   const buttons: ButtonProps[] = React.useMemo(
     () => [
@@ -38,7 +39,7 @@ const NewCourseDialog: React.FunctionComponent<Props> = (props) => {
         text: "Create",
         styleType: "primary",
         onClick: () => {
-          createCourse(value);
+          createLesson(value);
           onCloseDialog();
         },
       },
@@ -48,23 +49,27 @@ const NewCourseDialog: React.FunctionComponent<Props> = (props) => {
         onClick: onCloseDialog,
       },
     ],
-    [value, createCourse, onCloseDialog]
+    [value, createLesson, onCloseDialog]
   );
 
   return (
     <ModalDialog
       {...props}
-      header={<h4>New Course</h4>}
+      header={<h4>New Lesson</h4>}
       content={
         <form className="form">
           <div className="form-group">
-            <label htmlFor="newCourseName">Name</label>
-            <input id="newCourseName" className="form-control" {...nameProps} />
+            <label htmlFor="newLessonTitle">Title</label>
+            <input
+              id="newLessonTitle"
+              className="form-control"
+              {...titleProps}
+            />
           </div>
           <div className="form-group">
-            <label htmlFor="newCourseDescription">Description</label>
+            <label htmlFor="newLessonDescription">Description</label>
             <input
-              id="newCourseDescription"
+              id="newLessonDescription"
               className="form-control"
               {...descriptionProps}
             />
@@ -92,7 +97,7 @@ interface UseDialog<T> {
 /**
  * This is a React custom hook that sets up things required by the owning component.
  */
-export const useDialog = <T extends {}>(): UseDialog<T> => {
+export const useDialog = <T extends {}>(courseId: string): UseDialog<T> => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const _onCloseDialog = React.useCallback(() => setIsOpen(false), [setIsOpen]);
@@ -101,6 +106,7 @@ export const useDialog = <T extends {}>(): UseDialog<T> => {
 
   return {
     componentProps: {
+      courseId,
       isOpen,
       onCloseDialog: _onCloseDialog,
     },
@@ -108,4 +114,4 @@ export const useDialog = <T extends {}>(): UseDialog<T> => {
   };
 };
 
-export default NewCourseDialog;
+export default NewLessonDialog;

@@ -6,9 +6,17 @@ import {
   GoogleLoginResponseOffline,
 } from "react-google-login";
 import Routes from "./Routes";
+import { useAuthenticationContext } from "../../lib/authentication";
 
-const tg = (tbd: any): tbd is GoogleLoginResponse => {
+const isOnline = (tbd: any): tbd is GoogleLoginResponse => {
   if ((tbd as GoogleLoginResponse).profileObj) {
+    return true;
+  }
+  return false;
+};
+
+const isOffline = (tbd: any): tbd is GoogleLoginResponseOffline => {
+  if ((tbd as GoogleLoginResponseOffline).code) {
     return true;
   }
   return false;
@@ -16,15 +24,20 @@ const tg = (tbd: any): tbd is GoogleLoginResponse => {
 
 function App() {
   const [username, setUsername] = React.useState<string | undefined>();
+  const { setIdToken, currentUser } = useAuthenticationContext();
 
   const responseGoogle = React.useCallback(
     (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
       console.log(response);
-      if (tg(response)) {
+
+      if (isOnline(response)) {
+        setIdToken(response.accessToken);
         setUsername(response.profileObj.name);
+      } else if (isOffline(response)) {
+        console.log("Offline response");
       }
     },
-    []
+    [setIdToken, setUsername]
   );
 
   return (
@@ -38,6 +51,10 @@ function App() {
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
       />
+      {(currentUser && <div>Logged in as {currentUser.emailAddress}</div>) || (
+        <div>Not Logged In</div>
+      )}
+
       <Routes />
     </div>
   );

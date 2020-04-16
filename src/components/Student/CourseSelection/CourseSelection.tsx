@@ -1,5 +1,5 @@
 import React from "react";
-import { useCoursesApi } from "../../../api";
+import { useCourseApi } from "../../../api";
 import Card from "../../GeneralPurpose/Card";
 import { ICourseDoc } from "../../../types";
 import useAppNavigation from "../../../lib/useAppNavigation";
@@ -14,7 +14,7 @@ const CourseSelection: React.FunctionComponent = () => {
     nav: { goToStudyCourse },
   } = useAppNavigation();
 
-  const { courses } = useCoursesApi();
+  const { courses } = useCourseApi();
 
   const courseWithHandlers: CourseWithHandlers[] = React.useMemo(
     () =>

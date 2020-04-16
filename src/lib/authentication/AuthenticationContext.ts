@@ -1,7 +1,9 @@
 import React from "react";
+import { IUserDoc } from "../../types";
 
 interface AuthenticationContextApi {
   idToken?: string;
+  currentUser?: IUserDoc;
   setIdToken: (idToken: string) => void;
 }
 

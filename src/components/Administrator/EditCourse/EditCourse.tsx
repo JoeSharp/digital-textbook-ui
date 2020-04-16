@@ -1,8 +1,8 @@
 import React from "react";
 
-import useCourseApi from "../../../../api/useCourseApi";
-import useForm from "../../../../lib/useForm";
-import { ICourseDoc, ICourse } from "../../../../types";
+import useCourseApi from "../../../api/useCourseApi";
+import useForm from "../../../lib/useForm";
+import { ICourseDoc, ICourse } from "../../../types";
 
 interface Props {
   courseId: string;

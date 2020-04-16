@@ -6,7 +6,7 @@ import { ObjWithStringKey } from "../../lib/useObjectReducer/useObjectReducer";
 import useClientSideData from "../useClientSideData/useClientSideData";
 import { useErrorReporting } from "../../lib/ErrorPage";
 
-interface UseCoursesApi {
+interface useCourseApi {
   getCourse: (courseId: string) => void;
   refreshCourses: () => void;
   createCourse: (course: ICourse) => void;
@@ -16,7 +16,7 @@ interface UseCoursesApi {
   coursesById: ObjWithStringKey<ICourseDoc>;
 }
 
-const useCoursesApi = (): UseCoursesApi => {
+const useCourseApi = (): useCourseApi => {
   const { reportError } = useErrorReporting();
   const {
     courses: {
@@ -128,4 +128,4 @@ const useCoursesApi = (): UseCoursesApi => {
   };
 };
 
-export default useCoursesApi;
+export default useCourseApi;

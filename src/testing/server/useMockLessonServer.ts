@@ -8,7 +8,8 @@ import useListReducer from "../../lib/useListReducer";
 import { createDocument } from "../data/testDataUtils";
 
 const resource = "/lesson";
-const resourceForCourseId = `express:${resource}/forCourse/:id`;
+const resourceForCourse = `${resource}/forCourse`;
+const resourceForCourseId = `express:${resourceForCourse}/:id`;
 const resourceWithLessonId = `express:${resource}/:id`;
 
 export const useMockServer = (): MockServer => {
@@ -19,7 +20,7 @@ export const useMockServer = (): MockServer => {
 
   const setup = React.useCallback(() => {
     fetchMock.get(resourceForCourseId, (url) => {
-      const courseId = getId(resource, url);
+      const courseId = getId(resourceForCourse, url);
       const lessonsForCourse = lessons.filter((l) => l.courseId === courseId);
       if (lessonsForCourse.length > 0) {
         return lessonsForCourse;
@@ -37,7 +38,7 @@ export const useMockServer = (): MockServer => {
       }
     });
     fetchMock.post(resourceForCourseId, (url, options) => {
-      const courseId = getId(resource, url);
+      const courseId = getId(resourceForCourse, url);
       const lessonBody = JSON.parse(options.body as string) as ILesson;
       const lesson: ILessonDoc = createDocument({ courseId, ...lessonBody });
       addItem(lesson);

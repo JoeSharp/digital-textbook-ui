@@ -17,26 +17,32 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import NewCourseDialog, { useDialog } from "./NewCourseDialog";
-import { useCourseApi } from "../../../../api";
+import NewLessonDialog, { useDialog } from "./NewLessonDialog";
 import JsonDebug from "../../../../lib/JsonDebug";
+import { courses as testCourses } from "../../../../testing/data";
+import { useClientSideData } from "../../../../api";
+
+const courseId = testCourses[0]._id;
 
 let TestHarness: React.FunctionComponent = () => {
-  const { courses } = useCourseApi();
+  const { showDialog, componentProps } = useDialog(courseId);
+  const {
+    lessons: { itemsInList: allLessons },
+  } = useClientSideData();
 
-  const { showDialog, componentProps } = useDialog();
+  const lessons = allLessons.filter((l) => l.courseId === courseId);
 
   return (
     <React.Fragment>
-      <NewCourseDialog {...componentProps} />
+      <NewLessonDialog {...componentProps} />
       <button onClick={showDialog}>Add</button>
       <h4>Courses from API</h4>
-      <JsonDebug value={{ courses }} />
+      <JsonDebug value={{ lessons }} />
     </React.Fragment>
   );
 };
 
-storiesOf("Administrator/ManageCourses/New Course Dialog", module).add(
+storiesOf("Administrator/Edit Course/New Lesson Dialog", module).add(
   "basic",
   () => <TestHarness />
 );

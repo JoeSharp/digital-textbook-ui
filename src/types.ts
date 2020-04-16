@@ -55,3 +55,9 @@ export interface LessonTaskType {
   youTubeLink: YouTubeLinkType;
   embeddedIFrame: EmbeddedIFrameType;
 }
+
+export interface IUser {
+  emailAddress: string;
+}
+
+export type IUserDoc = IUser & IMongoDocument;

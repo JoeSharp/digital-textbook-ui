@@ -1,14 +1,12 @@
 import React from "react";
 
+import { UseObjectReducer, ObjWithStringKey } from "./types";
+
 /**
  * This file exports a custom hook that can be used to manage a object
  * with a reducer. It handles a few simple use cases for reducer based objects
  * that were common to a number of components.
  */
-
-export interface ObjWithStringKey<T> {
-  [s: string]: T;
-}
 
 interface KeyedReceivedAction<T> {
   type: "keyedItemstemsReceived";
@@ -74,15 +72,6 @@ const createObjectReducer = <T extends {}>(getKey: (item: T) => string) => {
     }
   };
 };
-
-export interface UseObjectReducer<T extends {}> {
-  items: ObjWithStringKey<T>;
-  itemsInList: T[];
-  receiveKeyedItems: (items: ObjWithStringKey<T>) => void;
-  receiveListOfItems: (items: T[]) => void;
-  addItem: (item: T) => void;
-  removeItem: (itemKey: string) => void;
-}
 
 const useObjectReducer = <T extends {}>(
   getKey: (item: T) => string,

@@ -1,4 +1,13 @@
-import useCoursesApi from "./useCourseApi/useCoursesApi";
+import useCourseApi from "./useCourseApi";
 import useLessonApi from "./useLessonApi";
+import useTaskApi from "./useTaskApi";
+import useUserApi from "./useUserApi";
+import useClientSideData from "./useClientSideData";
 
-export { useCoursesApi, useLessonApi };
+export {
+  useClientSideData,
+  useUserApi,
+  useCourseApi,
+  useLessonApi,
+  useTaskApi,
+};

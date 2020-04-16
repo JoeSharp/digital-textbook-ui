@@ -17,7 +17,7 @@
 import React from "react";
 import { Route, RouteComponentProps, Switch } from "react-router";
 import ManageCourses from "../../Administrator/ManageCourses";
-import EditCourse from "../../Administrator/ManageCourses/EditCourse";
+import EditCourse from "../../Administrator/EditCourse";
 import CourseSelection from "../../Student/CourseSelection";
 import useAppNavigation from "../../../lib/useAppNavigation";
 import { RoleSelectionWithNav } from "../RoleSelection";

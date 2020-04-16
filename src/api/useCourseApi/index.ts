@@ -1,5 +1,5 @@
-import useCoursesApi from "./useCoursesApi";
+import useCourseApi from "./useCourseApi";
 
-export { useCoursesApi };
+export { useCourseApi };
 
-export default useCoursesApi;
+export default useCourseApi;
