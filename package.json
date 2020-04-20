@@ -1,8 +1,8 @@
 {
-  "name": "teach-code-ui",
+  "name": "digital-textbook-ui",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://joesharp.github.io/digital-textbook-ui",
+  "homepage": "https://digital-textbook-ui.herokuapp.com/",
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@testing-library/jest-dom": "^4.2.4",
@@ -66,7 +66,6 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
     "fetch-mock": "^9.3.1",
-    "gh-pages": "^2.2.0",
     "storybook-react-router": "^1.0.8"
   }
 }
