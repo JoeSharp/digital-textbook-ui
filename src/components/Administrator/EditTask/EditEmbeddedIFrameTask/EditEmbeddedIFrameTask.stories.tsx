@@ -5,13 +5,13 @@ import EditEmbeddedIFrameTask from "./EditEmbeddedIFrameTask";
 import { tasks } from "../../../../testing/data";
 import {
   ITaskType,
-  ITask_EmbeddedIFrame,
+  ITaskEmbeddedIFrame,
   IMongoDocument,
 } from "../../../../types";
 
-const urlTask: ITask_EmbeddedIFrame & IMongoDocument = tasks.find(
+const urlTask: ITaskEmbeddedIFrame & IMongoDocument = tasks.find(
   (t) => t.type === ITaskType.EmbeddedIFrame
-) as ITask_EmbeddedIFrame & IMongoDocument;
+) as ITaskEmbeddedIFrame & IMongoDocument;
 
 const TestHarness: React.FunctionComponent = () => {
   return (

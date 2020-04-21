@@ -30,16 +30,16 @@ export interface IBaseTask {
   instruction: string;
 }
 
-export interface ITask_EmbeddedIFrame extends IBaseTask {
+export interface ITaskEmbeddedIFrame extends IBaseTask {
   type: ITaskType.EmbeddedIFrame;
   baseUrl: string;
   system: EmbeddedIFrameSystem;
 }
-export interface ITask_FreeFlowText extends IBaseTask {
+export interface ITaskFreeFlowText extends IBaseTask {
   type: ITaskType.FreeFlowText;
 }
 
-export type ITask = ITask_EmbeddedIFrame | ITask_FreeFlowText;
+export type ITask = ITaskEmbeddedIFrame | ITaskFreeFlowText;
 
 export type ITaskDoc = IMongoDocument & ITask;
 
