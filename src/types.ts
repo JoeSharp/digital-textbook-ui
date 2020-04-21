@@ -20,7 +20,7 @@ export interface ILesson {
 export type ILessonDoc = IMongoDocument & ILesson;
 
 export enum ITaskType {
-  EmbeddedIFrame = "EmbeddedIFrame",
+  EmbeddedIframe = "EmbeddedIframe",
   FreeFlowText = "FreeFlowText",
 }
 
@@ -30,20 +30,20 @@ export interface IBaseTask {
   instruction: string;
 }
 
-export interface ITaskEmbeddedIFrame extends IBaseTask {
-  type: ITaskType.EmbeddedIFrame;
+export interface ITaskEmbeddedIframe extends IBaseTask {
+  type: ITaskType.EmbeddedIframe;
   baseUrl: string;
-  system: EmbeddedIFrameSystem;
+  system: IEmbeddedIframeSystem;
 }
 export interface ITaskFreeFlowText extends IBaseTask {
   type: ITaskType.FreeFlowText;
 }
 
-export type ITask = ITaskEmbeddedIFrame | ITaskFreeFlowText;
+export type ITask = ITaskEmbeddedIframe | ITaskFreeFlowText;
 
 export type ITaskDoc = IMongoDocument & ITask;
 
-export enum EmbeddedIFrameSystem {
+export enum IEmbeddedIframeSystem {
   Trinket,
   p5js,
   codeDotOrg,

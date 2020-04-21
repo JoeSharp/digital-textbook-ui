@@ -5,6 +5,7 @@ import {
   ILesson,
   ITask,
   ITaskType,
+  IEmbeddedIframeSystem,
 } from "../../types";
 
 import { v4 as uuid } from "uuid";
@@ -25,24 +26,30 @@ export const lesson1: ILessonDoc = createDocument<ILesson>({
 
 export const lesson1Task1: ITaskDoc = createDocument<ITask>({
   lessonId: lesson1._id,
-  type: ITaskType.EmbeddedIFrame,
+  type: ITaskType.EmbeddedIframe,
   title: "New Sketch",
   instruction:
     "Log into trinket.io using google account and create new Python trinket",
+  system: IEmbeddedIframeSystem.Trinket,
+  baseUrl: "https://trinket.io/",
 });
 
 export const lesson1Task2: ITaskDoc = createDocument<ITask>({
   lessonId: lesson1._id,
-  type: ITaskType.EmbeddedIFrame,
+  type: ITaskType.EmbeddedIframe,
   title: "Draw Square",
   instruction: "Use combination of forward and left/right to draw a square",
+  system: IEmbeddedIframeSystem.Trinket,
+  baseUrl: "https://trinket.io/",
 });
 
 export const lesson1Task3: ITaskDoc = createDocument<ITask>({
   lessonId: lesson1._id,
-  type: ITaskType.EmbeddedIFrame,
+  type: ITaskType.EmbeddedIframe,
   title: "Draw an L-Shape",
   instruction: "Draw an L-shape to match this trinket...",
+  system: IEmbeddedIframeSystem.Trinket,
+  baseUrl: "https://trinket.io/",
 });
 
 export const lessons: ILessonDoc[] = [lesson1];

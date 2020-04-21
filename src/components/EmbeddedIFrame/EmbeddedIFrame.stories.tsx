@@ -1,10 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import EmbeddedIFrame from "./EmbeddedIFrame";
+import EmbeddedIframe from "./EmbeddedIframe";
 
-storiesOf("Embedded IFrame", module).add("Trinket", () => (
-  <EmbeddedIFrame
-    embeddedIFrame={{
+storiesOf("Embedded Iframe", module).add("Trinket", () => (
+  <EmbeddedIframe
+    embeddedIframe={{
       type: "trinket",
       trinketId: "21099fd5a6",
     }}

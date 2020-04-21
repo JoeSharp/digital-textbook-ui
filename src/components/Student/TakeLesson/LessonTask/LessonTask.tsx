@@ -1,7 +1,7 @@
 import React from "react";
 
 import { LessonTaskType } from "../../../../types";
-import EmbeddedIFrame from "../../../EmbeddedIFrame";
+import EmbeddedIframe from "../../../EmbeddedIframe";
 import { YouTubeButton } from "../../../YouTube";
 
 interface Props {
@@ -19,7 +19,7 @@ const LessonTask: React.FunctionComponent<Props> = ({ task }) => {
         </div>
       </div>
 
-      <EmbeddedIFrame embeddedIFrame={task.embeddedIFrame} />
+      <EmbeddedIframe embeddedIframe={task.embeddedIframe} />
     </React.Fragment>
   );
 };

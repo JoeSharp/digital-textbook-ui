@@ -1,22 +1,22 @@
 import React from "react";
 
-import { EmbeddedIFrameType } from "../../types";
+import { EmbeddedIframeType } from "../../types";
 
 interface Props {
-  embeddedIFrame: EmbeddedIFrameType;
+  embeddedIframe: EmbeddedIframeType;
 }
 
-const EmbeddedIFrame: React.FunctionComponent<Props> = ({ embeddedIFrame }) => {
-  if (embeddedIFrame.type === "trinket") {
+const EmbeddedIframe: React.FunctionComponent<Props> = ({ embeddedIframe }) => {
+  if (embeddedIframe.type === "trinket") {
     return (
       <iframe
         className="trinket"
-        src={`https://trinket.io/embed/python/${embeddedIFrame.trinketId}?showInstructions=true`}
+        src={`https://trinket.io/embed/python/${embeddedIframe.trinketId}?showInstructions=true`}
         frameBorder="0"
         marginWidth={0}
         marginHeight={0}
         allowFullScreen
-        title={`Trinket IFrame ${embeddedIFrame.trinketId}`}
+        title={`Trinket Iframe ${embeddedIframe.trinketId}`}
       ></iframe>
     );
   }
@@ -24,4 +24,4 @@ const EmbeddedIFrame: React.FunctionComponent<Props> = ({ embeddedIFrame }) => {
   return <div>UNKNOWN EMBED TYPE</div>;
 };
 
-export default EmbeddedIFrame;
+export default EmbeddedIframe;

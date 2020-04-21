@@ -9,7 +9,7 @@ storiesOf("Student/Lesson", module).add("Basic", () => (
       title: "Draw a Hexagon",
       lessonId: "STUFF",
       description: "You will use the turtle commands to draw a hexagon",
-      embeddedIFrame: {
+      embeddedIframe: {
         type: "trinket",
         trinketId: "21099fd5a6",
       },

@@ -1,5 +1,5 @@
-import EmbeddedIFrame from "./EmbeddedIFrame";
+import EmbeddedIframe from "./EmbeddedIframe";
 
-export { EmbeddedIFrame };
+export { EmbeddedIframe };
 
-export default EmbeddedIFrame;
+export default EmbeddedIframe;

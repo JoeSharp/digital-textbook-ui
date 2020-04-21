@@ -1,3 +1,3 @@
-import EditEmbeddedIFrameTask from "./EditEmbeddedIFrameTask";
+import EditEmbeddedIframeTask from "./EditEmbeddedIframeTask";
 
-export default EditEmbeddedIFrameTask;
+export default EditEmbeddedIframeTask;

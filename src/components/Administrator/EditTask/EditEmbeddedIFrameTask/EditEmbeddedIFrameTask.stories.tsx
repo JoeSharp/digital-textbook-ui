@@ -1,27 +1,27 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import EditEmbeddedIFrameTask from "./EditEmbeddedIFrameTask";
+import EditEmbeddedIframeTask from "./EditEmbeddedIframeTask";
 import { tasks } from "../../../../testing/data";
 import {
   ITaskType,
-  ITaskEmbeddedIFrame,
+  ITaskEmbeddedIframe,
   IMongoDocument,
 } from "../../../../types";
 
-const urlTask: ITaskEmbeddedIFrame & IMongoDocument = tasks.find(
-  (t) => t.type === ITaskType.EmbeddedIFrame
-) as ITaskEmbeddedIFrame & IMongoDocument;
+const urlTask: ITaskEmbeddedIframe & IMongoDocument = tasks.find(
+  (t) => t.type === ITaskType.EmbeddedIframe
+) as ITaskEmbeddedIframe & IMongoDocument;
 
 const TestHarness: React.FunctionComponent = () => {
   return (
-    (urlTask && <EditEmbeddedIFrameTask task={urlTask} />) || (
-      <div>No Embedded IFrame Tasks Found in Test Data</div>
+    (urlTask && <EditEmbeddedIframeTask task={urlTask} />) || (
+      <div>No Embedded Iframe Tasks Found in Test Data</div>
     )
   );
 };
 
-storiesOf("Administrator/Edit Task/Embedded IFrame Task", module).add(
+storiesOf("Administrator/Edit Task/Embedded Iframe Task", module).add(
   "basic",
   () => <TestHarness />
 );

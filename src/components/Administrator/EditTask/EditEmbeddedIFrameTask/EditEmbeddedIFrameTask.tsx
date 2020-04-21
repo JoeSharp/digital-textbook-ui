@@ -1,14 +1,14 @@
 import React from "react";
-import { IMongoDocument, ITaskEmbeddedIFrame } from "../../../../types";
+import { IMongoDocument, ITaskEmbeddedIframe } from "../../../../types";
 
 interface Props {
-  task: IMongoDocument & ITaskEmbeddedIFrame;
+  task: IMongoDocument & ITaskEmbeddedIframe;
 }
 
-const EditEmbeddedIFrameTask: React.FunctionComponent<Props> = ({ task }) => {
+const EditEmbeddedIframeTask: React.FunctionComponent<Props> = ({ task }) => {
   return (
-    <div>Embedded IFrame Task Editor: {JSON.stringify(task, null, 2)}</div>
+    <div>Embedded Iframe Task Editor: {JSON.stringify(task, null, 2)}</div>
   );
 };
 
-export default EditEmbeddedIFrameTask;
+export default EditEmbeddedIframeTask;

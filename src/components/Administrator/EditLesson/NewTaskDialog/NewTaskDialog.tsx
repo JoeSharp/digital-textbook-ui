@@ -20,7 +20,7 @@ const NewTaskDialog: React.FunctionComponent<Props> = (props) => {
   const defaultDetails: ITask = React.useMemo(
     () => ({
       lessonId,
-      type: ITaskType.EmbeddedIFrame,
+      type: ITaskType.EmbeddedIframe,
       title: "",
       instruction: "",
     }),
