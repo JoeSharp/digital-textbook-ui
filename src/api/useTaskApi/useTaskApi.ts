@@ -1,55 +1,26 @@
 import React from "react";
 import { ITask, ITaskDoc } from "../../types";
-import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
 import { useErrorReporting } from "../../lib/ErrorPage";
+import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
 
-interface UseTaskApi {
-  getTask: (taskId: string) => void;
-  refreshTasks: () => void;
-  createTask: (task: ITask) => void;
-  updateTask: (taskId: string, updates: ITask) => void;
-  deleteTask: (taskId: string) => void;
+export interface UseTaskApi {
   tasks: ITaskDoc[];
   tasksById: ObjWithStringKey<ITaskDoc>;
+  getTask: (taskId: string) => void;
+  updateTask: (taskId: string, updates: ITask) => void;
+  deleteTask: (taskId: string) => void;
 }
 
-const useTaskApi = (lessonId: string): UseTaskApi => {
+const useTaskApi = (): UseTaskApi => {
   const { reportError } = useErrorReporting();
 
   const {
-    tasks: {
-      items: tasksById,
-      itemsInList: tasksInList,
-      addItem,
-      receiveListOfItems,
-      removeItem,
-    },
+    tasks: { items: tasksById, itemsInList: tasksInList, addItem, removeItem },
   } = useClientSideData();
 
-  const {
-    createTask,
-    deleteTask,
-    getTask,
-    getTasksForLesson,
-    updateTask,
-  } = useApi();
-
-  const _refreshTasks = React.useCallback(() => {
-    async function f() {
-      try {
-        const lessons = await getTasksForLesson(lessonId);
-        receiveListOfItems(lessons);
-      } catch (err) {
-        reportError(err);
-      }
-    }
-
-    f();
-  }, [lessonId, receiveListOfItems, getTasksForLesson, reportError]);
-
-  React.useEffect(_refreshTasks, [_refreshTasks]);
+  const { deleteTask, getTask, updateTask } = useApi();
 
   const _getTask = React.useCallback(
     (lessonId: string) => {
@@ -65,22 +36,6 @@ const useTaskApi = (lessonId: string): UseTaskApi => {
       f();
     },
     [getTask, addItem, reportError]
-  );
-
-  const _createTask = React.useCallback(
-    (task: ITask) => {
-      async function f() {
-        try {
-          const newTask = await createTask(lessonId, task);
-          addItem(newTask);
-        } catch (err) {
-          reportError(err);
-        }
-      }
-
-      f();
-    },
-    [lessonId, createTask, addItem, reportError]
   );
 
   const _updateTask = React.useCallback(
@@ -119,8 +74,6 @@ const useTaskApi = (lessonId: string): UseTaskApi => {
     tasks: tasksInList,
     tasksById,
     getTask: _getTask,
-    refreshTasks: _refreshTasks,
-    createTask: _createTask,
     updateTask: _updateTask,
     deleteTask: _deleteTask,
   };

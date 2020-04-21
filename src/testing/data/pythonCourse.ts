@@ -1,4 +1,11 @@
-import { ICourseDoc, ILessonDoc, ITaskDoc, ILesson, ITask } from "../../types";
+import {
+  ICourseDoc,
+  ILessonDoc,
+  ITaskDoc,
+  ILesson,
+  ITask,
+  ITaskType,
+} from "../../types";
 
 import { v4 as uuid } from "uuid";
 import { createDocument } from "./testDataUtils";
@@ -18,7 +25,7 @@ export const lesson1: ILessonDoc = createDocument<ILesson>({
 
 export const lesson1Task1: ITaskDoc = createDocument<ITask>({
   lessonId: lesson1._id,
-  type: "Trinket",
+  type: ITaskType.EmbeddedIFrame,
   title: "New Sketch",
   instruction:
     "Log into trinket.io using google account and create new Python trinket",
@@ -26,14 +33,14 @@ export const lesson1Task1: ITaskDoc = createDocument<ITask>({
 
 export const lesson1Task2: ITaskDoc = createDocument<ITask>({
   lessonId: lesson1._id,
-  type: "Trinket",
+  type: ITaskType.EmbeddedIFrame,
   title: "Draw Square",
   instruction: "Use combination of forward and left/right to draw a square",
 });
 
 export const lesson1Task3: ITaskDoc = createDocument<ITask>({
   lessonId: lesson1._id,
-  type: "Trinket",
+  type: ITaskType.EmbeddedIFrame,
   title: "Draw an L-Shape",
   instruction: "Draw an L-shape to match this trinket...",
 });

@@ -2,7 +2,7 @@ import React from "react";
 
 import ModalDialog from "../../../GeneralPurpose/ModalDialog";
 import useForm from "../../../../lib/useForm";
-import { useLessonApi } from "../../../../api";
+import { useCourseLessonsApi } from "../../../../api/useLessonApi";
 import { ILesson } from "../../../../types";
 import ButtonBar from "../../../GeneralPurpose/Buttons/ButtonBar";
 import { Props as ButtonProps } from "../../../GeneralPurpose/Buttons/Button";
@@ -15,7 +15,7 @@ interface Props extends ReactModal.Props {
 
 const NewLessonDialog: React.FunctionComponent<Props> = (props) => {
   const { courseId, onCloseDialog } = props;
-  const { createLesson } = useLessonApi(courseId);
+  const { createLesson } = useCourseLessonsApi(courseId);
 
   const defaultDetails: ILesson = React.useMemo(
     () => ({

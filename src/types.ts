@@ -19,41 +19,40 @@ export interface ILesson {
 
 export type ILessonDoc = IMongoDocument & ILesson;
 
-export type ITaskType =
-  | "Trinket"
-  | "p5js"
-  | "codepen"
-  | "code.org"
-  | "OtherSite"
-  | "FreeFlowText";
+export enum ITaskType {
+  EmbeddedIFrame = "EmbeddedIFrame",
+  FreeFlowText = "FreeFlowText",
+}
 
-export interface ITask {
+export interface IBaseTask {
   lessonId: string;
-  type: ITaskType;
   title: string;
   instruction: string;
 }
 
-export type ITaskDoc = IMongoDocument & ITask;
-
-export interface EmbeddedTrinketType {
-  type: "trinket";
-  trinketId: string;
+export interface ITask_EmbeddedIFrame extends IBaseTask {
+  type: ITaskType.EmbeddedIFrame;
+  baseUrl: string;
+  system: EmbeddedIFrameSystem;
+}
+export interface ITask_FreeFlowText extends IBaseTask {
+  type: ITaskType.FreeFlowText;
 }
 
-export type EmbeddedIFrameType = EmbeddedTrinketType;
+export type ITask = ITask_EmbeddedIFrame | ITask_FreeFlowText;
+
+export type ITaskDoc = IMongoDocument & ITask;
+
+export enum EmbeddedIFrameSystem {
+  Trinket,
+  p5js,
+  codeDotOrg,
+  codePen,
+}
 
 export interface YouTubeLinkType {
   youTubeId: string;
   startTime?: number;
-}
-
-export interface LessonTaskType {
-  lessonId: string;
-  title: string;
-  description: string;
-  youTubeLink: YouTubeLinkType;
-  embeddedIFrame: EmbeddedIFrameType;
 }
 
 export interface IUser {

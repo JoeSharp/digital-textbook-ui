@@ -18,7 +18,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import NewCourseDialog, { useDialog } from "./NewCourseDialog";
-import { useCourseApi } from "../../../../api";
+import { useCourseApi } from "../../../../api/useCourseApi";
 import JsonDebug from "../../../../lib/JsonDebug";
 
 let TestHarness: React.FunctionComponent = () => {

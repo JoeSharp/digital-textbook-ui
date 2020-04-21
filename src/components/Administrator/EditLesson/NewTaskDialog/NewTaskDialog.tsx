@@ -2,8 +2,8 @@ import React from "react";
 
 import ModalDialog from "../../../GeneralPurpose/ModalDialog";
 import useForm from "../../../../lib/useForm";
-import { useTaskApi } from "../../../../api";
-import { ITask } from "../../../../types";
+import { useLessonTasksApi } from "../../../../api/useTaskApi";
+import { ITask, ITaskType } from "../../../../types";
 import ButtonBar from "../../../GeneralPurpose/Buttons/ButtonBar";
 import { Props as ButtonProps } from "../../../GeneralPurpose/Buttons/Button";
 
@@ -15,12 +15,12 @@ interface Props extends ReactModal.Props {
 
 const NewTaskDialog: React.FunctionComponent<Props> = (props) => {
   const { lessonId, onCloseDialog } = props;
-  const { createTask } = useTaskApi(lessonId);
+  const { createTask } = useLessonTasksApi(lessonId);
 
   const defaultDetails: ITask = React.useMemo(
     () => ({
       lessonId,
-      type: "Trinket",
+      type: ITaskType.EmbeddedIFrame,
       title: "",
       instruction: "",
     }),

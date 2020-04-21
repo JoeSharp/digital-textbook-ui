@@ -1,5 +1,5 @@
 import React from "react";
-import { useCourseApi } from "../../../api";
+import { useCourseApi } from "../../../api/useCourseApi";
 import Card from "../../GeneralPurpose/Card";
 import { ICourseDoc } from "../../../types";
 import useAppNavigation from "../../../lib/useAppNavigation";

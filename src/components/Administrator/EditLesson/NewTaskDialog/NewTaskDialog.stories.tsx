@@ -19,10 +19,11 @@ import { storiesOf } from "@storybook/react";
 
 import NewCourseDialog, { useDialog } from "./NewTaskDialog";
 import JsonDebug from "../../../../lib/JsonDebug";
-import { useClientSideData } from "../../../../api";
+import useClientSideData from "../../../../api/useClientSideData";
 import { lessons as testLessons } from "../../../../testing/data";
 
-const lessonId = testLessons[0]._id;
+const lesson = testLessons[0];
+const lessonId = lesson._id;
 
 let TestHarness: React.FunctionComponent = () => {
   const { showDialog, componentProps } = useDialog(lessonId);
@@ -38,7 +39,7 @@ let TestHarness: React.FunctionComponent = () => {
       <NewCourseDialog {...componentProps} />
       <button onClick={showDialog}>Add</button>
       <h4>Courses from API</h4>
-      <JsonDebug value={{ tasks }} />
+      <JsonDebug value={{ lesson, tasks }} />
     </React.Fragment>
   );
 };

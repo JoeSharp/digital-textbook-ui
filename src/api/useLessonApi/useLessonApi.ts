@@ -1,21 +1,19 @@
 import React from "react";
 import { ILesson, ILessonDoc } from "../../types";
-import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
 import { useErrorReporting } from "../../lib/ErrorPage";
+import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
 
-interface UseLessonApi {
-  getLesson: (lessonId: string) => void;
-  refreshLessons: () => void;
-  createLesson: (lesson: ILesson) => void;
-  updateLesson: (lessonId: string, updates: ILesson) => void;
-  deleteLesson: (lessonId: string) => void;
+export interface UseLessonApi {
   lessons: ILessonDoc[];
   lessonsById: ObjWithStringKey<ILessonDoc>;
+  getLesson: (lessonId: string) => void;
+  updateLesson: (lessonId: string, updates: ILesson) => void;
+  deleteLesson: (lessonId: string) => void;
 }
 
-const useLessonApi = (courseId: string): UseLessonApi => {
+const useLessonApi = (): UseLessonApi => {
   const { reportError } = useErrorReporting();
 
   const {
@@ -23,33 +21,11 @@ const useLessonApi = (courseId: string): UseLessonApi => {
       items: lessonsById,
       itemsInList: lessonsInList,
       addItem,
-      receiveListOfItems,
       removeItem,
     },
   } = useClientSideData();
 
-  const {
-    createLesson,
-    deleteLesson,
-    getLesson,
-    getLessonsForCourse,
-    updateLesson,
-  } = useApi();
-
-  const _refreshLessons = React.useCallback(() => {
-    async function f() {
-      try {
-        const lessons = await getLessonsForCourse(courseId);
-        receiveListOfItems(lessons);
-      } catch (err) {
-        reportError(err);
-      }
-    }
-
-    f();
-  }, [courseId, receiveListOfItems, getLessonsForCourse, reportError]);
-
-  React.useEffect(_refreshLessons, [_refreshLessons]);
+  const { deleteLesson, getLesson, updateLesson } = useApi();
 
   const _getLesson = React.useCallback(
     (lessonId: string) => {
@@ -65,22 +41,6 @@ const useLessonApi = (courseId: string): UseLessonApi => {
       f();
     },
     [getLesson, addItem, reportError]
-  );
-
-  const _createLesson = React.useCallback(
-    (lesson: ILesson) => {
-      async function f() {
-        try {
-          const newLesson = await createLesson(courseId, lesson);
-          addItem(newLesson);
-        } catch (err) {
-          reportError(err);
-        }
-      }
-
-      f();
-    },
-    [courseId, createLesson, addItem, reportError]
   );
 
   const _updateLesson = React.useCallback(
@@ -119,8 +79,6 @@ const useLessonApi = (courseId: string): UseLessonApi => {
     lessons: lessonsInList,
     lessonsById,
     getLesson: _getLesson,
-    refreshLessons: _refreshLessons,
-    createLesson: _createLesson,
     updateLesson: _updateLesson,
     deleteLesson: _deleteLesson,
   };

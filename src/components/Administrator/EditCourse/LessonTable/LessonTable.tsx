@@ -1,5 +1,5 @@
 import React from "react";
-import useLessonApi from "../../../../api/useLessonApi";
+import { useCourseLessonsApi } from "../../../../api/useLessonApi";
 import { ILessonDoc } from "../../../../types";
 import ConfirmDialog, {
   useDialog,
@@ -23,7 +23,7 @@ interface ConfirmDeleteData {
 }
 
 const TaskTable: React.FunctionComponent<Props> = ({ courseId }) => {
-  const { lessons, deleteLesson } = useLessonApi(courseId);
+  const { lessons, deleteLesson } = useCourseLessonsApi(courseId);
   const {
     nav: { goToEditLesson },
   } = useAppNavigation();

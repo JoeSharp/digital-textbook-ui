@@ -2,10 +2,10 @@ import React from "react";
 import { ValueType } from "react-select";
 import { BasicOption } from "./types";
 
-interface PropsIn {
+interface PropsIn<T> {
   options: string[];
   value: string | undefined;
-  onChange: (v: string) => any;
+  onChange: (v: T) => any;
 }
 
 interface UseReactSelect {
@@ -14,11 +14,11 @@ interface UseReactSelect {
   _onChange: (v: ValueType<BasicOption>) => void;
 }
 
-const useReactSelect = ({
+const useReactSelect = <T extends {}>({
   options,
   value,
   onChange,
-}: PropsIn): UseReactSelect => {
+}: PropsIn<T>): UseReactSelect => {
   const _options = React.useMemo(
     () =>
       options.map((o) => ({
@@ -34,7 +34,7 @@ const useReactSelect = ({
   const _onChange: (v: ValueType<BasicOption>) => void = React.useCallback(
     (v) => {
       if (!!v && (v as BasicOption).value) {
-        onChange((v as BasicOption).value);
+        onChange(((v as BasicOption).value as unknown) as T);
       }
     },
     [onChange]
