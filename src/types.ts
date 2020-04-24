@@ -28,6 +28,7 @@ export interface IBaseTask {
   lessonId: string;
   title: string;
   instruction: string;
+  videoLink: string;
 }
 
 export interface ITaskEmbeddedIframe extends IBaseTask {
@@ -60,3 +61,52 @@ export interface IUser {
 }
 
 export type IUserDoc = IUser & IMongoDocument;
+
+// Questions
+interface IBaseQuestion {
+  question: string;
+}
+
+export interface IMultipleChoiceQuestion extends IBaseQuestion {
+  type: "MultipleChoice";
+  correctOption: string;
+  options: string[];
+}
+
+export interface IFreeFlowWithClueQuestion extends IBaseQuestion {
+  type: "FreeFlowWithClue";
+  clue: string;
+}
+
+export interface IFreeFlowQuestion extends IBaseQuestion {
+  type: "FreeFlow";
+}
+
+export type IQuestion =
+  | IMultipleChoiceQuestion
+  | IFreeFlowWithClueQuestion
+  | IFreeFlowQuestion;
+
+// PRIMM
+export interface IHelpLevel {
+  caption: string;
+}
+
+export interface IPredictHelp {
+  levelCaption: string;
+  questions: IQuestion[];
+}
+
+export interface IPrimmPredict {
+  embeddedId: string;
+  system: IEmbeddedIframeSystem;
+  help: IPredictHelp[];
+}
+
+export interface IPrimmChallenge {
+  title: string;
+  description: string;
+  predict: IPrimmPredict;
+}
+
+export type IPrimmChallengeDoc = IPrimmChallenge & IMongoDocument;

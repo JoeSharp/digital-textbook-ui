@@ -27,6 +27,10 @@ const useUrlGenerator = (): RawNavigateApp<string | undefined, string> => {
       goToStudyCourse: (courseId: string = ":courseId") =>
         `/${APP_ROLE_STUDENT}/course/${courseId}`,
       goToStudyCourses: () => `/${APP_ROLE_STUDENT}/course`,
+
+      goToChoosePrimmChallenges: () => `/${APP_ROLE_STUDENT}/primm`,
+      goToAttemptPrimmChallenge: (challengeId: string = ":challengeId") =>
+        `/${APP_ROLE_STUDENT}/primm/${challengeId}`,
     }),
     []
   );

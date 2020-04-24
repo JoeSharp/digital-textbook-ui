@@ -1,4 +1,10 @@
-import { ICourseDoc, ILessonDoc, ITaskDoc, IUserDoc } from "../../types";
+import {
+  ICourseDoc,
+  ILessonDoc,
+  ITaskDoc,
+  IUserDoc,
+  IPrimmChallengeDoc,
+} from "../../types";
 import { UseObjectReducer } from "../../lib/useObjectReducer/types";
 
 export interface ClientSideData {
@@ -6,4 +12,5 @@ export interface ClientSideData {
   lessons: UseObjectReducer<ILessonDoc>;
   tasks: UseObjectReducer<ITaskDoc>;
   users: UseObjectReducer<IUserDoc>;
+  primmChallenges: UseObjectReducer<IPrimmChallengeDoc>;
 }

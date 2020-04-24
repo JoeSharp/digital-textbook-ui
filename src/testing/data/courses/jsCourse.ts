@@ -6,10 +6,10 @@ import {
   ITask,
   ITaskType,
   IEmbeddedIframeSystem,
-} from "../../types";
+} from "../../../types";
 
 import { v4 as uuid } from "uuid";
-import { createDocument } from "./testDataUtils";
+import { createDocument } from "../testDataUtils";
 
 export const course: ICourseDoc = {
   _id: uuid(),
@@ -30,6 +30,7 @@ export const lesson1Task1: ITaskDoc = createDocument<ITask>({
   instruction: "Log into p5.js using google account and create new sketch",
   system: IEmbeddedIframeSystem.p5js,
   baseUrl: "https://editor.p5js.org/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson1Task2: ITaskDoc = createDocument<ITask>({
@@ -40,6 +41,7 @@ export const lesson1Task2: ITaskDoc = createDocument<ITask>({
     "Use the rect function to draw a rectangle inside the update() function",
   system: IEmbeddedIframeSystem.p5js,
   baseUrl: "https://editor.p5js.org/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson1Task3: ITaskDoc = createDocument<ITask>({
@@ -50,6 +52,7 @@ export const lesson1Task3: ITaskDoc = createDocument<ITask>({
     "Draw a circle, experiment with the x, y values to place the circle where you want it.",
   system: IEmbeddedIframeSystem.p5js,
   baseUrl: "https://editor.p5js.org/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lessons: ILessonDoc[] = [lesson1];

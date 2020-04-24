@@ -6,7 +6,7 @@ import useAppNavigation from "../../../lib/useAppNavigation";
 
 const NavBar: React.FunctionComponent = () => {
   const {
-    urlGenerator: { goToAdminCourses },
+    urlGenerator: { goToAdminCourses, goToChoosePrimmChallenges },
   } = useAppNavigation();
 
   return (
@@ -18,6 +18,9 @@ const NavBar: React.FunctionComponent = () => {
           <li className="nav-item active">
             <Link className="nav-link" to={goToAdminCourses()}>
               Courses
+            </Link>
+            <Link className="nav-link" to={goToChoosePrimmChallenges()}>
+              PRIMM
             </Link>
           </li>
         </ul>

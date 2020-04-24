@@ -27,6 +27,10 @@ const useAppNavigation = (): NavigateApp => {
         goToStudyCourse: (courseId: string) =>
           h.push(u.goToStudyCourse(courseId)),
         goToStudyCourses: () => h.push(u.goToStudyCourses()),
+
+        goToChoosePrimmChallenges: () => h.push(u.goToChoosePrimmChallenges()),
+        goToAttemptPrimmChallenge: (challengeId: string) =>
+          h.push(u.goToAttemptPrimmChallenge(challengeId)),
       },
     }),
     [h, u]

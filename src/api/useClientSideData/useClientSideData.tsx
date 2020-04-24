@@ -5,6 +5,7 @@ import {
   IUserDoc,
   ILessonDoc,
   ITaskDoc,
+  IPrimmChallengeDoc,
 } from "../../types";
 import useObjectReducer from "../../lib/useObjectReducer";
 
@@ -16,8 +17,18 @@ const ClientSideDataProvider: React.FunctionComponent = ({ children }) => {
   const lessons = useObjectReducer<ILessonDoc>(getDocumentId, {});
   const tasks = useObjectReducer<ITaskDoc>(getDocumentId, {});
   const users = useObjectReducer<IUserDoc>(getDocumentId, {});
+  const primmChallenges = useObjectReducer<IPrimmChallengeDoc>(
+    getDocumentId,
+    {}
+  );
 
-  const value: ClientSideData = { courses, lessons, tasks, users };
+  const value: ClientSideData = {
+    courses,
+    lessons,
+    tasks,
+    users,
+    primmChallenges,
+  };
 
   return (
     <ClientSideDataContext.Provider value={value}>

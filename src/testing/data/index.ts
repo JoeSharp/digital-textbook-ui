@@ -1,22 +1,29 @@
-import { ICourseDoc, ILessonDoc, ITaskDoc } from "../../types";
+import {
+  ICourseDoc,
+  ILessonDoc,
+  ITaskDoc,
+  IPrimmChallengeDoc,
+} from "../../types";
 
 import {
   course as htmlCourse,
   lessons as htmlLessons,
   tasks as htmlTasks,
-} from "./htmlCourse";
+} from "./courses/htmlCourse";
 
 import {
   course as pythonCourse,
   lessons as pythonLessons,
   tasks as pythonTasks,
-} from "./pythonCourse";
+} from "./courses/pythonCourse";
 
 import {
   course as jsCourse,
   lessons as jsLessons,
   tasks as jsTasks,
-} from "./jsCourse";
+} from "./courses/jsCourse";
+
+import { challenge as loopsChallenge } from "./primm/loopsPrimm";
 
 export const courses: ICourseDoc[] = [htmlCourse, pythonCourse, jsCourse];
 export const lessons: ILessonDoc[] = [
@@ -25,3 +32,4 @@ export const lessons: ILessonDoc[] = [
   ...jsLessons,
 ];
 export const tasks: ITaskDoc[] = [...htmlTasks, ...pythonTasks, ...jsTasks];
+export const primmChallenges: IPrimmChallengeDoc[] = [loopsChallenge];

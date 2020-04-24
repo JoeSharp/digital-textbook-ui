@@ -5,9 +5,9 @@ import {
   ITask,
   ITaskType,
   IEmbeddedIframeSystem,
-} from "../../types";
+} from "../../../types";
 
-import { createDocument } from "./testDataUtils";
+import { createDocument } from "../testDataUtils";
 
 export const course: ICourseDoc = createDocument({
   name: "HTML",
@@ -27,6 +27,7 @@ export const lesson1Task1: ITaskDoc = createDocument<ITask>({
   instruction: "Log into code.org",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson1Task2: ITaskDoc = createDocument<ITask>({
@@ -36,6 +37,7 @@ export const lesson1Task2: ITaskDoc = createDocument<ITask>({
   instruction: "Click on create -> weblab",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson1Task3: ITaskDoc = createDocument<ITask>({
@@ -45,6 +47,7 @@ export const lesson1Task3: ITaskDoc = createDocument<ITask>({
   instruction: "Type in <h1>Your Heading</h1> and refresh the page.",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson1Task4: ITaskDoc = createDocument<ITask>({
@@ -54,6 +57,7 @@ export const lesson1Task4: ITaskDoc = createDocument<ITask>({
   instruction: "Type in <p>Some text</p> under your heading.",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson2: ILessonDoc = createDocument({
@@ -69,6 +73,7 @@ export const lesson2Task1: ITaskDoc = createDocument<ITask>({
   instruction: "Add a new <h2> heading for a list",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson2Task2: ITaskDoc = createDocument<ITask>({
@@ -78,6 +83,7 @@ export const lesson2Task2: ITaskDoc = createDocument<ITask>({
   instruction: "Add a new <ol></ol> tags to wrap the entire list",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson2Task3: ITaskDoc = createDocument<ITask>({
@@ -88,6 +94,7 @@ export const lesson2Task3: ITaskDoc = createDocument<ITask>({
     "Add a new <li></li> tags within the <ol> tag for each list item",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 export const lesson2Task4: ITaskDoc = createDocument<ITask>({
   lessonId: lesson2._id,
@@ -96,6 +103,7 @@ export const lesson2Task4: ITaskDoc = createDocument<ITask>({
   instruction: "Create a list using <ul> instead of <ol>",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson3: ILessonDoc = createDocument({
@@ -111,6 +119,7 @@ export const lesson3Task1: ITaskDoc = createDocument<ITask>({
   instruction: "Download some images from Creative Commons into your area",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson3Task2: ITaskDoc = createDocument<ITask>({
@@ -120,6 +129,7 @@ export const lesson3Task2: ITaskDoc = createDocument<ITask>({
   instruction: "Add files -> upload each image you downloaded",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 export const lesson3Task3: ITaskDoc = createDocument<ITask>({
   lessonId: lesson3._id,
@@ -128,6 +138,7 @@ export const lesson3Task3: ITaskDoc = createDocument<ITask>({
   instruction: "Use the <img> tag to add the images to your page.",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson4: ILessonDoc = createDocument({
@@ -143,6 +154,7 @@ export const lesson4Task1: ITaskDoc = createDocument<ITask>({
   instruction: "Build a page using headings, paragraphs, lists and images.",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lesson4Task2: ITaskDoc = createDocument<ITask>({
@@ -152,6 +164,7 @@ export const lesson4Task2: ITaskDoc = createDocument<ITask>({
   instruction: "Visit the google form and attempt the quiz.",
   system: IEmbeddedIframeSystem.codePen,
   baseUrl: "https://codepen.io/",
+  videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
 export const lessons: ILessonDoc[] = [lesson1, lesson2, lesson3, lesson4];

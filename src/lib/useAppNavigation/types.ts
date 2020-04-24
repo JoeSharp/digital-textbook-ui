@@ -12,6 +12,9 @@ export interface RawNavigateApp<IN, OUT> {
 
   goToStudyCourses: () => OUT;
   goToStudyCourse: (courseId: IN) => OUT;
+
+  goToChoosePrimmChallenges: () => OUT;
+  goToAttemptPrimmChallenge: (challengeId: IN) => OUT;
 }
 
 export interface NavigateApp {

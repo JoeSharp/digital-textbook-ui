@@ -24,6 +24,8 @@ import { RoleSelectionWithNav } from "../RoleSelection";
 import StudyCourse from "../../Student/StudyCourse";
 import EditLesson from "../../Administrator/EditLesson";
 import EditTask from "../../Administrator/EditTask";
+import PrimmChooser from "../../Student/PRIMM/PrimmChooser";
+import PrimmChallenge from "../../Student/PRIMM/PrimmChallenge";
 
 const Routes: React.FunctionComponent = () => {
   const { urlGenerator } = useAppNavigation();
@@ -79,6 +81,23 @@ const Routes: React.FunctionComponent = () => {
             params: { courseId },
           },
         }: RouteComponentProps<any>) => <StudyCourse courseId={courseId} />}
+      />
+
+      <Route
+        exact
+        path={urlGenerator.goToChoosePrimmChallenges()}
+        render={() => <PrimmChooser />}
+      />
+      <Route
+        exact
+        path={urlGenerator.goToAttemptPrimmChallenge(undefined)}
+        render={({
+          match: {
+            params: { challengeId },
+          },
+        }: RouteComponentProps<any>) => (
+          <PrimmChallenge challengeId={challengeId} />
+        )}
       />
 
       {/* Default route */}
