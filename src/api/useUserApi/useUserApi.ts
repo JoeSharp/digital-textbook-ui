@@ -1,7 +1,7 @@
 import React from "react";
 import useApi from "./useApi";
 import { useAuthenticationContext } from "../../lib/authentication";
-import { useErrorReporting } from "../../lib/ErrorPage";
+import { useErrorReporting } from "../../components/App/ErrorPage";
 import { IUserDoc } from "../../types";
 
 interface UseUserApi {

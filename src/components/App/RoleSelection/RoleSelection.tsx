@@ -31,7 +31,7 @@ const RoleSelection: React.FunctionComponent<Props> = ({ onRoleSelection }) => {
   return (
     <div className="row">
       {roleWithHandlers.map(({ appRole: { type, description }, onClick }) => (
-        <div className="col-sm-4">
+        <div key={type} className="col-sm-4">
           <Card
             title={type}
             text={description}

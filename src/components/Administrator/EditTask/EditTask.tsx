@@ -1,6 +1,6 @@
 import React from "react";
 import useSingleTaskApi from "../../../api/useTaskApi/useSingleTaskApi";
-import { ITaskDoc, ITaskType } from "../../../types";
+import { ITaskDoc, ITaskType, ITaskEmbeddedIframe } from "../../../types";
 import EditEmbeddedIframeTask from "./EditEmbeddedIframeTask";
 
 interface Props {
@@ -13,7 +13,7 @@ const EditSpecificTask: React.FunctionComponent<{
   if (!task) return null;
 
   if (task.type === ITaskType.EmbeddedIframe) {
-    return <EditEmbeddedIframeTask task={task} />;
+    return <EditEmbeddedIframeTask task={task as ITaskEmbeddedIframe} />;
   }
 
   return null;

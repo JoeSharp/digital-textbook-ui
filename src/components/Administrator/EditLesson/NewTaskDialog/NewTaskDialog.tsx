@@ -3,7 +3,7 @@ import React from "react";
 import ModalDialog from "../../../GeneralPurpose/ModalDialog";
 import useForm from "../../../../lib/useForm";
 import { useLessonTasksApi } from "../../../../api/useTaskApi";
-import { ITask, ITaskType } from "../../../../types";
+import { ITask, ITaskType, IEmbeddedIframeSystem } from "../../../../types";
 import ButtonBar from "../../../GeneralPurpose/Buttons/ButtonBar";
 import { Props as ButtonProps } from "../../../GeneralPurpose/Buttons/Button";
 
@@ -23,6 +23,11 @@ const NewTaskDialog: React.FunctionComponent<Props> = (props) => {
       type: ITaskType.EmbeddedIframe,
       title: "",
       instruction: "",
+      videoLink: "",
+      iframe: {
+        system: IEmbeddedIframeSystem.gitHubGist,
+        gistId: "",
+      },
     }),
     [lessonId]
   );

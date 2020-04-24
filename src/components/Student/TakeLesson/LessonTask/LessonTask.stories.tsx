@@ -2,20 +2,19 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import LessonTask from "./LessonTask";
+import { IEmbeddedIframeSystem, ITaskType } from "../../../../types";
 
 storiesOf("Student/Lesson", module).add("Basic", () => (
   <LessonTask
     task={{
-      title: "Draw a Hexagon",
       lessonId: "STUFF",
-      description: "You will use the turtle commands to draw a hexagon",
-      embeddedIframe: {
-        type: "trinket",
+      title: "Draw a Hexagon",
+      instruction: "You will use the turtle commands to draw a hexagon",
+      videoLink: "",
+      type: ITaskType.EmbeddedIframe,
+      iframe: {
+        system: IEmbeddedIframeSystem.Trinket,
         trinketId: "21099fd5a6",
-      },
-      youTubeLink: {
-        youTubeId: "0ttRqO1y8MA",
-        startTime: 14,
       },
     }}
   />

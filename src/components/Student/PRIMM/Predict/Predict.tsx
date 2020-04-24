@@ -6,7 +6,11 @@ interface Props {
 }
 
 const Predict: React.FunctionComponent<Props> = ({ predict }) => {
-  return <div>Predict {JSON.stringify(predict, null, 2)}</div>;
+  return (
+    <div>
+      <h4>Predict</h4>
+    </div>
+  );
 };
 
 export default Predict;

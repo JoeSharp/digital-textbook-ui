@@ -28,8 +28,10 @@ export const lesson1Task1: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "New Sketch",
   instruction: "Log into p5.js using google account and create new sketch",
-  system: IEmbeddedIframeSystem.p5js,
-  baseUrl: "https://editor.p5js.org/",
+  iframe: {
+    system: IEmbeddedIframeSystem.p5js,
+    sketchId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -39,8 +41,10 @@ export const lesson1Task2: ITaskDoc = createDocument<ITask>({
   title: "Draw Rectangle",
   instruction:
     "Use the rect function to draw a rectangle inside the update() function",
-  system: IEmbeddedIframeSystem.p5js,
-  baseUrl: "https://editor.p5js.org/",
+  iframe: {
+    system: IEmbeddedIframeSystem.p5js,
+    sketchId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -50,8 +54,10 @@ export const lesson1Task3: ITaskDoc = createDocument<ITask>({
   title: "Draw Circle",
   instruction:
     "Draw a circle, experiment with the x, y values to place the circle where you want it.",
-  system: IEmbeddedIframeSystem.p5js,
-  baseUrl: "https://editor.p5js.org/",
+  iframe: {
+    system: IEmbeddedIframeSystem.p5js,
+    sketchId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 

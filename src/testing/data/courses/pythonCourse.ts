@@ -30,8 +30,10 @@ export const lesson1Task1: ITaskDoc = createDocument<ITask>({
   title: "New Sketch",
   instruction:
     "Log into trinket.io using google account and create new Python trinket",
-  system: IEmbeddedIframeSystem.Trinket,
-  baseUrl: "https://trinket.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.Trinket,
+    trinketId: "0bd9bece4f",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -40,8 +42,10 @@ export const lesson1Task2: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Draw Square",
   instruction: "Use combination of forward and left/right to draw a square",
-  system: IEmbeddedIframeSystem.Trinket,
-  baseUrl: "https://trinket.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.Trinket,
+    trinketId: "0bd9bece4f",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -50,8 +54,10 @@ export const lesson1Task3: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Draw an L-Shape",
   instruction: "Draw an L-shape to match this trinket...",
-  system: IEmbeddedIframeSystem.Trinket,
-  baseUrl: "https://trinket.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.Trinket,
+    trinketId: "0bd9bece4f",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 

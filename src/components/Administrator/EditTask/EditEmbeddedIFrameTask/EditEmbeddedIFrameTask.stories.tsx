@@ -3,15 +3,11 @@ import { storiesOf } from "@storybook/react";
 
 import EditEmbeddedIframeTask from "./EditEmbeddedIframeTask";
 import { tasks } from "../../../../testing/data";
-import {
-  ITaskType,
-  ITaskEmbeddedIframe,
-  IMongoDocument,
-} from "../../../../types";
+import { ITaskType, ITaskEmbeddedIframe } from "../../../../types";
 
-const urlTask: ITaskEmbeddedIframe & IMongoDocument = tasks.find(
+const urlTask: ITaskEmbeddedIframe = tasks.find(
   (t) => t.type === ITaskType.EmbeddedIframe
-) as ITaskEmbeddedIframe & IMongoDocument;
+) as ITaskEmbeddedIframe;
 
 const TestHarness: React.FunctionComponent = () => {
   return (

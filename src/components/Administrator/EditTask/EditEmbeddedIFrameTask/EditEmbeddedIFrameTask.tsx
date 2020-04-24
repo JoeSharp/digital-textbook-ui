@@ -1,8 +1,8 @@
 import React from "react";
-import { IMongoDocument, ITaskEmbeddedIframe } from "../../../../types";
+import { ITaskEmbeddedIframe } from "../../../../types";
 
 interface Props {
-  task: IMongoDocument & ITaskEmbeddedIframe;
+  task: ITaskEmbeddedIframe;
 }
 
 const EditEmbeddedIframeTask: React.FunctionComponent<Props> = ({ task }) => {

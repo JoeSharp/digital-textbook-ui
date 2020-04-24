@@ -3,7 +3,7 @@ import { IPrimmChallengeDoc, IPrimmChallenge } from "../../types";
 
 import useApi from "./useApi";
 import useClientSideData from "../useClientSideData";
-import { useErrorReporting } from "../../lib/ErrorPage";
+import { useErrorReporting } from "../../components/App/ErrorPage";
 
 interface Props {
   challengeId: string;

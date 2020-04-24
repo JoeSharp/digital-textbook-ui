@@ -2,7 +2,7 @@ import React from "react";
 import { ILesson } from "../../types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
-import { useErrorReporting } from "../../lib/ErrorPage";
+import { useErrorReporting } from "../../components/App/ErrorPage";
 import useLessonApi, { UseLessonApi } from "./useLessonApi";
 
 interface UseCourseLessonsApi extends UseLessonApi {

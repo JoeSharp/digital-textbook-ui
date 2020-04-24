@@ -19,7 +19,7 @@ import { storiesOf } from "@storybook/react";
 
 import ErrorPage from "./ErrorPage";
 import { useErrorReporting } from ".";
-import { AppError } from "./AppError";
+import { AppError } from "../../../lib/useErrorReporting/AppError";
 
 interface Props {
   error: AppError;

@@ -25,8 +25,10 @@ export const lesson1Task1: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Logging In",
   instruction: "Log into code.org",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -35,8 +37,10 @@ export const lesson1Task2: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "New WebLab Project",
   instruction: "Click on create -> weblab",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -45,8 +49,10 @@ export const lesson1Task3: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Add Heading",
   instruction: "Type in <h1>Your Heading</h1> and refresh the page.",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -55,8 +61,10 @@ export const lesson1Task4: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Add Paragraph",
   instruction: "Type in <p>Some text</p> under your heading.",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -71,8 +79,10 @@ export const lesson2Task1: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Come up with List Title",
   instruction: "Add a new <h2> heading for a list",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -81,8 +91,10 @@ export const lesson2Task2: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Add the List Tag",
   instruction: "Add a new <ol></ol> tags to wrap the entire list",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -92,8 +104,10 @@ export const lesson2Task3: ITaskDoc = createDocument<ITask>({
   title: "Add the List Items",
   instruction:
     "Add a new <li></li> tags within the <ol> tag for each list item",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 export const lesson2Task4: ITaskDoc = createDocument<ITask>({
@@ -101,8 +115,10 @@ export const lesson2Task4: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Repeate for Unordered List",
   instruction: "Create a list using <ul> instead of <ol>",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -117,8 +133,10 @@ export const lesson3Task1: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Download Images",
   instruction: "Download some images from Creative Commons into your area",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -127,8 +145,10 @@ export const lesson3Task2: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Upload Images to Project",
   instruction: "Add files -> upload each image you downloaded",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 export const lesson3Task3: ITaskDoc = createDocument<ITask>({
@@ -136,8 +156,10 @@ export const lesson3Task3: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Add Images to Page",
   instruction: "Use the <img> tag to add the images to your page.",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -152,8 +174,10 @@ export const lesson4Task1: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Create another web page",
   instruction: "Build a page using headings, paragraphs, lists and images.",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 
@@ -162,8 +186,10 @@ export const lesson4Task2: ITaskDoc = createDocument<ITask>({
   type: ITaskType.EmbeddedIframe,
   title: "Quiz!",
   instruction: "Visit the google form and attempt the quiz.",
-  system: IEmbeddedIframeSystem.codePen,
-  baseUrl: "https://codepen.io/",
+  iframe: {
+    system: IEmbeddedIframeSystem.codePen,
+    codePenId: "123",
+  },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
 

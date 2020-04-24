@@ -16,8 +16,8 @@
 
 import ErrorPage from "./ErrorPage";
 
-import ErrorReportingContextProvider from "./ErrorReportingContextProvider";
-import useErrorReporting from "./useErrorReporting";
+import ErrorReportingContextProvider from "../../../lib/useErrorReporting/ErrorReportingContextProvider";
+import useErrorReporting from "../../../lib/useErrorReporting/useErrorReporting";
 
 export { ErrorReportingContextProvider, useErrorReporting };
 

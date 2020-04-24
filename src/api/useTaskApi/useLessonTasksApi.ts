@@ -3,7 +3,7 @@ import { ITask } from "../../types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
 import useTaskApi, { UseTaskApi } from "./useTaskApi";
-import { useErrorReporting } from "../../lib/ErrorPage";
+import { useErrorReporting } from "../../components/App/ErrorPage";
 
 interface UseLessonTasksApi extends UseTaskApi {
   refreshTasks: () => void;

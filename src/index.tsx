@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import App from "./components/App";
 import { AuthenticationContextProvider } from "./lib/authentication";
-import { ErrorReportingContextProvider } from "./lib/ErrorPage";
+import { ErrorReportingContextProvider } from "./components/App/ErrorPage";
 import * as serviceWorker from "./serviceWorker";
 import { createBrowserHistory as createHistory } from "history";
 import { CustomRouter } from "./lib/useAppNavigation";

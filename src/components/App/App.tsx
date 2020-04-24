@@ -54,7 +54,6 @@ function App() {
       {(currentUser && <div>Logged in as {currentUser.emailAddress}</div>) || (
         <div>Not Logged In</div>
       )}
-
       <Routes />
     </div>
   );

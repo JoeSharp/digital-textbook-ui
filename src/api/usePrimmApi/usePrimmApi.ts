@@ -1,7 +1,7 @@
 import React from "react";
 import { IPrimmChallengeDoc, IPrimmChallenge } from "../../types";
 import useClientSideData from "../useClientSideData";
-import { useErrorReporting } from "../../lib/ErrorPage";
+import { useErrorReporting } from "../../components/App/ErrorPage";
 import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
 import useApi from "./useApi";
 

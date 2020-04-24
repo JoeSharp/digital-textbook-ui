@@ -14,7 +14,6 @@ export const PrimmChallenge: React.FunctionComponent<Props> = ({
     <div>
       <h1>{challenge.title}</h1>
       <p>{challenge.description}</p>
-      <h2>Predict</h2>
       <Predict predict={challenge.predict} />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AppError } from "../ErrorPage/AppError";
+import { AppError } from "../useErrorReporting/AppError";
 
 const useCheckHttpStatus = (status: number) =>
   React.useCallback(
