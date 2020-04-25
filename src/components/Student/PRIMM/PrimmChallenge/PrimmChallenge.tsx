@@ -1,6 +1,6 @@
 import React from "react";
 import Predict from "../Predict";
-import { IPrimmChallengeDoc } from "../../../../types";
+import { IPrimmChallengeDoc } from "../../../../api/usePrimmApi/types";
 import { useSinglePrimmChallengeApi } from "../../../../api/usePrimmApi";
 
 interface Props {

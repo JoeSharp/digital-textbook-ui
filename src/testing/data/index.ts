@@ -1,9 +1,7 @@
-import {
-  ICourseDoc,
-  ILessonDoc,
-  ITaskDoc,
-  IPrimmChallengeDoc,
-} from "../../types";
+import { ITaskDoc } from "../../api/types";
+import { ICourseDoc } from "../../api/useCourseApi/types";
+import { ILessonDoc } from "../../api/useLessonApi/types";
+import { IPrimmChallengeDoc } from "../../api/usePrimmApi/types";
 
 import {
   course as htmlCourse,

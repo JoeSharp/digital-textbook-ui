@@ -2,7 +2,10 @@ import React from "react";
 import fetchMock from "fetch-mock";
 
 import { primmChallenges as initialPrimmChallenges } from "../data";
-import { IPrimmChallengeDoc, IPrimmChallenge } from "../../types";
+import {
+  IPrimmChallengeDoc,
+  IPrimmChallenge,
+} from "../../api/usePrimmApi/types";
 import { MockServer, getId } from "./mockServerUtils";
 import useListReducer from "../../lib/useListReducer";
 import { createDocument } from "../data/testDataUtils";

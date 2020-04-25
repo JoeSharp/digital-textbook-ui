@@ -1,5 +1,5 @@
 import React from "react";
-import { IEmbeddedCodePen } from "../../../../types";
+import { IEmbeddedCodePen } from "../../../../api/types";
 
 interface Props {
   codePen: IEmbeddedCodePen;

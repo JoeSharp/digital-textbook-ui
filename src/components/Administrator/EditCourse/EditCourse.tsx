@@ -2,7 +2,7 @@ import React from "react";
 
 import useCourseApi from "../../../api/useCourseApi";
 import useForm from "../../../lib/useForm";
-import { ICourseDoc, ICourse } from "../../../types";
+import { ICourseDoc, ICourse } from "../../../api/useCourseApi/types";
 import LessonTable from "./LessonTable";
 import NewLessonDialog, { useDialog } from "./NewLessonDialog";
 

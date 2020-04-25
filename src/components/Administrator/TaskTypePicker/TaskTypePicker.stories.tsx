@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import useForm from "../../../lib/useForm";
-import { ITaskType } from "../../../types";
+import { ITaskType } from "../../../api/useTaskApi/types";
 import JsonDebug from "../../../lib/JsonDebug";
 import TaskTypePicker from "./TaskTypePicker";
 

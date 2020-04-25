@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  ICourseDoc,
-  IUserDoc,
-  ILessonDoc,
-  ITaskDoc,
-  IPrimmChallengeDoc,
-} from "../../types";
+import { ICourseDoc, IUserDoc, ILessonDoc, ITaskDoc } from "../types";
+import { IPrimmChallengeDoc } from "../usePrimmApi/types";
 import { ClientSideData } from "./types";
 import { getDefaultObjectReducer } from "../../lib/useObjectReducer/useObjectReducer";
 

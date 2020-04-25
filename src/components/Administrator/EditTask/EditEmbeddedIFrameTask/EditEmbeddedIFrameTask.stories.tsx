@@ -3,7 +3,10 @@ import { storiesOf } from "@storybook/react";
 
 import EditEmbeddedIframeTask from "./EditEmbeddedIframeTask";
 import { tasks } from "../../../../testing/data";
-import { ITaskType, ITaskEmbeddedIframe } from "../../../../types";
+import {
+  ITaskType,
+  ITaskEmbeddedIframe,
+} from "../../../../api/useTaskApi/types";
 
 const urlTask: ITaskEmbeddedIframe = tasks.find(
   (t) => t.type === ITaskType.EmbeddedIframe

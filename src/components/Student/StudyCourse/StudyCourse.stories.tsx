@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import StudyCourse from "./StudyCourse";
 import { useCourseApi } from "../../../api/useCourseApi";
-import { ICourseDoc } from "../../../types";
+import { ICourseDoc } from "../../../api/useCourseApi/types";
 
 const TestHarness: React.FunctionComponent = () => {
   const { courses } = useCourseApi();

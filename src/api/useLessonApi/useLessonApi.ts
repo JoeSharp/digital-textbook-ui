@@ -1,5 +1,5 @@
 import React from "react";
-import { ILesson, ILessonDoc } from "../../types";
+import { ILesson, ILessonDoc } from "./types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
 import { useErrorReporting } from "../../components/App/ErrorPage";

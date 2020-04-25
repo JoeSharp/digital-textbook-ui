@@ -34,6 +34,6 @@ const TestErrorPage: React.FunctionComponent<Props> = ({ error }) => {
   return <ErrorPage />;
 };
 
-storiesOf("Sections/ErrorPage", module).add("Just error message", () => (
+storiesOf("App/ErrorPage", module).add("Just error message", () => (
   <TestErrorPage error={new AppError(400, "Something bad happened")} />
 ));

@@ -5,8 +5,8 @@ import {
   IUserDoc,
   ILessonDoc,
   ITaskDoc,
-  IPrimmChallengeDoc,
-} from "../../types";
+} from "../types";
+import { IPrimmChallengeDoc } from "../usePrimmApi/types";
 import useObjectReducer from "../../lib/useObjectReducer";
 
 import { ClientSideData } from "./types";

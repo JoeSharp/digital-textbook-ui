@@ -8,7 +8,7 @@ import "../src/index.css";
 import useMockServer from "../src/testing/server/useMockServer";
 import { ClientSideDataProvider } from "../src/api/useClientSideData/useClientSideData";
 import { AuthenticationContextProvider } from "../src/lib/authentication";
-import { ErrorReportingContextProvider } from "../src/lib/ErrorPage";
+import { ErrorReportingContextProvider } from "../src/lib/useErrorReporting";
 import { CustomRouter } from "../src/lib/useAppNavigation";
 import StoryRouter from "storybook-react-router";
 

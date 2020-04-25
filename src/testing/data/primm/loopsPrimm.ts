@@ -1,8 +1,8 @@
+import { IEmbeddedIframeSystem } from "../../../api/types";
 import {
   IPrimmChallengeDoc,
   IPrimmChallenge,
-  IEmbeddedIframeSystem,
-} from "../../../types";
+} from "../../../api/usePrimmApi/types";
 import { createDocument } from "../testDataUtils";
 
 export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({

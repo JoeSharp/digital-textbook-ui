@@ -3,7 +3,8 @@ import React from "react";
 import ModalDialog from "../../../GeneralPurpose/ModalDialog";
 import useForm from "../../../../lib/useForm";
 import { useLessonTasksApi } from "../../../../api/useTaskApi";
-import { ITask, ITaskType, IEmbeddedIframeSystem } from "../../../../types";
+import { IEmbeddedIframeSystem } from "../../../../api/types";
+import { ITask, ITaskType } from "../../../../api/useTaskApi/types";
 import ButtonBar from "../../../GeneralPurpose/Buttons/ButtonBar";
 import { Props as ButtonProps } from "../../../GeneralPurpose/Buttons/Button";
 

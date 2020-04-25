@@ -1,5 +1,5 @@
 import React from "react";
-import { IPrimmChallengeDoc, IPrimmChallenge } from "../../types";
+import { IPrimmChallengeDoc, IPrimmChallenge } from "./types";
 import { useAuthenticationContext } from "../../lib/authentication";
 import useCheckHttpStatus from "../../lib/useCheckHttpStatus";
 

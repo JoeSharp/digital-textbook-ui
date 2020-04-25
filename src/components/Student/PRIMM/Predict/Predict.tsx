@@ -1,5 +1,5 @@
 import React from "react";
-import { IPrimmPredict } from "../../../../types";
+import { IPrimmPredict } from "../../../../api/usePrimmApi/types";
 
 interface Props {
   predict: IPrimmPredict;

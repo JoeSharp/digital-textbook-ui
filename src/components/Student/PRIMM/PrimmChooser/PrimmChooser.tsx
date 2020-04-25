@@ -1,6 +1,6 @@
 import React from "react";
 import usePrimmApi from "../../../../api/usePrimmApi";
-import { IPrimmChallengeDoc } from "../../../../types";
+import { IPrimmChallengeDoc } from "../../../../api/usePrimmApi/types";
 import useAppNavigation from "../../../../lib/useAppNavigation";
 import Button from "../../../GeneralPurpose/Buttons/Button";
 

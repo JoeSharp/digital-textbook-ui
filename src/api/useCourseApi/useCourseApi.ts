@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ICourseDoc, ICourse } from "../../types";
+import { ICourseDoc, ICourse } from "./types";
 import useApi from "./useApi";
 import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
 import useClientSideData from "../useClientSideData/useClientSideData";

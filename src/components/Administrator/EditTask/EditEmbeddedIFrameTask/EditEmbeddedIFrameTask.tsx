@@ -1,5 +1,5 @@
 import React from "react";
-import { ITaskEmbeddedIframe } from "../../../../types";
+import { ITaskEmbeddedIframe } from "../../../../api/useTaskApi/types";
 
 interface Props {
   task: ITaskEmbeddedIframe;

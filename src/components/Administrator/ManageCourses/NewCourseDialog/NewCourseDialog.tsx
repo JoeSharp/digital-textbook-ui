@@ -3,7 +3,7 @@ import React from "react";
 import ModalDialog from "../../../GeneralPurpose/ModalDialog";
 import useForm from "../../../../lib/useForm";
 import { useCourseApi } from "../../../../api/useCourseApi";
-import { ICourse } from "../../../../types";
+import { ICourse } from "../../../../api/useCourseApi/types";
 import ButtonBar from "../../../GeneralPurpose/Buttons/ButtonBar";
 import { Props as ButtonProps } from "../../../GeneralPurpose/Buttons/Button";
 

@@ -1,12 +1,7 @@
-import {
-  ICourseDoc,
-  ILessonDoc,
-  ITaskDoc,
-  ILesson,
-  ITask,
-  ITaskType,
-  IEmbeddedIframeSystem,
-} from "../../../types";
+import { IEmbeddedIframeSystem } from "../../../api/types";
+import { ITaskDoc, ITask, ITaskType } from "../../../api/useTaskApi/types";
+import { ILesson, ILessonDoc } from "../../../api/useLessonApi/types";
+import { ICourseDoc } from "../../../api/useCourseApi/types";
 
 import { v4 as uuid } from "uuid";
 import { createDocument } from "../testDataUtils";

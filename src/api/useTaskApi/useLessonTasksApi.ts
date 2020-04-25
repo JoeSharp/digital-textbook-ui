@@ -1,5 +1,5 @@
 import React from "react";
-import { ITask } from "../../types";
+import { ITask } from "./types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
 import useTaskApi, { UseTaskApi } from "./useTaskApi";

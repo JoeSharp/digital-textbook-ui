@@ -1,6 +1,10 @@
 import React from "react";
 import useSingleTaskApi from "../../../api/useTaskApi/useSingleTaskApi";
-import { ITaskDoc, ITaskType, ITaskEmbeddedIframe } from "../../../types";
+import {
+  ITaskDoc,
+  ITaskType,
+  ITaskEmbeddedIframe,
+} from "../../../api/useTaskApi/types";
 import EditEmbeddedIframeTask from "./EditEmbeddedIframeTask";
 
 interface Props {

@@ -1,5 +1,5 @@
 import React from "react";
-import { ITask, ITaskDoc } from "../../types";
+import { ITask, ITaskDoc } from "./types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
 import { useErrorReporting } from "../../components/App/ErrorPage";

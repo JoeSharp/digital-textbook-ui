@@ -1,5 +1,5 @@
 import React from "react";
-import { ICourseDoc, ICourse } from "../../types";
+import { ICourseDoc, ICourse } from "./types";
 import { useAuthenticationContext } from "../../lib/authentication";
 import useCheckHttpStatus from "../../lib/useCheckHttpStatus";
 

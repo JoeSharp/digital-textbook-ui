@@ -2,7 +2,8 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import LessonTask from "./LessonTask";
-import { IEmbeddedIframeSystem, ITaskType } from "../../../../types";
+import { IEmbeddedIframeSystem } from "../../../../api/types";
+import { ITaskType } from "../../../../api/useTaskApi/types";
 
 storiesOf("Student/Lesson", module).add("Basic", () => (
   <LessonTask

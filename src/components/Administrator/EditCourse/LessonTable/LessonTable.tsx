@@ -1,6 +1,6 @@
 import React from "react";
 import { useCourseLessonsApi } from "../../../../api/useLessonApi";
-import { ILessonDoc } from "../../../../types";
+import { ILessonDoc } from "../../../../api/useLessonApi/types";
 import ConfirmDialog, {
   useDialog,
 } from "../../../GeneralPurpose/ConfirmDialog";

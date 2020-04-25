@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import EmbeddedIframe from "./EmbeddedIframe";
-import { IEmbeddedIframeSystem } from "../../../types";
+import { IEmbeddedIframeSystem } from "../../../api/types";
 
 storiesOf("General Purpose/Embedded Iframe", module)
   .add("Trinket", () => (

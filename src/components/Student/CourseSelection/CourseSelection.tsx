@@ -1,7 +1,7 @@
 import React from "react";
 import { useCourseApi } from "../../../api/useCourseApi";
 import Card from "../../GeneralPurpose/Card";
-import { ICourseDoc } from "../../../types";
+import { ICourseDoc } from "../../../api/useCourseApi/types";
 import useAppNavigation from "../../../lib/useAppNavigation";
 
 interface CourseWithHandlers {

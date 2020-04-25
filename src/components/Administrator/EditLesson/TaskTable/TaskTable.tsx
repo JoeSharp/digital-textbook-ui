@@ -1,6 +1,6 @@
 import React from "react";
 import { useLessonTasksApi } from "../../../../api/useTaskApi";
-import { ITaskDoc } from "../../../../types";
+import { ITaskDoc } from "../../../../api/useTaskApi/types";
 import ConfirmDialog, {
   useDialog,
 } from "../../../GeneralPurpose/ConfirmDialog";

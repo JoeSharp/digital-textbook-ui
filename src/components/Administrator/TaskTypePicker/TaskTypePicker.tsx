@@ -2,7 +2,7 @@ import React from "react";
 import Select from "react-select";
 
 import { ControlledInput } from "../../../lib/useForm/types";
-import { ITaskType } from "../../../types";
+import { ITaskType } from "../../../api/useTaskApi/types";
 import useReactSelect from "../../../lib/useReactSelect";
 
 const OPTIONS = Object.keys(ITaskType);

@@ -1,5 +1,5 @@
 import React from "react";
-import { IEmbeddedTrinket } from "../../../../types";
+import { IEmbeddedTrinket } from "../../../../api/types";
 
 interface Props {
   trinket: IEmbeddedTrinket;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ITask } from "../../../../types";
+import { ITask } from "../../../../api/useTaskApi/types";
 
 interface Props {
   task: ITask;

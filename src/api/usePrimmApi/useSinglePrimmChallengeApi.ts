@@ -1,5 +1,5 @@
 import React from "react";
-import { IPrimmChallengeDoc, IPrimmChallenge } from "../../types";
+import { IPrimmChallengeDoc, IPrimmChallenge } from "./types";
 
 import useApi from "./useApi";
 import useClientSideData from "../useClientSideData";

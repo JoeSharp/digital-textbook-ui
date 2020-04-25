@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import RequestHelp from "./RequestHelp";
-import { IHelpLevel } from "../../../../types";
+import { IHelpLevel } from "../../../../api/usePrimmApi/types";
 
 interface RequestMoreHelpAction {
   type: "onRequestMoreHelp";
