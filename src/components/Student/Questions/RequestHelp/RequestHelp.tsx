@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../Buttons/Button";
+import Button from "../../../GeneralPurpose/Buttons/Button";
 import { IQuestionSet } from "../../../../api/types";
 
 interface Props {

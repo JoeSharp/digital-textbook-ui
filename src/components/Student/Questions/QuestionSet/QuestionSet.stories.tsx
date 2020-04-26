@@ -7,6 +7,6 @@ const TestHarness: React.FunctionComponent = () => {
   return <QuestionSet questionSets={questionSets} />;
 };
 
-storiesOf("General Purpose/Questions/Question Set", module).add("basic", () => (
+storiesOf("Student/Questions/Question Set", module).add("basic", () => (
   <TestHarness />
 ));

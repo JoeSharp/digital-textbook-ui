@@ -11,6 +11,6 @@ const TestHarness: React.FunctionComponent = () => {
   return <RequestHelp {...componentProps} />;
 };
 
-storiesOf("General Purpose/Questions/Request Help", module).add("basic", () => (
+storiesOf("Student/Questions/Request Help", module).add("basic", () => (
   <TestHarness />
 ));

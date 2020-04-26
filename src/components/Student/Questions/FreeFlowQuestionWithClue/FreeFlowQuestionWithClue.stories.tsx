@@ -22,7 +22,7 @@ const TestHarness: React.FunctionComponent = () => {
   );
 };
 
-storiesOf(
-  "General Purpose/Questions/Free Flow with Question",
-  module
-).add("basic", () => <TestHarness />);
+storiesOf("Student/Questions/Free Flow with Question", module).add(
+  "basic",
+  () => <TestHarness />
+);

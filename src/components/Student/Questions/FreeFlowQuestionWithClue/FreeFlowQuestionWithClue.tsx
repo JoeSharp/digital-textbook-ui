@@ -12,7 +12,7 @@ const FreeFlowQuestionWithClue: React.FunctionComponent<Props> = ({
     <div>
       <p>{question.question}</p>
       <p>{question.clue}</p>
-      <textarea />
+      <input />
     </div>
   );
 };

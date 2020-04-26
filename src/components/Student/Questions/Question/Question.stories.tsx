@@ -4,7 +4,7 @@ import questionSets from "../../../../testing/data/primm/questionSets";
 
 import Question from "./Question";
 
-const stories = storiesOf("General Purpose/Questions/Question", module);
+const stories = storiesOf("Student/Questions/Question", module);
 
 questionSets.forEach(({ caption, questions }) =>
   questions.forEach((question, i) => {

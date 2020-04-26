@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler } from "react";
 import { IMultipleChoiceQuestion } from "../../../../api/types";
-import Button from "../../Buttons/Button";
+import Button from "../../../GeneralPurpose/Buttons/Button";
 import useCounter from "../../../../lib/useCounter";
 
 interface Props {

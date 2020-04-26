@@ -20,7 +20,6 @@ const TestHarness: React.FunctionComponent = () => {
   );
 };
 
-storiesOf("General Purpose/Questions/Multiple Choice", module).add(
-  "basic",
-  () => <TestHarness />
-);
+storiesOf("Student/Questions/Multiple Choice", module).add("basic", () => (
+  <TestHarness />
+));
