@@ -4,7 +4,7 @@ export interface IHelpLevel {
   caption: string;
 }
 
-export interface IPredictHelp {
+export interface IQuestionSet {
   levelCaption: string;
   questions: IQuestion[];
 }
@@ -12,7 +12,7 @@ export interface IPredictHelp {
 export interface IPrimmPredict {
   embeddedId: string;
   system: IEmbeddedIframeSystem;
-  help: IPredictHelp[];
+  help: IQuestionSet[];
 }
 
 export interface IPrimmChallenge {

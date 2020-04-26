@@ -2,7 +2,7 @@ import React from "react";
 import useApi from "./useApi";
 import { useAuthenticationContext } from "../../lib/authentication";
 import { useErrorReporting } from "../../components/App/ErrorPage";
-import { IUserDoc } from "../types";
+import { IUserDoc } from "./types";
 
 interface UseUserApi {
   currentUser: IUserDoc | undefined;

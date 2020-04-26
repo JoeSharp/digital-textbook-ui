@@ -1,4 +1,4 @@
-import { ITaskDoc } from "../../api/types";
+import { ITaskDoc } from "../../api/useTaskApi/types";
 import { ICourseDoc } from "../../api/useCourseApi/types";
 import { ILessonDoc } from "../../api/useLessonApi/types";
 import { IPrimmChallengeDoc } from "../../api/usePrimmApi/types";

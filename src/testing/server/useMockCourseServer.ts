@@ -2,7 +2,7 @@ import React from "react";
 import fetchMock from "fetch-mock";
 
 import { courses as initialCourses } from "../data";
-import { ICourseDoc, ICourse } from "../../api/types";
+import { ICourseDoc, ICourse } from "../../api/useCourseApi/types";
 import { MockServer, getId } from "./mockServerUtils";
 import useListReducer from "../../lib/useListReducer";
 import { createDocument } from "../data/testDataUtils";

@@ -49,12 +49,6 @@ export interface YouTubeLinkType {
   startTime?: number;
 }
 
-export interface IUser {
-  emailAddress: string;
-}
-
-export type IUserDoc = IUser & IMongoDocument;
-
 // Questions
 interface IBaseQuestion {
   question: string;

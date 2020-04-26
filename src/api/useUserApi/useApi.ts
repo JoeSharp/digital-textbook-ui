@@ -1,5 +1,5 @@
 import React from "react";
-import { IUserDoc } from "../types";
+import { IUserDoc } from "./types";
 import { useAuthenticationContext } from "../../lib/authentication";
 import useCheckHttpStatus from "../../lib/useCheckHttpStatus";
 

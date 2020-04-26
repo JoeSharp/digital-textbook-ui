@@ -1,7 +1,7 @@
 import React from "react";
 import fetchMock from "fetch-mock";
 
-import { IUserDoc } from "../../api/types";
+import { IUserDoc } from "../../api/useUserApi/types";
 import { MockServer } from "./mockServerUtils";
 import { createDocument } from "../data/testDataUtils";
 

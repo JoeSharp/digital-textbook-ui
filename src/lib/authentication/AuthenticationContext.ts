@@ -1,5 +1,5 @@
 import React from "react";
-import { IUserDoc } from "../../api/types";
+import { IUserDoc } from "../../api/useUserApi/types";
 
 interface AuthenticationContextApi {
   idToken?: string;

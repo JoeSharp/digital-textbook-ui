@@ -2,7 +2,7 @@ import React from "react";
 import fetchMock from "fetch-mock";
 
 import { tasks as initialTasks } from "../data";
-import { ITaskDoc, ITask } from "../../api/types";
+import { ITaskDoc, ITask } from "../../api/useTaskApi/types";
 import { MockServer, getId } from "./mockServerUtils";
 import useListReducer from "../../lib/useListReducer";
 import { createDocument } from "../data/testDataUtils";
