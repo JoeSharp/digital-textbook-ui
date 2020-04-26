@@ -1,29 +1,21 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import MultipleChoiceQuestion, {
-  useMultipleChoiceQuestion,
-} from "./MultipleChoiceQuestion";
-import { IMultipleChoiceQuestion } from "../../../../api/types";
+import MultipleChoiceQuestion from "./MultipleChoiceQuestion";
+import { IMultipleChoiceQuestion, IQuestionType } from "../../../../api/types";
 import JsonDebug from "../../../../lib/JsonDebug";
 
 const question: IMultipleChoiceQuestion = {
-  type: "MultipleChoice",
+  type: IQuestionType.MultipleChoice,
   question: "What is the best colour for LCD displays?",
   correctOption: "Blue",
   options: ["Red", "Green", "Blue"],
 };
 
 const TestHarness: React.FunctionComponent = () => {
-  const { componentProps } = useMultipleChoiceQuestion({
-    question,
-  });
-
-  const { attempts, isCorrect } = componentProps;
-
   return (
     <div>
-      <MultipleChoiceQuestion {...componentProps} />
-      <JsonDebug value={{ question, attempts, isCorrect }} />
+      <MultipleChoiceQuestion question={question} />
+      <JsonDebug value={{ question }} />
     </div>
   );
 };

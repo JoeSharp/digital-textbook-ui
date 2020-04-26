@@ -1,13 +1,4 @@
-import { IMongoDocument, IQuestion, IEmbeddedIframeSystem } from "../types";
-
-export interface IHelpLevel {
-  caption: string;
-}
-
-export interface IQuestionSet {
-  levelCaption: string;
-  questions: IQuestion[];
-}
+import { IMongoDocument, IQuestionSet, IEmbeddedIframeSystem } from "../types";
 
 export interface IPrimmPredict {
   embeddedId: string;

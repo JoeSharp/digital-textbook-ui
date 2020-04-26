@@ -50,23 +50,30 @@ export interface YouTubeLinkType {
 }
 
 // Questions
+export enum IQuestionType {
+  MultipleChoice,
+  FreeFlowWithClue,
+  FreeFlow,
+}
+
 interface IBaseQuestion {
+  type: IQuestionType;
   question: string;
 }
 
 export interface IMultipleChoiceQuestion extends IBaseQuestion {
-  type: "MultipleChoice";
+  type: IQuestionType.MultipleChoice;
   correctOption: string;
   options: string[];
 }
 
 export interface IFreeFlowWithClueQuestion extends IBaseQuestion {
-  type: "FreeFlowWithClue";
+  type: IQuestionType.FreeFlowWithClue;
   clue: string;
 }
 
 export interface IFreeFlowQuestion extends IBaseQuestion {
-  type: "FreeFlow";
+  type: IQuestionType.FreeFlow;
 }
 
 export type IQuestion =
@@ -74,4 +81,7 @@ export type IQuestion =
   | IFreeFlowWithClueQuestion
   | IFreeFlowQuestion;
 
-// PRIMM
+export interface IQuestionSet {
+  caption: string;
+  questions: IQuestion[];
+}

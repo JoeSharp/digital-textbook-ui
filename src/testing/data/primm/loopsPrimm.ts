@@ -1,4 +1,4 @@
-import { IEmbeddedIframeSystem } from "../../../api/types";
+import { IEmbeddedIframeSystem, IQuestionType } from "../../../api/types";
 import {
   IPrimmChallengeDoc,
   IPrimmChallenge,
@@ -13,14 +13,16 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
     system: IEmbeddedIframeSystem.Trinket,
     help: [
       {
-        levelCaption: "Free Flow",
-        questions: [{ type: "FreeFlow", question: "What does this code do?" }],
+        caption: "Free Flow",
+        questions: [
+          { type: IQuestionType.FreeFlow, question: "What does this code do?" },
+        ],
       },
       {
-        levelCaption: "Clue",
+        caption: "Clue",
         questions: [
           {
-            type: "FreeFlowWithClue",
+            type: IQuestionType.FreeFlowWithClue,
             clue:
               "A loop will execute the code block a number of times, the code block is the indented portion",
             question: "How many",
@@ -28,16 +30,16 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
         ],
       },
       {
-        levelCaption: "Leading",
+        caption: "Leading",
         questions: [
           {
-            type: "MultipleChoice",
+            type: IQuestionType.MultipleChoice,
             question: "How many times will it print 'hello'?",
             correctOption: "4",
             options: ["1", "4", "5", "3"],
           },
           {
-            type: "MultipleChoice",
+            type: IQuestionType.MultipleChoice,
             question: "How many times will it print 'goodbye'?",
             correctOption: "1",
             options: ["1", "4", "5", "3"],
