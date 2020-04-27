@@ -2,7 +2,7 @@ import React from "react";
 import usePrimmApi from "../../../../api/usePrimmApi";
 import { IPrimmChallengeDoc } from "../../../../api/usePrimmApi/types";
 import useAppNavigation from "../../../../lib/useAppNavigation";
-import Button from "../../../GeneralPurpose/Buttons/Button";
+import Card from "../../../GeneralPurpose/Card";
 
 interface ChallengeWithHandlers {
   challenge: IPrimmChallengeDoc;
@@ -25,26 +25,20 @@ const PrimmChooser: React.FunctionComponent = () => {
   );
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Go</th>
-        </tr>
-      </thead>
-      <tbody>
-        {challengesWithHandlers.map(({ challenge, onAttempt }) => (
-          <tr key={challenge._id}>
-            <td>{challenge.title}</td>
-            <td>{challenge.description}</td>
-            <td>
-              <Button text="Attempt" styleType="primary" onClick={onAttempt} />
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div>
+      {challengesWithHandlers.map(({ challenge, onAttempt }) => (
+        <Card
+          key={challenge._id}
+          title={challenge.title}
+          text={challenge.description}
+          buttonProps={{
+            text: "Select",
+            styleType: "primary",
+            onClick: onAttempt,
+          }}
+        />
+      ))}
+    </div>
   );
 };
 

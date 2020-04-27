@@ -12,17 +12,17 @@ interface Props {
 }
 
 export const PrimmChallenge: React.FunctionComponent<Props> = ({
-  challenge,
+  challenge: { title, description, predict, run, investigate, modify, make },
 }) => {
   return (
     <div>
-      <h1>{challenge.title}</h1>
-      <p>{challenge.description}</p>
-      <Predict predict={challenge.predict} />
-      <Run run={challenge.run} />
-      <Investigate investigate={challenge.investigate} />
-      <Modify modify={challenge.modify} />
-      <Make make={challenge.make} />
+      <h1>{title}</h1>
+      <p>{description}</p>
+      {predict && <Predict predict={predict} />}
+      {run && <Run run={run} />}
+      {investigate && <Investigate investigate={investigate} />}
+      {modify && <Modify modify={modify} />}
+      {make && <Make make={make} />}
     </div>
   );
 };
