@@ -1,7 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import MultipleChoiceQuestion from "./MultipleChoiceQuestion";
-import { IMultipleChoiceQuestion, IQuestionType } from "../../../../api/types";
+import {
+  IMultipleChoiceQuestion,
+  IQuestionType,
+} from "../../../../api/useQuestionApi/types";
 import JsonDebug from "../../../../lib/JsonDebug";
 
 const question: IMultipleChoiceQuestion = {

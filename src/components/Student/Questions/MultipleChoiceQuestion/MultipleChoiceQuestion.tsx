@@ -1,5 +1,5 @@
 import React from "react";
-import { IMultipleChoiceQuestion } from "../../../../api/types";
+import { IMultipleChoiceQuestion } from "../../../../api/useQuestionApi/types";
 
 interface Props {
   question: IMultipleChoiceQuestion;

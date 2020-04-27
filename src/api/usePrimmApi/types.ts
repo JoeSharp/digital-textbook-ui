@@ -1,4 +1,6 @@
-import { IMongoDocument, IQuestionSet, IEmbeddedIframe } from "../types";
+import { IMongoDocument } from "../useDocumentApi/types";
+import { IQuestionSet } from "../useQuestionApi/types";
+import { IEmbeddedIframe } from "../useEmbeddedIframeApi/types";
 
 interface IPrimmSection {
   codeWidget: IEmbeddedIframe;

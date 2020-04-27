@@ -1,5 +1,5 @@
 import React from "react";
-import { IQuestion, IQuestionType } from "../../../../api/types";
+import { IQuestion, IQuestionType } from "../../../../api/useQuestionApi/types";
 import MultipleChoiceQuestion from "../MultipleChoiceQuestion";
 import FreeFlowQuestion from "../FreeFlowQuestion/FreeFlowQuestion";
 import FreeFlowQuestionWithClue from "../FreeFlowQuestionWithClue";

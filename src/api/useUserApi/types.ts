@@ -1,4 +1,4 @@
-import { IMongoDocument } from "../types";
+import { IMongoDocument } from "../useDocumentApi/types";
 
 export interface IUser {
   emailAddress: string;

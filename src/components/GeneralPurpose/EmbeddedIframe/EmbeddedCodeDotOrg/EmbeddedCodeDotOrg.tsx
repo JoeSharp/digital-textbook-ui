@@ -1,5 +1,5 @@
 import React from "react";
-import { IEmbeddedCodeDotOrg } from "../../../../api/types";
+import { IEmbeddedCodeDotOrg } from "../../../../api/useEmbeddedIframeApi/types";
 
 interface Props {
   project: IEmbeddedCodeDotOrg;

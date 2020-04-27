@@ -1,4 +1,5 @@
-import { IEmbeddedIframeSystem, IQuestionType } from "../../../api/types";
+import { IQuestionType } from "../../../api/useQuestionApi/types";
+import { IEmbeddedIframeSystem } from "../../../api/useEmbeddedIframeApi/types";
 import {
   IPrimmChallengeDoc,
   IPrimmChallenge,

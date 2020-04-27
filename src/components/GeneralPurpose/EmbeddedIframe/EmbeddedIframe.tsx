@@ -1,6 +1,9 @@
 import React from "react";
 
-import { IEmbeddedIframe, IEmbeddedIframeSystem } from "../../../api/types";
+import {
+  IEmbeddedIframe,
+  IEmbeddedIframeSystem,
+} from "../../../api/useEmbeddedIframeApi/types";
 import EmbeddedTrinket from "./EmbeddedTrinket";
 import EmbeddedCodeDotOrg from "./EmbeddedCodeDotOrg";
 import EmbeddedCodePen from "./EmbeddedCodePen";

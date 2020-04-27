@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IQuestionSet } from "../../../../api/types";
+import { IQuestionSet } from "../../../../api/useQuestionApi/types";
 import RequestHelp, { useRequestHelp } from "../RequestHelp";
 import Question from "../Question/Question";
 

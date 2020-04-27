@@ -1,5 +1,5 @@
 import React from "react";
-import { getDocumentId } from "../types";
+import { getDocumentId } from "../useDocumentApi/types";
 import { ICourseDoc } from "../useCourseApi/types";
 import { IUserDoc } from "../useUserApi/types";
 import { ITaskDoc } from "../useTaskApi/types";

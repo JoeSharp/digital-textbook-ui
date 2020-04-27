@@ -1,5 +1,5 @@
 import React from "react";
-import { IEmbeddedP5Sketch } from "../../../../api/types";
+import { IEmbeddedP5Sketch } from "../../../../api/useEmbeddedIframeApi/types";
 
 interface Props {
   sketch: IEmbeddedP5Sketch;

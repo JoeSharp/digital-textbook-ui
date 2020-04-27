@@ -1,7 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import FreeFlowQuestion from "./FreeFlowQuestion";
-import { IFreeFlowQuestion, IQuestionType } from "../../../../api/types";
+import {
+  IFreeFlowQuestion,
+  IQuestionType,
+} from "../../../../api/useQuestionApi/types";
 import JsonDebug from "../../../../lib/JsonDebug";
 
 const question: IFreeFlowQuestion = {

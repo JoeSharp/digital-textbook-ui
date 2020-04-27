@@ -1,5 +1,5 @@
 import React from "react";
-import { IFreeFlowWithClueQuestion } from "../../../../api/types";
+import { IFreeFlowWithClueQuestion } from "../../../../api/useQuestionApi/types";
 
 interface Props {
   question: IFreeFlowWithClueQuestion;

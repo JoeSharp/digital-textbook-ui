@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../../GeneralPurpose/Buttons/Button";
-import { IQuestionSet } from "../../../../api/types";
+import { IQuestionSet } from "../../../../api/useQuestionApi/types";
 
 interface Props {
   index: number;

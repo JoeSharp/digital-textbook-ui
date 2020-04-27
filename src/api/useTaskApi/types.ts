@@ -1,4 +1,5 @@
-import { IEmbeddedIframe, IMongoDocument } from "../types";
+import { IEmbeddedIframe } from "../useEmbeddedIframeApi/types";
+import { IMongoDocument } from "../useDocumentApi/types";
 
 export enum ITaskType {
   EmbeddedIframe = "EmbeddedIframe",
@@ -6,6 +7,7 @@ export enum ITaskType {
 }
 
 export interface IBaseTask {
+  type: ITaskType;
   lessonId: string;
   title: string;
   instruction: string;

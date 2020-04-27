@@ -1,4 +1,4 @@
-import { IQuestionSet, IQuestionType } from "../../../api/types";
+import { IQuestionSet, IQuestionType } from "../../../api/useQuestionApi/types";
 
 const questionSets: IQuestionSet[] = [
   {

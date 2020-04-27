@@ -4,7 +4,7 @@ import FreeFlowQuestionWithClue from "./FreeFlowQuestionWithClue";
 import {
   IFreeFlowWithClueQuestion,
   IQuestionType,
-} from "../../../../api/types";
+} from "../../../../api/useQuestionApi/types";
 import JsonDebug from "../../../../lib/JsonDebug";
 
 const question: IFreeFlowWithClueQuestion = {

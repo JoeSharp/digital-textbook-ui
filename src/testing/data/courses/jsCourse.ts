@@ -1,4 +1,4 @@
-import { IEmbeddedIframeSystem } from "../../../api/types";
+import { IEmbeddedIframeSystem } from "../../../api/useEmbeddedIframeApi/types";
 import { ITaskDoc, ITask, ITaskType } from "../../../api/useTaskApi/types";
 import { ICourseDoc } from "../../../api/useCourseApi/types";
 import { ILesson, ILessonDoc } from "../../../api/useLessonApi/types";

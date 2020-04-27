@@ -1,7 +1,7 @@
 import React from "react";
 
 import youTubeLogo from "./youtube.png";
-import { YouTubeLinkType } from "../../../api/types";
+import { YouTubeLinkType } from "../../../api/useEmbeddedIframeApi/types";
 
 interface Props {
   youTubeLink: YouTubeLinkType;
