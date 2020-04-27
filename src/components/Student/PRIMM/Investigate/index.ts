@@ -1,3 +1,1 @@
-import Investigate from "./Investigate";
-
-export default Investigate;
+export { default } from "./Investigate";

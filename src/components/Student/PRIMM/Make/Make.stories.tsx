@@ -1,10 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Predict from "./Predict";
+import Make from "./Make";
 import { primmChallenges } from "../../../../testing/data";
 
 primmChallenges.forEach((challenge) =>
-  storiesOf("Student/PRIMM/Predict", module).add(challenge.title, () => (
-    <Predict predict={challenge.predict} />
+  storiesOf("Student/PRIMM/Make", module).add(challenge.title, () => (
+    <Make make={challenge.make} />
   ))
 );

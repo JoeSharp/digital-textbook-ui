@@ -1,3 +1,1 @@
-import Predict from "./Predict";
-
-export default Predict;
+export { default } from "./Predict";

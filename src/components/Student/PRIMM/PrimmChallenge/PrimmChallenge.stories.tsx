@@ -3,12 +3,8 @@ import { storiesOf } from "@storybook/react";
 import PrimmChallenge from "./PrimmChallenge";
 import { primmChallenges } from "../../../../testing/data";
 
-const challengeId: string = primmChallenges[0]._id;
-
-const TestHarness: React.FunctionComponent = () => {
-  return <PrimmChallenge challengeId={challengeId} />;
-};
-
-storiesOf("Student/PRIMM/Challenge", module).add("basic", () => (
-  <TestHarness />
-));
+primmChallenges.forEach((challenge) =>
+  storiesOf("Student/PRIMM/Challenge", module).add(challenge.title, () => (
+    <PrimmChallenge challengeId={challenge._id} />
+  ))
+);

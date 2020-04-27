@@ -8,10 +8,13 @@ import { createDocument } from "../testDataUtils";
 export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
   title: "Loops",
   description: "Discover what loops are, how they work and how to write them",
+
   predict: {
-    embeddedId: "0bd9bece4f",
-    system: IEmbeddedIframeSystem.Trinket,
-    help: [
+    codeWidget: {
+      system: IEmbeddedIframeSystem.gitHubGist,
+      gistId: "3a08be71dc0fd760141c0c6cddc96cdf",
+    },
+    questionSets: [
       {
         caption: "Free Flow",
         questions: [
@@ -47,5 +50,29 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
         ],
       },
     ],
+  },
+  run: {
+    codeWidget: {
+      system: IEmbeddedIframeSystem.Trinket,
+      trinketId: "0bd9bece4f",
+    },
+  },
+  investigate: {
+    codeWidget: {
+      system: IEmbeddedIframeSystem.Trinket,
+      trinketId: "0bd9bece4f",
+    },
+  },
+  modify: {
+    codeWidget: {
+      system: IEmbeddedIframeSystem.Trinket,
+      trinketId: "0bd9bece4f",
+    },
+  },
+  make: {
+    codeWidget: {
+      system: IEmbeddedIframeSystem.Trinket,
+      trinketId: "0bd9bece4f",
+    },
   },
 });

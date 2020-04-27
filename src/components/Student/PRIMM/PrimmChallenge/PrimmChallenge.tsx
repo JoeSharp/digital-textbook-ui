@@ -1,5 +1,9 @@
 import React from "react";
 import Predict from "../Predict";
+import Run from "../Run";
+import Investigate from "../Investigate";
+import Modify from "../Modify";
+import Make from "../Make";
 import { IPrimmChallengeDoc } from "../../../../api/usePrimmApi/types";
 import { useSinglePrimmChallengeApi } from "../../../../api/usePrimmApi";
 
@@ -15,6 +19,10 @@ export const PrimmChallenge: React.FunctionComponent<Props> = ({
       <h1>{challenge.title}</h1>
       <p>{challenge.description}</p>
       <Predict predict={challenge.predict} />
+      <Run run={challenge.run} />
+      <Investigate investigate={challenge.investigate} />
+      <Modify modify={challenge.modify} />
+      <Make make={challenge.make} />
     </div>
   );
 };

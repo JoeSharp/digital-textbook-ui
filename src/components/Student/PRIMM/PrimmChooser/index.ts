@@ -1,3 +1,1 @@
-import PrimmChooser from "./PrimmChooser";
-
-export default PrimmChooser;
+export { default } from "./PrimmChooser";

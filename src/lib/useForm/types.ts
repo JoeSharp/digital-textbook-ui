@@ -1,5 +1,5 @@
 export interface InputProps {
-  onChange: React.ChangeEventHandler<HTMLElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   value: string;
 }
 
@@ -18,7 +18,7 @@ export interface Form<T> {
   useCheckboxInput: (
     s: keyof T
   ) => {
-    onChange: React.ChangeEventHandler<HTMLElement>;
+    onChange: React.ChangeEventHandler<HTMLInputElement>;
     checked: any;
   };
 }
