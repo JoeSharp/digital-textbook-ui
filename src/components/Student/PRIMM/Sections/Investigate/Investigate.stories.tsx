@@ -6,6 +6,12 @@ import { primmChallenges } from "../../../../../testing/data";
 primmChallenges.forEach((challenge) =>
   storiesOf("Student/PRIMM/Sections/Investigate", module).add(
     challenge.title,
-    () => <Investigate investigate={challenge.investigate} />
+    () => (
+      <Investigate
+        investigate={challenge.investigate}
+        onComplete={() => {}}
+        isComplete={false}
+      />
+    )
   )
 );

@@ -5,6 +5,6 @@ import { primmChallenges } from "../../../../../testing/data";
 
 primmChallenges.forEach((challenge) =>
   storiesOf("Student/PRIMM/Sections/Run", module).add(challenge.title, () => (
-    <Run run={challenge.run} />
+    <Run run={challenge.run} onComplete={() => {}} isComplete={false} />
   ))
 );
