@@ -1,8 +1,8 @@
 // Questions
 export enum IQuestionType {
-  MultipleChoice,
-  FreeFlowWithClue,
-  FreeFlow,
+  MultipleChoice = "MultipleChoice",
+  FreeFlowWithClue = "FreeFlowWithClue",
+  FreeFlow = "FreeFlow",
 }
 
 interface IBaseQuestion {

@@ -1,9 +1,9 @@
 export enum IEmbeddedIframeSystem {
-  Trinket,
-  p5js,
-  codeDotOrg,
-  codePen,
-  gitHubGist,
+  Trinket = "Trinket",
+  p5js = "p5js",
+  codeDotOrg = "codeDotOrg",
+  codePen = "codePen",
+  gitHubGist = "gitHubGist",
 }
 
 export interface IBaseEmbeddedIframe {

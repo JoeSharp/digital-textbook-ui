@@ -63,17 +63,16 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
       system: IEmbeddedIframeSystem.Trinket,
       trinketId: "0bd9bece4f",
     },
+    questionSets: [],
   },
   modify: {
+    instructions: "Change the background colour to...",
     codeWidget: {
       system: IEmbeddedIframeSystem.Trinket,
       trinketId: "0bd9bece4f",
     },
   },
   make: {
-    codeWidget: {
-      system: IEmbeddedIframeSystem.Trinket,
-      trinketId: "0bd9bece4f",
-    },
+    instructions: "Write your own shape",
   },
 });

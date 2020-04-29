@@ -2,18 +2,25 @@ import { IMongoDocument } from "../useDocumentApi/types";
 import { IQuestionSet } from "../useQuestionApi/types";
 import { IEmbeddedIframe } from "../useEmbeddedIframeApi/types";
 
-interface IPrimmSection {
+export interface IPrimmPredict {
   codeWidget: IEmbeddedIframe;
-}
-
-export interface IPrimmPredict extends IPrimmSection {
   questionSets: IQuestionSet[];
 }
 
-export interface IPrimmRun extends IPrimmSection {}
-export interface IPrimmInvestigate extends IPrimmSection {}
-export interface IPrimmModify extends IPrimmSection {}
-export interface IPrimmMake extends IPrimmSection {}
+export interface IPrimmRun {
+  codeWidget: IEmbeddedIframe;
+}
+export interface IPrimmInvestigate {
+  codeWidget: IEmbeddedIframe;
+  questionSets: IQuestionSet[];
+}
+export interface IPrimmModify {
+  instructions: string;
+  codeWidget: IEmbeddedIframe;
+}
+export interface IPrimmMake {
+  instructions: string;
+}
 
 export interface IPrimmChallenge {
   title: string;
