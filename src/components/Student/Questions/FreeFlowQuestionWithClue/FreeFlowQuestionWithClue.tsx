@@ -11,7 +11,7 @@ const FreeFlowQuestionWithClue: React.FunctionComponent<Props> = ({
   return (
     <div>
       <p>{question.question}</p>
-      <p>{question.clue}</p>
+      <p>Clue: {question.clue}</p>
       <input />
     </div>
   );

@@ -15,7 +15,7 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
       system: IEmbeddedIframeSystem.gitHubGist,
       gistId: "3a08be71dc0fd760141c0c6cddc96cdf",
     },
-    questionSets: [
+    scaffoldedQuestions: [
       {
         caption: "Free Flow",
         questions: [
@@ -29,7 +29,7 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
             type: IQuestionType.FreeFlowWithClue,
             clue:
               "A loop will execute the code block a number of times, the code block is the indented portion",
-            question: "How many",
+            question: "How many times does this code print 'ALPHA'?",
           },
         ],
       },
@@ -63,10 +63,27 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
       system: IEmbeddedIframeSystem.Trinket,
       trinketId: "0bd9bece4f",
     },
-    questionSets: [],
+    scaffoldedQuestions: [],
   },
   modify: {
-    instructions: "Change the background colour to...",
+    scaffoldedInstructions: [
+      {
+        caption: "Open",
+        instructions: ["Change the background colour to..."],
+      },
+      {
+        caption: "Leading",
+        instructions: [
+          "Change the value passed into the background colour function...",
+        ],
+      },
+      {
+        caption: "Closed",
+        instructions: [
+          "Locate the call to background colour, and change the value from 'blue' to 'red'",
+        ],
+      },
+    ],
     codeWidget: {
       system: IEmbeddedIframeSystem.Trinket,
       trinketId: "0bd9bece4f",

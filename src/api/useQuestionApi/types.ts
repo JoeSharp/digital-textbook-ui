@@ -30,7 +30,12 @@ export type IQuestion =
   | IFreeFlowWithClueQuestion
   | IFreeFlowQuestion;
 
-export interface IQuestionSet {
+export interface IScaffoldedQuestions {
   caption: string;
   questions: IQuestion[];
+}
+
+export interface IScaffoldedInstructions {
+  caption: string;
+  instructions: string[];
 }

@@ -1,10 +1,13 @@
 import { IMongoDocument } from "../useDocumentApi/types";
-import { IQuestionSet } from "../useQuestionApi/types";
+import {
+  IScaffoldedQuestions,
+  IScaffoldedInstructions,
+} from "../useQuestionApi/types";
 import { IEmbeddedIframe } from "../useEmbeddedIframeApi/types";
 
 export interface IPrimmPredict {
   codeWidget: IEmbeddedIframe;
-  questionSets: IQuestionSet[];
+  scaffoldedQuestions: IScaffoldedQuestions[];
 }
 
 export interface IPrimmRun {
@@ -12,11 +15,11 @@ export interface IPrimmRun {
 }
 export interface IPrimmInvestigate {
   codeWidget: IEmbeddedIframe;
-  questionSets: IQuestionSet[];
+  scaffoldedQuestions: IScaffoldedQuestions[];
 }
 export interface IPrimmModify {
-  instructions: string;
   codeWidget: IEmbeddedIframe;
+  scaffoldedInstructions: IScaffoldedInstructions[];
 }
 export interface IPrimmMake {
   instructions: string;

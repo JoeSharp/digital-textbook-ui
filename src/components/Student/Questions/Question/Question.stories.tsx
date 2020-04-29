@@ -1,10 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import questionSets from "../../../../testing/data/primm/questionSets";
+import scaffoldedQuestions from "../../../../testing/data/primm/scaffoldedQuestions";
 
 import Question from "./Question";
 
-questionSets.forEach(({ caption, questions }) =>
+scaffoldedQuestions.forEach(({ caption, questions }) =>
   questions.forEach((question, i) => {
     storiesOf(
       "Student/Questions/Question",

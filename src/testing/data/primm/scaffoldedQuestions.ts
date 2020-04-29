@@ -1,6 +1,9 @@
-import { IQuestionSet, IQuestionType } from "../../../api/useQuestionApi/types";
+import {
+  IScaffoldedQuestions,
+  IQuestionType,
+} from "../../../api/useQuestionApi/types";
 
-const questionSets: IQuestionSet[] = [
+const scaffoldedQuestions: IScaffoldedQuestions[] = [
   {
     caption: "Freeform",
     questions: [
@@ -33,4 +36,4 @@ const questionSets: IQuestionSet[] = [
   },
 ];
 
-export default questionSets;
+export default scaffoldedQuestions;

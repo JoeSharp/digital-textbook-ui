@@ -1,6 +1,5 @@
 import React from "react";
-import Button from "../../../GeneralPurpose/Buttons/Button";
-import { IQuestionSet } from "../../../../api/useQuestionApi/types";
+import Button from "../../GeneralPurpose/Buttons/Button";
 
 interface Props {
   index: number;
@@ -9,7 +8,7 @@ interface Props {
   caption: string;
 }
 
-const RequestHelp: React.FunctionComponent<Props> = ({
+const RequestScaffold: React.FunctionComponent<Props> = ({
   onRequestMoreHelp,
   canRequestMoreHelp,
   caption,
@@ -28,7 +27,7 @@ const RequestHelp: React.FunctionComponent<Props> = ({
   );
 };
 
-export default RequestHelp;
+export default RequestScaffold;
 
 interface RequestMoreHelpAction {
   type: "onRequestMoreHelp";
@@ -40,24 +39,24 @@ type Action = RequestMoreHelpAction | ResetAction;
 
 interface ReducerState {
   index: number;
-  questionSets: IQuestionSet[];
+  levelCaptions: string[];
   canRequestMoreHelp: boolean;
 }
 
 const helpReducer = (state: ReducerState, action: Action): ReducerState => {
   if (action.type === "onRequestMoreHelp") {
-    if (state.index + 1 < state.questionSets.length) {
+    if (state.index + 1 < state.levelCaptions.length) {
       return {
         ...state,
         index: state.index + 1,
-        canRequestMoreHelp: state.index + 2 < state.questionSets.length,
+        canRequestMoreHelp: state.index + 2 < state.levelCaptions.length,
       };
     }
   } else if (action.type === "reset") {
     return {
       ...state,
       index: 0,
-      canRequestMoreHelp: state.questionSets.length > 1,
+      canRequestMoreHelp: state.levelCaptions.length > 1,
     };
   }
   return state;
@@ -65,19 +64,21 @@ const helpReducer = (state: ReducerState, action: Action): ReducerState => {
 
 // IN
 interface InProps {
-  questionSets: IQuestionSet[];
+  levelCaptions: string[];
 }
 
 // OUT
-interface UseRequestHelp {
+interface UseRequestScaffold {
   componentProps: Props;
 }
 
-export const useRequestHelp = ({ questionSets }: InProps): UseRequestHelp => {
+export const useRequestScaffold = ({
+  levelCaptions,
+}: InProps): UseRequestScaffold => {
   const [state, dispatch] = React.useReducer(helpReducer, {
     index: 0,
     canRequestMoreHelp: true,
-    questionSets,
+    levelCaptions,
   });
 
   const onRequestMoreHelp = React.useCallback(
@@ -89,7 +90,7 @@ export const useRequestHelp = ({ questionSets }: InProps): UseRequestHelp => {
     componentProps: {
       ...state,
       onRequestMoreHelp,
-      caption: questionSets[state.index].caption,
+      caption: levelCaptions[state.index],
     },
   };
 };

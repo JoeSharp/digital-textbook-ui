@@ -1,20 +1,20 @@
 import React from "react";
 import { IPrimmPredict } from "../../../../api/usePrimmApi/types";
 import EmbeddedIframe from "../../../GeneralPurpose/EmbeddedIframe";
-import QuestionSet from "../../Questions/QuestionSet";
+import ScaffoldedQuestions from "../../Questions/ScaffoldedQuestions";
 
 interface Props {
   predict: IPrimmPredict;
 }
 
 const Predict: React.FunctionComponent<Props> = ({
-  predict: { codeWidget, questionSets },
+  predict: { codeWidget, scaffoldedQuestions },
 }) => {
   return (
     <div>
       <h4>Predict</h4>
       <EmbeddedIframe embeddedIframe={codeWidget} />
-      <QuestionSet questionSets={questionSets} />
+      <ScaffoldedQuestions scaffoldedQuestions={scaffoldedQuestions} />
     </div>
   );
 };
