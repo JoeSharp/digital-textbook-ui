@@ -29,7 +29,7 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
             type: IQuestionType.FreeFlowWithClue,
             clue:
               "A loop will execute the code block a number of times, the code block is the indented portion",
-            question: "How many times does this code print 'ALPHA'?",
+            question: "What will this code print to the screen?",
           },
         ],
       },
@@ -38,13 +38,19 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
         questions: [
           {
             type: IQuestionType.MultipleChoice,
-            question: "How many times will it print 'hello'?",
+            question: "How many times will it print 'ALPHA'?",
             correctOption: "4",
             options: ["1", "4", "5", "3"],
           },
           {
             type: IQuestionType.MultipleChoice,
-            question: "How many times will it print 'goodbye'?",
+            question: "How many times will it print 'BETA'?",
+            correctOption: "4",
+            options: ["1", "4", "5", "3"],
+          },
+          {
+            type: IQuestionType.MultipleChoice,
+            question: "How many times will it print 'CHARLIE'?",
             correctOption: "1",
             options: ["1", "4", "5", "3"],
           },
@@ -61,9 +67,28 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
   investigate: {
     codeWidget: {
       system: IEmbeddedIframeSystem.Trinket,
-      trinketId: "0bd9bece4f",
+      trinketId: "31a564c775",
     },
-    scaffoldedQuestions: [],
+    scaffoldedQuestions: [
+      {
+        caption: "Free Flow",
+        questions: [
+          {
+            type: IQuestionType.FreeFlow,
+            question: "Read this code, and summaries what you think it does.",
+          },
+          {
+            type: IQuestionType.FreeFlow,
+            question:
+              "Look at the number being passed into range, what do you notice about the number of times the loop executes?",
+          },
+          {
+            type: IQuestionType.FreeFlow,
+            question: "What do you think the format function does?",
+          },
+        ],
+      },
+    ],
   },
   modify: {
     scaffoldedInstructions: [

@@ -14,8 +14,8 @@ const Modify: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <Section title="Modify" {...rest}>
-      <ScaffoldedInstructions scaffoldedInstructions={scaffoldedInstructions} />
       <EmbeddedIframe embeddedIframe={codeWidget} />
+      <ScaffoldedInstructions scaffoldedInstructions={scaffoldedInstructions} />
     </Section>
   );
 };
