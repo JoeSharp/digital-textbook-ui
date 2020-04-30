@@ -2,9 +2,10 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import Run from "./Run";
 import { primmChallenges } from "../../../../../testing/data";
+import { testBaseProps } from "../testProps";
 
 primmChallenges.forEach((challenge) =>
   storiesOf("Student/PRIMM/Sections/Run", module).add(challenge.title, () => (
-    <Run run={challenge.run} onComplete={() => {}} isComplete={false} />
+    <Run run={challenge.run} {...testBaseProps} />
   ))
 );

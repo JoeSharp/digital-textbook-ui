@@ -1,26 +1,36 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Section from "./Section";
 import { loremIpsum } from "lorem-ipsum";
-import useCounter from "../../../../lib/useCounter";
-import JsonDebug from "../../../../lib/JsonDebug";
+import Section from "./Section";
+import useProgress from "../../../../lib/useProgress";
+
+interface TestSection {
+  title: string;
+  content: string;
+}
+
+const makeSection = (): TestSection => ({
+  title: loremIpsum({ units: "words", count: 1 }),
+  content: loremIpsum({ units: "paragraph", count: 3 }),
+});
+
+const sections: TestSection[] = Array(5)
+  .fill(null)
+  .map(() => makeSection());
 
 const TestHarness: React.FunctionComponent = () => {
-  const { value, increment } = useCounter();
-  const [title, setTitle] = React.useState<string>("");
-  const [content, setContent] = React.useState<string>("");
-
-  React.useEffect(() => {
-    setTitle(loremIpsum({ units: "words", count: 1 }));
-    setContent(loremIpsum({ units: "paragraph", count: 3 }));
-  }, [value, setTitle, setContent]);
+  const {
+    current: { title, content },
+    ...rest
+  } = useProgress({
+    sections,
+  });
 
   return (
-    <Section title={title} isComplete={true} onComplete={increment}>
-      <p>{content}</p>
-      <JsonDebug value={{ value }} />
+    <Section title={title} {...rest}>
+      {content}
     </Section>
   );
 };
 
-storiesOf("Student/PRIMM/Sections", module).add("basic", () => <TestHarness />);
+storiesOf("Student/PRIMM/Section", module).add("basic", () => <TestHarness />);

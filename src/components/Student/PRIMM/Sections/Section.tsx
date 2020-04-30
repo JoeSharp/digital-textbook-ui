@@ -2,8 +2,10 @@ import React from "react";
 import Button from "../../../GeneralPurpose/Buttons/Button";
 
 export interface BaseProps {
-  isComplete: boolean;
-  onComplete: () => any;
+  canGoPrevious: boolean;
+  onPrevious: () => any;
+  canGoNext: boolean;
+  onNext: () => any;
 }
 
 interface Props extends BaseProps {
@@ -12,8 +14,10 @@ interface Props extends BaseProps {
 
 const Section: React.FunctionComponent<Props> = ({
   title,
-  onComplete,
-  isComplete,
+  onPrevious,
+  onNext,
+  canGoPrevious,
+  canGoNext,
   children,
 }) => {
   return (
@@ -21,9 +25,10 @@ const Section: React.FunctionComponent<Props> = ({
       <h4>{title}</h4>
       {children}
 
-      {!isComplete && (
-        <Button text="Complete" onClick={onComplete} styleType="primary" />
+      {canGoPrevious && (
+        <Button text="Previous" onClick={onPrevious} styleType="primary" />
       )}
+      {canGoNext && <Button text="Next" onClick={onNext} styleType="primary" />}
     </div>
   );
 };

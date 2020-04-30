@@ -4,9 +4,12 @@ import Run from "../Sections/Run";
 import Investigate from "../Sections/Investigate";
 import Modify from "../Sections/Modify";
 import Make from "../Sections/Make";
-import { IPrimmChallengeDoc } from "../../../../api/usePrimmApi/types";
+import {
+  IPrimmChallengeDoc,
+  IPrimmChallenge,
+} from "../../../../api/usePrimmApi/types";
 import { useSinglePrimmChallengeApi } from "../../../../api/usePrimmApi";
-import useCurrentSection from "./useCurrentSection";
+import useProgress from "../../../../lib/useProgress";
 
 interface Props {
   challenge: IPrimmChallengeDoc;
@@ -15,12 +18,18 @@ interface Props {
 export const PrimmChallenge: React.FunctionComponent<Props> = ({
   challenge,
 }) => {
-  const {
-    completedSections,
-    currentSection,
-    onSectionComplete,
-  } = useCurrentSection({
-    challenge,
+  const sections: (keyof IPrimmChallenge)[] = React.useMemo(() => {
+    const p: (keyof IPrimmChallenge)[] = [];
+    if (challenge.predict) p.push("predict");
+    if (challenge.run) p.push("run");
+    if (challenge.investigate) p.push("investigate");
+    if (challenge.modify) p.push("modify");
+    if (challenge.make) p.push("make");
+    return p;
+  }, [challenge]);
+
+  const { current: currentSection, ...sectionHandlers } = useProgress({
+    sections,
   });
 
   const {
@@ -38,41 +47,17 @@ export const PrimmChallenge: React.FunctionComponent<Props> = ({
       <h1>{title}</h1>
       <p>{description}</p>
 
-      {completedSections.includes("predict") && (
-        <Predict
-          predict={predict}
-          onComplete={onSectionComplete}
-          isComplete={currentSection !== "predict"}
-        />
+      {currentSection === "predict" && (
+        <Predict predict={predict} {...sectionHandlers} />
       )}
-      {completedSections.includes("run") && (
-        <Run
-          run={run}
-          onComplete={onSectionComplete}
-          isComplete={currentSection !== "run"}
-        />
+      {currentSection === "run" && <Run run={run} {...sectionHandlers} />}
+      {currentSection === "investigate" && (
+        <Investigate investigate={investigate} {...sectionHandlers} />
       )}
-      {completedSections.includes("investigate") && (
-        <Investigate
-          investigate={investigate}
-          onComplete={onSectionComplete}
-          isComplete={currentSection !== "investigate"}
-        />
+      {currentSection === "modify" && (
+        <Modify modify={modify} {...sectionHandlers} />
       )}
-      {completedSections.includes("modify") && (
-        <Modify
-          modify={modify}
-          onComplete={onSectionComplete}
-          isComplete={currentSection !== "modify"}
-        />
-      )}
-      {completedSections.includes("make") && (
-        <Make
-          make={make}
-          onComplete={onSectionComplete}
-          isComplete={currentSection !== "make"}
-        />
-      )}
+      {currentSection === "make" && <Make make={make} {...sectionHandlers} />}
     </div>
   );
 };
