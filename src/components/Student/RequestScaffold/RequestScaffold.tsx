@@ -16,13 +16,15 @@ const RequestScaffold: React.FunctionComponent<Props> = ({
   return (
     <div>
       {caption}
-      {canRequestMoreHelp && (
-        <Button
-          text="More Help"
-          onClick={onRequestMoreHelp}
-          styleType="primary"
-        />
-      )}
+      <div>
+        {canRequestMoreHelp && (
+          <Button
+            text="More Help"
+            onClick={onRequestMoreHelp}
+            styleType="primary"
+          />
+        )}
+      </div>
     </div>
   );
 };

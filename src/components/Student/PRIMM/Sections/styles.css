@@ -1,0 +1,9 @@
+.navButtons {
+  width: 100%;
+}
+.previousButton {
+  float: left;
+}
+.nextButton {
+  float: right;
+}

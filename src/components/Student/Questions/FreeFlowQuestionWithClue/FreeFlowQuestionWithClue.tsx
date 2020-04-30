@@ -9,10 +9,13 @@ const FreeFlowQuestionWithClue: React.FunctionComponent<Props> = ({
   question,
 }) => {
   return (
-    <div>
-      <p>{question.question}</p>
-      <p>Clue: {question.clue}</p>
-      <input />
+    <div className="form-group">
+      <label>{question.question}</label>
+      <input className="form-control" />
+      <small id="emailHelp" className="form-text text-muted">
+        {" "}
+        {question.clue}
+      </small>
     </div>
   );
 };

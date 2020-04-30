@@ -1,6 +1,8 @@
 import React from "react";
 import { IEmbeddedTrinket } from "../../../../api/useEmbeddedIframeApi/types";
 
+import "./styles.css";
+
 interface Props {
   trinket: IEmbeddedTrinket;
 }

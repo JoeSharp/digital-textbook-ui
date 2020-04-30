@@ -7,9 +7,9 @@ interface Props {
 
 const FreeFlowQuestion: React.FunctionComponent<Props> = ({ question }) => {
   return (
-    <div>
-      <p>{question.question}</p>
-      <textarea />
+    <div className="form-group">
+      <label>{question.question}</label>
+      <textarea className="form-control" />
     </div>
   );
 };

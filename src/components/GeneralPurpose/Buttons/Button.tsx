@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface Props {
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   styleType:
     | "primary"
@@ -19,8 +19,13 @@ const Button: React.FunctionComponent<Props> = ({
   text,
   styleType,
   onClick,
+  ...rest
 }) => (
-  <button className={`btn btn-${styleType}`} onClick={onClick}>
+  <button
+    {...rest}
+    className={`btn btn-${styleType} ${rest.className}`}
+    onClick={onClick}
+  >
     {text}
   </button>
 );

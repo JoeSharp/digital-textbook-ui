@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../../../GeneralPurpose/Buttons/Button";
 
+import "./styles.css";
+
 export interface BaseProps {
   canGoPrevious: boolean;
   onPrevious: () => any;
@@ -25,10 +27,24 @@ const Section: React.FunctionComponent<Props> = ({
       <h4>{title}</h4>
       {children}
 
-      {canGoPrevious && (
-        <Button text="Previous" onClick={onPrevious} styleType="primary" />
-      )}
-      {canGoNext && <Button text="Next" onClick={onNext} styleType="primary" />}
+      <div className="navButtons">
+        {canGoPrevious && (
+          <Button
+            className="previousButton"
+            text="Previous"
+            onClick={onPrevious}
+            styleType="primary"
+          />
+        )}
+        {canGoNext && (
+          <Button
+            className="nextButton"
+            text="Next"
+            onClick={onNext}
+            styleType="primary"
+          />
+        )}
+      </div>
     </div>
   );
 };

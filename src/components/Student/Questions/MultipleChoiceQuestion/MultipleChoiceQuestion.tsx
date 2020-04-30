@@ -9,12 +9,19 @@ const MultipleChoiceQuestion: React.FunctionComponent<Props> = ({
   question: { question, options },
 }) => {
   return (
-    <div>
-      <p>{question}</p>
+    <div className="form-group">
+      <label>{question}</label>
       {options.map((option) => (
-        <div key={option}>
-          <input type="radio" id={option} name={question} value={option} />
-          <label htmlFor={option}>{option}</label>
+        <div key={option} className="custom-control custom-radio">
+          <input
+            type="radio"
+            id={option}
+            name={question}
+            className="custom-control-input"
+          />
+          <label className="custom-control-label" htmlFor={option}>
+            {option}
+          </label>
         </div>
       ))}
     </div>
