@@ -9,6 +9,7 @@ import JsonDebug from "../../../../lib/JsonDebug";
 
 const question: IMultipleChoiceQuestion = {
   type: IQuestionType.MultipleChoice,
+  id: "lcdMultiChoice",
   question: "What is the best colour for LCD displays?",
   correctOption: "Blue",
   options: ["Red", "Green", "Blue"],

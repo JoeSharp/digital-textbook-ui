@@ -19,13 +19,18 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
       {
         caption: "Free Flow",
         questions: [
-          { type: IQuestionType.FreeFlow, question: "What does this code do?" },
+          {
+            id: "openPredict",
+            type: IQuestionType.FreeFlow,
+            question: "What does this code do?",
+          },
         ],
       },
       {
         caption: "Clue",
         questions: [
           {
+            id: "cluePredict",
             type: IQuestionType.FreeFlowWithClue,
             clue:
               "A loop will execute the code block a number of times, the code block is the indented portion",
@@ -37,18 +42,21 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
         caption: "Leading",
         questions: [
           {
+            id: "leadingAlpha",
             type: IQuestionType.MultipleChoice,
             question: "How many times will it print 'ALPHA'?",
             correctOption: "4",
             options: ["1", "4", "5", "3"],
           },
           {
+            id: "leadingBeta",
             type: IQuestionType.MultipleChoice,
             question: "How many times will it print 'BETA'?",
             correctOption: "4",
             options: ["1", "4", "5", "3"],
           },
           {
+            id: "leadingCharlie",
             type: IQuestionType.MultipleChoice,
             question: "How many times will it print 'CHARLIE'?",
             correctOption: "1",
@@ -74,15 +82,18 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
         caption: "Free Flow",
         questions: [
           {
+            id: "investigateOpenEnded",
             type: IQuestionType.FreeFlow,
             question: "Read this code, and summaries what you think it does.",
           },
           {
+            id: "investigateRange",
             type: IQuestionType.FreeFlow,
             question:
               "Look at the number being passed into range, what do you notice about the number of times the loop executes?",
           },
           {
+            id: "investigateFormat",
             type: IQuestionType.FreeFlow,
             question: "What do you think the format function does?",
           },

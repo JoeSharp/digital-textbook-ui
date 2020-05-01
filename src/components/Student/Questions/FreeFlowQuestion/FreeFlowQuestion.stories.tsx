@@ -9,6 +9,7 @@ import JsonDebug from "../../../../lib/JsonDebug";
 
 const question: IFreeFlowQuestion = {
   type: IQuestionType.FreeFlow,
+  id: "lcdOpen",
   question: "What is the best colour for LCD displays?",
 };
 
