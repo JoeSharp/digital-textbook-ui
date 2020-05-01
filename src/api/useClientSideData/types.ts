@@ -3,7 +3,7 @@ import { IUserDoc } from "../useUserApi/types";
 import { ITaskDoc } from "../useTaskApi/types";
 import { ILessonDoc } from "../useLessonApi/types";
 import { IPrimmChallengeDoc } from "../usePrimmApi/types";
-import { UseObjectReducer } from "../../lib/useObjectReducer/types";
+import { UseObjectReducer } from "../../lib/useListReducer/types";
 import { IWorkDoc } from "../useMyWorkApi/types";
 
 export interface ClientSideData {

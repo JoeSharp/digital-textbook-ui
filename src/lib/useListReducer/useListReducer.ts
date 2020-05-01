@@ -71,7 +71,7 @@ const createObjectReducer = <T extends {}>(getKey: (item: T) => string) => {
   };
 };
 
-const useObjectReducer = <T extends {}>(
+const useListReducer = <T extends {}>(
   getKey: (item: T) => string,
   initialItems: ObjWithStringKey<T> = {}
 ): UseObjectReducer<T> => {
@@ -110,4 +110,4 @@ const useObjectReducer = <T extends {}>(
   };
 };
 
-export default useObjectReducer;
+export default useListReducer;

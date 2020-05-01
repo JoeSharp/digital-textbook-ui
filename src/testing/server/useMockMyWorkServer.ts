@@ -5,7 +5,7 @@ import { match, MatchFunction } from "path-to-regexp";
 import { IWorkDoc, IWork, WorkType } from "../../api/useMyWorkApi/types";
 import { MockServer } from "./mockServerUtils";
 import { createDocument } from "../data/testDataUtils";
-import useObjectReducer from "../../lib/useObjectReducer";
+import useListReducer from "../../lib/useListReducer";
 
 const resource = "/myWork";
 // const resourceUrl = `${process.env.REACT_APP_SERVICE_BASE_URL}${resource}`;
@@ -37,7 +37,7 @@ export function getWorkTypeAndId(requestUrl: string): KeyWorkIds {
 }
 
 export const useMockServer = (): MockServer => {
-  const { items: myWork, itemsInList: myWorkList, addItem } = useObjectReducer<
+  const { items: myWork, itemsInList: myWorkList, addItem } = useListReducer<
     IWorkDoc
   >((c) => c.workId);
 

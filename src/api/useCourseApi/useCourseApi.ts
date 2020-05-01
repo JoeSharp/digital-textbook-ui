@@ -2,7 +2,7 @@ import React from "react";
 
 import { ICourseDoc, ICourse } from "./types";
 import useApi from "./useApi";
-import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
+import { ObjWithStringKey } from "../../lib/useListReducer/types";
 import useClientSideData from "../useClientSideData/useClientSideData";
 import { useErrorReporting } from "../../components/App/ErrorPage";
 

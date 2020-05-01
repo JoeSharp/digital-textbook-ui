@@ -5,22 +5,19 @@ import { IUserDoc } from "../useUserApi/types";
 import { ITaskDoc } from "../useTaskApi/types";
 import { ILessonDoc } from "../useLessonApi/types";
 import { IPrimmChallengeDoc } from "../usePrimmApi/types";
-import useObjectReducer from "../../lib/useObjectReducer";
+import useListReducer from "../../lib/useListReducer";
 
 import { ClientSideData } from "./types";
 import ClientSideDataContext from "./ClientSideDataContext";
 import { IWorkDoc } from "../useMyWorkApi/types";
 
 const ClientSideDataProvider: React.FunctionComponent = ({ children }) => {
-  const myWork = useObjectReducer<IWorkDoc>((m) => m.workId, {});
-  const courses = useObjectReducer<ICourseDoc>(getDocumentId, {});
-  const lessons = useObjectReducer<ILessonDoc>(getDocumentId, {});
-  const tasks = useObjectReducer<ITaskDoc>(getDocumentId, {});
-  const users = useObjectReducer<IUserDoc>(getDocumentId, {});
-  const primmChallenges = useObjectReducer<IPrimmChallengeDoc>(
-    getDocumentId,
-    {}
-  );
+  const myWork = useListReducer<IWorkDoc>((m) => m.workId, {});
+  const courses = useListReducer<ICourseDoc>(getDocumentId, {});
+  const lessons = useListReducer<ILessonDoc>(getDocumentId, {});
+  const tasks = useListReducer<ITaskDoc>(getDocumentId, {});
+  const users = useListReducer<IUserDoc>(getDocumentId, {});
+  const primmChallenges = useListReducer<IPrimmChallengeDoc>(getDocumentId, {});
 
   const value: ClientSideData = {
     myWork,

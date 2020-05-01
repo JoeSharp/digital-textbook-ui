@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import useObjectReducer from "./useObjectReducer";
+import useListReducer from "./useListReducer";
 import { ObjWithStringKey } from "./types";
 import { loremIpsum } from "lorem-ipsum";
 import { v4 as uuidv4 } from "uuid";
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const TestHarness: React.FunctionComponent<Props> = ({ initialItems }) => {
-  const { items, addItem, removeItem } = useObjectReducer<Thing>(
+  const { items, addItem, removeItem } = useListReducer<Thing>(
     (c) => c.key,
     initialItems
   );
@@ -64,6 +64,6 @@ const TestHarness: React.FunctionComponent<Props> = ({ initialItems }) => {
   );
 };
 
-storiesOf("lib/useObjectReducer", module).add("test", () => (
+storiesOf("lib/useListReducer", module).add("test", () => (
   <TestHarness initialItems={TEST_ITEMS} />
 ));

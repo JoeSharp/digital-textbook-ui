@@ -8,7 +8,7 @@ import {
 } from "../../api/usePrimmApi/types";
 import { MockServer, getId } from "./mockServerUtils";
 import { createDocument } from "../data/testDataUtils";
-import useObjectReducer from "../../lib/useObjectReducer";
+import useListReducer from "../../lib/useListReducer";
 
 const initialPrimmChallenges = initialPrimmChallengeList.reduce(
   (acc, curr) => ({ ...acc, [curr._id]: curr }),
@@ -25,10 +25,7 @@ export const useMockServer = (): MockServer => {
     itemsInList: challenges,
     addItem,
     removeItem,
-  } = useObjectReducer<IPrimmChallengeDoc>(
-    (c) => c._id,
-    initialPrimmChallenges
-  );
+  } = useListReducer<IPrimmChallengeDoc>((c) => c._id, initialPrimmChallenges);
 
   const setup = React.useCallback(() => {
     fetchMock.get(resourceUrl, challenges);

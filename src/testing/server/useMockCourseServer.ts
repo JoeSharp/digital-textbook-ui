@@ -5,7 +5,7 @@ import { courses as initialCourseList } from "../data";
 import { ICourseDoc, ICourse } from "../../api/useCourseApi/types";
 import { MockServer, getId } from "./mockServerUtils";
 import { createDocument } from "../data/testDataUtils";
-import useObjectReducer from "../../lib/useObjectReducer";
+import useListReducer from "../../lib/useListReducer";
 
 const initialCourses = initialCourseList.reduce(
   (acc, curr) => ({ ...acc, [curr._id]: curr }),
@@ -22,7 +22,7 @@ export const useMockServer = (): MockServer => {
     itemsInList: courses,
     addItem,
     removeItem,
-  } = useObjectReducer<ICourseDoc>((c) => c._id, initialCourses);
+  } = useListReducer<ICourseDoc>((c) => c._id, initialCourses);
 
   const setup = React.useCallback(() => {
     fetchMock.get(resourceUrl, courses);

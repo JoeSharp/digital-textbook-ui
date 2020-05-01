@@ -5,7 +5,7 @@ import { ITaskDoc } from "../useTaskApi/types";
 import { ILessonDoc } from "../useLessonApi/types";
 import { IPrimmChallengeDoc } from "../usePrimmApi/types";
 import { ClientSideData } from "./types";
-import { getDefaultObjectReducer } from "../../lib/useObjectReducer/useObjectReducer";
+import { getDefaultObjectReducer } from "../../lib/useListReducer/useListReducer";
 import { IWorkDoc } from "../useMyWorkApi/types";
 
 const ClientSideDataContext: React.Context<ClientSideData> = React.createContext(

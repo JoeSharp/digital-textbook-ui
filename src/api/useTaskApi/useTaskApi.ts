@@ -3,7 +3,7 @@ import { ITask, ITaskDoc } from "./types";
 import useClientSideData from "../useClientSideData";
 import useApi from "./useApi";
 import { useErrorReporting } from "../../components/App/ErrorPage";
-import { ObjWithStringKey } from "../../lib/useObjectReducer/types";
+import { ObjWithStringKey } from "../../lib/useListReducer/types";
 
 export interface UseTaskApi {
   tasks: ITaskDoc[];
