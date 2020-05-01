@@ -1,4 +1,5 @@
 import React from "react";
+import { useMockServer as useMockMyWorkServer } from "./useMockMyWorkServer";
 import { useMockServer as useMockUserServer } from "./useMockUserServer";
 import { useMockServer as useMockCourseServer } from "./useMockCourseServer";
 import { useMockServer as useMockLessonServer } from "./useMockLessonServer";
@@ -9,6 +10,7 @@ import fetchMock from "fetch-mock";
 export default (): boolean => {
   const [isReady, setReady] = React.useState<boolean>(false);
 
+  const { setup: setupMyWork, data: myWork } = useMockMyWorkServer();
   const { setup: setupUsers, data: users } = useMockUserServer();
   const { setup: setupCourses, data: courses } = useMockCourseServer();
   const { setup: setupLessons, data: lessons } = useMockLessonServer();
@@ -20,13 +22,14 @@ export default (): boolean => {
 
   const allData = React.useMemo(
     () => ({
+      myWork,
       courses,
       lessons,
       tasks,
       users,
       challenges,
     }),
-    [courses, lessons, tasks, users, challenges]
+    [myWork, courses, lessons, tasks, users, challenges]
   );
 
   React.useEffect(() => {
@@ -34,6 +37,7 @@ export default (): boolean => {
 
     fetchMock.restore();
 
+    setupMyWork();
     setupUsers();
     setupCourses();
     setupLessons();
@@ -43,6 +47,7 @@ export default (): boolean => {
     setReady(true);
   }, [
     allData,
+    setupMyWork,
     setupCourses,
     setupLessons,
     setupTasks,

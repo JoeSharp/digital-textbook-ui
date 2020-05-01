@@ -10,6 +10,9 @@ import {
 } from "../../../../api/usePrimmApi/types";
 import { useSinglePrimmChallengeApi } from "../../../../api/usePrimmApi";
 import useProgress from "../../../../lib/useProgress";
+import useMyWorkApi from "../../../../api/useMyWorkApi";
+import { WorkType } from "../../../../api/useMyWorkApi/types";
+import useAutoSave from "../../../../lib/useAutoSave";
 
 interface Props {
   challenge: IPrimmChallengeDoc;
@@ -18,6 +21,20 @@ interface Props {
 export const PrimmChallenge: React.FunctionComponent<Props> = ({
   challenge,
 }) => {
+  const { saveWork } = useMyWorkApi(WorkType.primmChallenge, challenge._id);
+
+  const { isDirty } = useAutoSave<object>({
+    initialValue: {},
+    saveData: (w) => {
+      saveWork({
+        workType: WorkType.primmChallenge,
+        workId: challenge._id,
+        workContent: w,
+      });
+      return new Promise((res, rej) => res(w)); // TODO - Burning in hell here!
+    },
+  });
+
   const sections: (keyof IPrimmChallenge)[] = React.useMemo(() => {
     const p: (keyof IPrimmChallenge)[] = [];
     if (challenge.predict) p.push("predict");
@@ -46,6 +63,7 @@ export const PrimmChallenge: React.FunctionComponent<Props> = ({
     <div>
       <h1>{title}</h1>
       <p>{description}</p>
+      <p>Is Dirty: {isDirty}</p>
 
       {currentSection === "predict" && (
         <Predict predict={predict} {...sectionHandlers} />

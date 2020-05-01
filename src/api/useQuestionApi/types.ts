@@ -8,6 +8,7 @@ export enum IQuestionType {
 interface IBaseQuestion {
   type: IQuestionType;
   question: string;
+  id: string;
 }
 
 export interface IMultipleChoiceQuestion extends IBaseQuestion {
@@ -38,4 +39,10 @@ export interface IScaffoldedQuestions {
 export interface IScaffoldedInstructions {
   caption: string;
   instructions: string[];
+}
+
+export interface IScaffoldedQuestionResponses {
+  [caption: string]: {
+    [questionId: string]: string;
+  };
 }

@@ -21,16 +21,16 @@ const useApi = (): UseApi => {
   const handle200 = useCheckHttpStatus(200);
 
   return {
-    getCourses: React.useCallback(() => {
+    getCourses: React.useCallback(async () => {
       let headers = {
         Accept: "application/json",
         Authorization: `Bearer ${idToken}`,
       };
-      return fetch(COURSE_RESOURCE, {
+      const response = await fetch(COURSE_RESOURCE, {
         headers,
-      })
-        .then(handle200)
-        .then((r) => r.json());
+      });
+      const r = await handle200(response);
+      return r.json();
     }, [idToken, handle200]),
     getCourse: React.useCallback(
       async (courseId: string) => {

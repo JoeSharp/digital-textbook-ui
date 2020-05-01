@@ -2,6 +2,7 @@ import { IMongoDocument } from "../useDocumentApi/types";
 import {
   IScaffoldedQuestions,
   IScaffoldedInstructions,
+  IScaffoldedQuestionResponses,
 } from "../useQuestionApi/types";
 import { IEmbeddedIframe } from "../useEmbeddedIframeApi/types";
 
@@ -36,3 +37,18 @@ export interface IPrimmChallenge {
 }
 
 export type IPrimmChallengeDoc = IPrimmChallenge & IMongoDocument;
+
+export interface IPrimmRunResponse {
+  predictionComparison: string;
+}
+export interface IPrimmRemixRespose {
+  urlOfRemix: string;
+}
+
+export interface IPrimmWork {
+  predict: IScaffoldedQuestionResponses;
+  run: IPrimmRunResponse;
+  investigae: IScaffoldedQuestionResponses;
+  modify: IPrimmRemixRespose;
+  make: IPrimmRemixRespose;
+}

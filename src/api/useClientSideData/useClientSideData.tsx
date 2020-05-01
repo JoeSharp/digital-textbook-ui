@@ -9,8 +9,10 @@ import useObjectReducer from "../../lib/useObjectReducer";
 
 import { ClientSideData } from "./types";
 import ClientSideDataContext from "./ClientSideDataContext";
+import { IWorkDoc } from "../useMyWorkApi/types";
 
 const ClientSideDataProvider: React.FunctionComponent = ({ children }) => {
+  const myWork = useObjectReducer<IWorkDoc>((m) => m.workId, {});
   const courses = useObjectReducer<ICourseDoc>(getDocumentId, {});
   const lessons = useObjectReducer<ILessonDoc>(getDocumentId, {});
   const tasks = useObjectReducer<ITaskDoc>(getDocumentId, {});
@@ -21,6 +23,7 @@ const ClientSideDataProvider: React.FunctionComponent = ({ children }) => {
   );
 
   const value: ClientSideData = {
+    myWork,
     courses,
     lessons,
     tasks,
