@@ -5,17 +5,15 @@ import { ITaskDoc } from "../useTaskApi/types";
 import { ILessonDoc } from "../useLessonApi/types";
 import { IPrimmChallengeDoc } from "../usePrimmApi/types";
 import { ClientSideData } from "./types";
-import { getDefaultObjectReducer } from "../../lib/useListReducer/useListReducer";
-import { IWorkDoc } from "../useMyWorkApi/types";
+import { getDefaultListReducer } from "../../lib/useListReducer/useListReducer";
 
 const ClientSideDataContext: React.Context<ClientSideData> = React.createContext(
   {
-    myWork: getDefaultObjectReducer<IWorkDoc>(),
-    courses: getDefaultObjectReducer<ICourseDoc>(),
-    lessons: getDefaultObjectReducer<ILessonDoc>(),
-    tasks: getDefaultObjectReducer<ITaskDoc>(),
-    users: getDefaultObjectReducer<IUserDoc>(),
-    primmChallenges: getDefaultObjectReducer<IPrimmChallengeDoc>(),
+    courses: getDefaultListReducer<ICourseDoc>(),
+    lessons: getDefaultListReducer<ILessonDoc>(),
+    tasks: getDefaultListReducer<ITaskDoc>(),
+    users: getDefaultListReducer<IUserDoc>(),
+    primmChallenges: getDefaultListReducer<IPrimmChallengeDoc>(),
   }
 );
 

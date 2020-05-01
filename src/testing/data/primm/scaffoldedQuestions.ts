@@ -12,6 +12,11 @@ const scaffoldedQuestions: IScaffoldedQuestions[] = [
         question: "What will this code do?",
         type: IQuestionType.FreeFlow,
       },
+      {
+        id: "openJudge",
+        question: "How clear are the names of functions and variables?",
+        type: IQuestionType.FreeFlow,
+      },
     ],
   },
   {
@@ -22,6 +27,14 @@ const scaffoldedQuestions: IScaffoldedQuestions[] = [
         question: "How many times will line 3 execute?",
         type: IQuestionType.FreeFlowWithClue,
         clue: "A for loop is used to execute a block of code multiple times",
+      },
+      {
+        id: "leadingLine3",
+        question:
+          "What comment would you write to describe how this code works to another developer?",
+        type: IQuestionType.FreeFlowWithClue,
+        clue:
+          "Comments are free text items that can be embedded directly into code",
       },
     ],
   },

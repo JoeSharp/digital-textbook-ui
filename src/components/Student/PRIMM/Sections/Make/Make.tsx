@@ -1,8 +1,11 @@
 import React from "react";
-import { IPrimmMake } from "../../../../../api/usePrimmApi/types";
+import {
+  IPrimmMake,
+  IPrimmRemixResponse,
+} from "../../../../../api/usePrimmApi/types";
 import Section, { BaseProps } from "../Section";
 
-interface Props extends BaseProps {
+interface Props extends BaseProps<IPrimmRemixResponse> {
   make: IPrimmMake;
 }
 

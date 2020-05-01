@@ -41,8 +41,8 @@ export interface IScaffoldedInstructions {
   instructions: string[];
 }
 
-export interface IScaffoldedQuestionResponses {
-  [caption: string]: {
-    [questionId: string]: string;
-  };
+export interface IQuestionResponses {
+  [questionId: string]: string | undefined;
 }
+
+export const EMPTY_SCAFFOLDED_QUESTION_RESPONSES: IQuestionResponses = {};

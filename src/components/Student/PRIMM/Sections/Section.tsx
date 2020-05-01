@@ -2,15 +2,17 @@ import React from "react";
 import Button from "../../../GeneralPurpose/Buttons/Button";
 
 import "./styles.css";
+import { UseObjectReducer } from "../../../../lib/useObjectReducer/types";
 
-export interface BaseProps {
+export interface BaseProps<RESPONSE> {
   canGoPrevious: boolean;
   onPrevious: () => any;
   canGoNext: boolean;
   onNext: () => any;
+  studentResponse: UseObjectReducer<RESPONSE>;
 }
 
-interface Props extends BaseProps {
+interface Props extends BaseProps<any> {
   title: string;
 }
 

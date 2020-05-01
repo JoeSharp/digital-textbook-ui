@@ -5,10 +5,10 @@ export enum WorkType {
   courseTask = "courseTask",
 }
 
-export interface IWork {
+export interface IWork<T> {
   workType: WorkType;
   workId: string;
-  workContent: object;
+  workContent: T;
 }
 
-export type IWorkDoc = IMongoDocument & IWork;
+export type IWorkDoc<T> = IMongoDocument & IWork<T>;

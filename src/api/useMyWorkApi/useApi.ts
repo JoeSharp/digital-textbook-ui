@@ -5,18 +5,16 @@ import { IWorkDoc, IWork, WorkType } from "./types";
 
 const RESOURCE = `${process.env.REACT_APP_SERVICE_BASE_URL}/myWork`;
 
-interface UseMyWorkApi {
-  getMyWork: (workType: WorkType, workId: string) => Promise<IWorkDoc>;
+interface UseMyWorkApi<T> {
+  getMyWork: (workType: WorkType, workId: string) => Promise<IWorkDoc<T>>;
   saveMyWork: (
     workType: WorkType,
     workId: string,
-    work: IWork
-  ) => Promise<IWorkDoc>;
+    work: IWork<T>
+  ) => Promise<IWorkDoc<T>>;
 }
 
-interface UseMyWorkApi {}
-
-const useMyWorkApi = (): UseMyWorkApi => {
+const useApi = <T extends {}>(): UseMyWorkApi<T> => {
   const { idToken } = useAuthenticationContext();
   const handle200 = useCheckHttpStatus(200);
 
@@ -36,7 +34,7 @@ const useMyWorkApi = (): UseMyWorkApi => {
       [idToken, handle200]
     ),
     saveMyWork: React.useCallback(
-      async (workType: WorkType, workId: string, work: IWork) => {
+      async (workType: WorkType, workId: string, work: IWork<T>) => {
         let headers = {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -55,4 +53,4 @@ const useMyWorkApi = (): UseMyWorkApi => {
   };
 };
 
-export default useMyWorkApi;
+export default useApi;

@@ -10,9 +10,7 @@ import {
 } from "../../../../api/usePrimmApi/types";
 import { useSinglePrimmChallengeApi } from "../../../../api/usePrimmApi";
 import useProgress from "../../../../lib/useProgress";
-import useMyWorkApi from "../../../../api/useMyWorkApi";
-import { WorkType } from "../../../../api/useMyWorkApi/types";
-import useAutoSave from "../../../../lib/useAutoSave";
+import usePrimmWorkContent from "../../../../api/useMyWorkApi/usePrimmWorkContent";
 
 interface Props {
   challenge: IPrimmChallengeDoc;
@@ -21,19 +19,15 @@ interface Props {
 export const PrimmChallenge: React.FunctionComponent<Props> = ({
   challenge,
 }) => {
-  const { saveWork } = useMyWorkApi(WorkType.primmChallenge, challenge._id);
-
-  const { isDirty } = useAutoSave<object>({
-    initialValue: {},
-    saveData: (w) => {
-      saveWork({
-        workType: WorkType.primmChallenge,
-        workId: challenge._id,
-        workContent: w,
-      });
-      return new Promise((res, rej) => res(w)); // TODO - Burning in hell here!
-    },
-  });
+  const {
+    isDirty,
+    isSaving,
+    predictResponse,
+    runResponse,
+    investigateResponse,
+    modifyResponse,
+    makeResponse,
+  } = usePrimmWorkContent(challenge._id);
 
   const sections: (keyof IPrimmChallenge)[] = React.useMemo(() => {
     const p: (keyof IPrimmChallenge)[] = [];
@@ -49,33 +43,47 @@ export const PrimmChallenge: React.FunctionComponent<Props> = ({
     sections,
   });
 
-  const {
-    title,
-    description,
-    predict,
-    run,
-    investigate,
-    modify,
-    make,
-  } = challenge;
-
   return (
     <div>
-      <h1>{title}</h1>
-      <p>{description}</p>
-      <p>Is Dirty: {isDirty}</p>
+      <h1>{challenge.title}</h1>
+      <p>{challenge.description}</p>
+      <small>{isDirty ? "*" : isSaving ? "saving" : "saved"}</small>
 
       {currentSection === "predict" && (
-        <Predict predict={predict} {...sectionHandlers} />
+        <Predict
+          predict={challenge.predict}
+          studentResponse={predictResponse}
+          {...sectionHandlers}
+        />
       )}
-      {currentSection === "run" && <Run run={run} {...sectionHandlers} />}
+      {currentSection === "run" && (
+        <Run
+          run={challenge.run}
+          studentResponse={runResponse}
+          {...sectionHandlers}
+        />
+      )}
       {currentSection === "investigate" && (
-        <Investigate investigate={investigate} {...sectionHandlers} />
+        <Investigate
+          investigate={challenge.investigate}
+          studentResponse={investigateResponse}
+          {...sectionHandlers}
+        />
       )}
       {currentSection === "modify" && (
-        <Modify modify={modify} {...sectionHandlers} />
+        <Modify
+          modify={challenge.modify}
+          studentResponse={modifyResponse}
+          {...sectionHandlers}
+        />
       )}
-      {currentSection === "make" && <Make make={make} {...sectionHandlers} />}
+      {currentSection === "make" && (
+        <Make
+          make={challenge.make}
+          studentResponse={makeResponse}
+          {...sectionHandlers}
+        />
+      )}
     </div>
   );
 };

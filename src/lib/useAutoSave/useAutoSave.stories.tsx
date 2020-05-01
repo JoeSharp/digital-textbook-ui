@@ -5,11 +5,13 @@ import JsonDebug from "../JsonDebug";
 import useToggle from "../useToggle";
 
 interface SaveData {
-  name: string;
+  firstName: string;
+  surname: string;
 }
 
-const initialValue: SaveData = {
-  name: "Joe Sharp",
+const defaultValue: SaveData = {
+  firstName: "Joe",
+  surname: "Sharp",
 };
 
 const TestHarness: React.FunctionComponent = () => {
@@ -18,7 +20,7 @@ const TestHarness: React.FunctionComponent = () => {
 
   const saveData = React.useCallback(
     (data) => {
-      const promise = new Promise((resolve, reject) => {
+      const promise = new Promise<SaveData>((resolve, reject) => {
         setTimeout(function () {
           if (succeed) {
             resolve(data);
@@ -33,22 +35,25 @@ const TestHarness: React.FunctionComponent = () => {
     [succeed]
   );
 
-  const {
-    isDirty,
-    isSaving,
-    savedData,
-    localData,
-    setData,
-    saveError,
-  } = useAutoSave({
-    initialValue,
+  const getInitialValue = React.useCallback(
+    () => new Promise<SaveData>((res) => res(defaultValue)),
+    []
+  );
+
+  const { isDirty, isSaving, savedData, localData, localSave } = useAutoSave({
+    defaultValue,
+    getInitialValue,
     saveData,
     enabled,
   });
 
-  const onNameChange: React.ChangeEventHandler<HTMLInputElement> = React.useCallback(
-    ({ target: { value } }) => setData({ name: value }),
-    [setData]
+  const onFirstNameChange: React.ChangeEventHandler<HTMLInputElement> = React.useCallback(
+    ({ target: { value } }) => localSave({ firstName: value }),
+    [localSave]
+  );
+  const onSurnameChange: React.ChangeEventHandler<HTMLInputElement> = React.useCallback(
+    ({ target: { value } }) => localSave({ surname: value }),
+    [localSave]
   );
 
   return (
@@ -62,17 +67,24 @@ const TestHarness: React.FunctionComponent = () => {
         <input type="checkbox" checked={succeed} onChange={toggleSucceed} />
       </div>
       <div className="form-group">
-        <label>Name</label>
+        <label>First Name</label>
         <input
           className="form-control"
           type="text"
-          value={localData.name}
-          onChange={onNameChange}
+          value={localData.firstName}
+          onChange={onFirstNameChange}
         />
       </div>
-      <JsonDebug
-        value={{ isDirty, isSaving, saveError, localData, savedData }}
-      />
+      <div className="form-group">
+        <label>Surnam</label>
+        <input
+          className="form-control"
+          type="text"
+          value={localData.surname}
+          onChange={onSurnameChange}
+        />
+      </div>
+      <JsonDebug value={{ isDirty, isSaving, localData, savedData }} />
     </div>
   );
 };

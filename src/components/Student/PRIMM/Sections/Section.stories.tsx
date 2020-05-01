@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { loremIpsum } from "lorem-ipsum";
 import Section from "./Section";
 import useProgress from "../../../../lib/useProgress";
+import useObjectReducer from "../../../../lib/useObjectReducer";
 
 interface TestSection {
   title: string;
@@ -25,9 +26,10 @@ const TestHarness: React.FunctionComponent = () => {
   } = useProgress({
     sections,
   });
+  const studentResponse = useObjectReducer({});
 
   return (
-    <Section title={title} {...rest}>
+    <Section title={title} {...rest} studentResponse={studentResponse}>
       {content}
     </Section>
   );

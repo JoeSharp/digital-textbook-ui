@@ -16,10 +16,15 @@ const question: IMultipleChoiceQuestion = {
 };
 
 const TestHarness: React.FunctionComponent = () => {
+  const [value, onChange] = React.useState("");
+
   return (
     <div>
-      <MultipleChoiceQuestion question={question} />
-      <JsonDebug value={{ question }} />
+      <MultipleChoiceQuestion
+        question={question}
+        studentResponse={{ value, onChange }}
+      />
+      <JsonDebug value={{ question, value }} />
     </div>
   );
 };

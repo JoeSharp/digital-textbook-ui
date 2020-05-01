@@ -2,10 +2,27 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import Run from "./Run";
 import { primmChallenges } from "../../../../../testing/data";
-import { testBaseProps } from "../testProps";
+import { createTestBaseProps } from "../testProps";
+import {
+  IPrimmChallengeDoc,
+  EMPTY_PRIMM_WORK,
+} from "../../../../../api/usePrimmApi/types";
+import useObjectReducer from "../../../../../lib/useObjectReducer";
+
+interface Props {
+  challenge: IPrimmChallengeDoc;
+}
+
+const TestHarness: React.FunctionComponent<Props> = ({ challenge }) => {
+  const studentResponse = useObjectReducer(EMPTY_PRIMM_WORK.run);
+
+  const testBaseProps = createTestBaseProps(studentResponse);
+
+  return <Run run={challenge.run} {...testBaseProps} />;
+};
 
 primmChallenges.forEach((challenge) =>
   storiesOf("Student/PRIMM/Sections/Run", module).add(challenge.title, () => (
-    <Run run={challenge.run} {...testBaseProps} />
+    <TestHarness challenge={challenge} />
   ))
 );

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { UseObjectReducer, ObjWithStringKey } from "./types";
+import { UseListReducer, ObjWithStringKey } from "./types";
 
 /**
  * This file exports a custom hook that can be used to manage a object
@@ -25,9 +25,7 @@ interface RemovedAction {
   itemKey: string;
 }
 
-export const getDefaultObjectReducer = <T extends {}>(): UseObjectReducer<
-  T
-> => {
+export const getDefaultListReducer = <T extends {}>(): UseListReducer<T> => {
   return {
     addItem: (item: T) => console.log("no", item),
     items: {},
@@ -74,7 +72,7 @@ const createObjectReducer = <T extends {}>(getKey: (item: T) => string) => {
 const useListReducer = <T extends {}>(
   getKey: (item: T) => string,
   initialItems: ObjWithStringKey<T> = {}
-): UseObjectReducer<T> => {
+): UseListReducer<T> => {
   const [items, dispatch] = React.useReducer(
     createObjectReducer<T>(getKey),
     initialItems

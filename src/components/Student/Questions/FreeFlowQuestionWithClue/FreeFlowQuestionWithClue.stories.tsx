@@ -15,10 +15,15 @@ const question: IFreeFlowWithClueQuestion = {
 };
 
 const TestHarness: React.FunctionComponent = () => {
+  const [value, onChange] = React.useState("");
+
   return (
     <div>
-      <FreeFlowQuestionWithClue question={question} />
-      <JsonDebug value={{ question }} />
+      <FreeFlowQuestionWithClue
+        question={question}
+        studentResponse={{ value, onChange }}
+      />
+      <JsonDebug value={{ question, value }} />
     </div>
   );
 };

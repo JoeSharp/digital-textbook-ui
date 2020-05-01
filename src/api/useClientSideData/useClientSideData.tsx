@@ -9,10 +9,8 @@ import useListReducer from "../../lib/useListReducer";
 
 import { ClientSideData } from "./types";
 import ClientSideDataContext from "./ClientSideDataContext";
-import { IWorkDoc } from "../useMyWorkApi/types";
 
 const ClientSideDataProvider: React.FunctionComponent = ({ children }) => {
-  const myWork = useListReducer<IWorkDoc>((m) => m.workId, {});
   const courses = useListReducer<ICourseDoc>(getDocumentId, {});
   const lessons = useListReducer<ILessonDoc>(getDocumentId, {});
   const tasks = useListReducer<ITaskDoc>(getDocumentId, {});
@@ -20,7 +18,6 @@ const ClientSideDataProvider: React.FunctionComponent = ({ children }) => {
   const primmChallenges = useListReducer<IPrimmChallengeDoc>(getDocumentId, {});
 
   const value: ClientSideData = {
-    myWork,
     courses,
     lessons,
     tasks,

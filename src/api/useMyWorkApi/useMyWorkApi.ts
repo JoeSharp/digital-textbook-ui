@@ -1,59 +1,44 @@
 import React from "react";
 
 import useApi from "./useApi";
-import { IWorkDoc, IWork, WorkType } from "./types";
-import useErrorReporting from "../../lib/useErrorReporting";
-import useClientSideData from "../useClientSideData";
+import { IWork, WorkType } from "./types";
+import useAutoSave from "../../lib/useAutoSave";
 
-interface UseMyWorkApi {
-  work: IWorkDoc;
-  saveWork: (updates: IWork) => void;
+interface UseMyWorkApi<T> {
+  work: IWork<T>;
+  isDirty: boolean;
+  isSaving: boolean;
+  localSave: (w: Partial<T>) => void;
 }
 
-const useMyWorkApi = (workType: WorkType, workId: string): UseMyWorkApi => {
-  const { reportError } = useErrorReporting();
-  const { getMyWork, saveMyWork } = useApi();
+const useMyWorkApi = <T extends {}>(
+  workType: WorkType,
+  workId: string,
+  defaultContent: T
+): UseMyWorkApi<T> => {
+  const { getMyWork, saveMyWork } = useApi<T>();
   const defaultWork = React.useMemo(
-    () => ({ workId, workType, workContent: {} }),
-    [workType, workId]
+    () => ({ workId, workType, workContent: defaultContent }),
+    [workType, workId, defaultContent]
   );
 
-  const {
-    myWork: { addItem, items },
-  } = useClientSideData();
+  const getInitialValue = React.useCallback(() => getMyWork(workType, workId), [
+    workId,
+    workType,
+    getMyWork,
+  ]);
 
-  const _refreshWork = React.useCallback(() => {
-    async function f() {
-      try {
-        const w: IWorkDoc = await getMyWork(workType, workId);
-        addItem(w);
-      } catch (err) {
-        reportError(err);
-      }
-    }
-
-    f();
-  }, [workType, workId, getMyWork, addItem, reportError]);
-
-  React.useEffect(_refreshWork, [_refreshWork]);
-
-  const _saveWork = React.useCallback(
-    (updates: IWork) => {
-      async function f() {
-        try {
-          const w = await saveMyWork(workType, workId, updates);
-          addItem(w);
-        } catch (err) {
-          reportError(err);
-        }
-      }
-
-      f();
+  const { localData: work, isDirty, isSaving, localSave } = useAutoSave<
+    IWork<T>
+  >({
+    defaultValue: defaultWork,
+    getInitialValue,
+    saveData: (w) => {
+      return saveMyWork(WorkType.primmChallenge, workId, w);
     },
-    [workType, workId, addItem, saveMyWork, reportError]
-  );
+  });
 
-  return { work: items[workId] || defaultWork, saveWork: _saveWork };
+  return { work, localSave, isDirty, isSaving };
 };
 
 export default useMyWorkApi;

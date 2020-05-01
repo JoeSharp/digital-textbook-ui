@@ -1,10 +1,13 @@
 import React from "react";
-import { IPrimmModify } from "../../../../../api/usePrimmApi/types";
+import {
+  IPrimmModify,
+  IPrimmRemixResponse,
+} from "../../../../../api/usePrimmApi/types";
 import EmbeddedIframe from "../../../../GeneralPurpose/EmbeddedIframe";
 import ScaffoldedInstructions from "../../../ScaffoldedInstructions/ScaffoldedInstructions";
 import Section, { BaseProps } from "../Section";
 
-interface Props extends BaseProps {
+interface Props extends BaseProps<IPrimmRemixResponse> {
   modify: IPrimmModify;
 }
 

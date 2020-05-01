@@ -4,7 +4,7 @@ import { WorkType, IWorkDoc } from "../useMyWorkApi/types";
 
 export interface IStudentWorkDoc extends IMongoDocument {
   student: IUserDoc;
-  work: IWorkDoc;
+  work: IWorkDoc<any>;
 }
 
 export interface IStudentWorkSubmissionList {

@@ -38,7 +38,7 @@ export function getWorkTypeAndId(requestUrl: string): KeyWorkIds {
 
 export const useMockServer = (): MockServer => {
   const { items: myWork, itemsInList: myWorkList, addItem } = useListReducer<
-    IWorkDoc
+    IWorkDoc<any>
   >((c) => c.workId);
 
   const setup = React.useCallback(() => {
@@ -56,8 +56,8 @@ export const useMockServer = (): MockServer => {
     });
     fetchMock.post(resourceUrlWithWorkId, (url, options) => {
       //   const id = getId(resource, url);
-      const body = JSON.parse(options.body as string) as IWork;
-      const work: IWorkDoc = createDocument(body);
+      const body = JSON.parse(options.body as string) as IWork<any>;
+      const work: IWorkDoc<any> = createDocument(body);
       addItem(work);
 
       return work;

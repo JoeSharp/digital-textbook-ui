@@ -1,9 +1,12 @@
 import React from "react";
 import useInterval from "../useInterval";
+import useErrorReporting from "../useErrorReporting";
+import useObjectReducer from "../useObjectReducer";
 
 interface Props<T> {
-  initialValue: T;
-  saveData: (current: T) => Promise<any>;
+  defaultValue: T;
+  saveData: (current: T) => Promise<T>;
+  getInitialValue: () => Promise<T>;
   delay?: number;
   enabled?: boolean;
 }
@@ -11,31 +14,56 @@ interface Props<T> {
 interface UseAutoSave<T> {
   localData: T;
   savedData?: T;
-  setData: (updated: T) => any;
+  localSave: (partial: Partial<T>) => any;
   isDirty: boolean;
   isSaving: boolean;
-  saveError?: string;
 }
 
 const useAutoSave = <T extends {}>({
-  initialValue,
+  defaultValue,
+  getInitialValue,
   saveData,
   delay = 3000,
   enabled = true,
 }: Props<T>): UseAutoSave<T> => {
-  const [saveError, setSaveError] = React.useState<string>();
+  const { reportError } = useErrorReporting();
   const [savedData, setSavedData] = React.useState<T>();
-  const [localData, setLocalData] = React.useState<T>(initialValue);
+  const { value: localData, onChange } = useObjectReducer(defaultValue);
   const [isDirty, setIsDirty] = React.useState<boolean>(false);
   const [isSaving, setIsSaving] = React.useState<boolean>(false);
 
-  const setData = React.useCallback(
-    (data: T) => {
-      setLocalData(data);
+  const localSave = React.useCallback(
+    (data: Partial<T>) => {
+      onChange(data);
       setIsDirty(true);
     },
-    [setLocalData]
+    [onChange]
   );
+
+  const replaceSavedData = React.useCallback(
+    (data: T) => {
+      onChange(data);
+      setSavedData(data);
+      setIsDirty(false);
+      setIsSaving(false);
+    },
+    [onChange, setSavedData, setIsSaving, setIsDirty]
+  );
+
+  const _getInitialValue = React.useCallback(() => {
+    async function f() {
+      try {
+        const w: T = await getInitialValue();
+        replaceSavedData(w);
+      } catch (err) {
+        reportError(err);
+      }
+    }
+
+    f();
+  }, [getInitialValue, replaceSavedData, reportError]);
+
+  React.useEffect(_getInitialValue, [_getInitialValue]);
 
   useInterval({
     callback: React.useCallback(async () => {
@@ -45,21 +73,19 @@ const useAutoSave = <T extends {}>({
         setSavedData(saved);
         setIsDirty(false);
         setIsSaving(false);
-        setSaveError(undefined);
       } catch (err) {
-        setSaveError(err);
+        reportError(err);
       }
-    }, [localData, setSavedData, setSaveError, saveData]),
+    }, [localData, setSavedData, reportError, saveData]),
     delay: enabled && isDirty ? delay : null,
   });
 
   return {
-    saveError,
     isSaving,
     isDirty,
     localData,
     savedData,
-    setData,
+    localSave,
   };
 };
 
