@@ -7,23 +7,23 @@ import {
 } from "../useQuestionApi/types";
 import { IEmbeddedIframe } from "../useEmbeddedIframeApi/types";
 
-export interface IPrimmPredict {
+export interface IPrimmSection {
   codeWidget: IEmbeddedIframe;
+}
+
+export interface IPrimmPredict extends IPrimmSection {
   scaffoldedQuestions: IScaffoldedQuestions[];
 }
 
-export interface IPrimmRun {
-  codeWidget: IEmbeddedIframe;
-}
-export interface IPrimmInvestigate {
-  codeWidget: IEmbeddedIframe;
+export interface IPrimmRun extends IPrimmSection {}
+
+export interface IPrimmInvestigate extends IPrimmSection {
   scaffoldedQuestions: IScaffoldedQuestions[];
 }
-export interface IPrimmModify {
-  codeWidget: IEmbeddedIframe;
+export interface IPrimmModify extends IPrimmSection {
   scaffoldedInstructions: IScaffoldedInstructions[];
 }
-export interface IPrimmMake {
+export interface IPrimmMake extends IPrimmSection {
   instructions: string;
 }
 

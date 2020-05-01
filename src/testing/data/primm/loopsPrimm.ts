@@ -126,6 +126,10 @@ export const challenge: IPrimmChallengeDoc = createDocument<IPrimmChallenge>({
     },
   },
   make: {
+    codeWidget: {
+      system: IEmbeddedIframeSystem.Trinket,
+      trinketId: "31a564c775",
+    },
     instructions: "Write your own shape",
   },
 });

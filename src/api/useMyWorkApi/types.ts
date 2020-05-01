@@ -1,12 +1,12 @@
 import { IMongoDocument } from "../useDocumentApi/types";
 
-export enum WorkType {
+export enum IWorkType {
   primmChallenge = "primmChallenge",
   courseTask = "courseTask",
 }
 
 export interface IWork<T> {
-  workType: WorkType;
+  workType: IWorkType;
   workId: string;
   workContent: T;
 }

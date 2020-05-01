@@ -2,7 +2,7 @@ import React from "react";
 import fetchMock from "fetch-mock";
 import { match, MatchFunction } from "path-to-regexp";
 
-import { IWorkDoc, IWork, WorkType } from "../../api/useMyWorkApi/types";
+import { IWorkDoc, IWork, IWorkType } from "../../api/useMyWorkApi/types";
 import { MockServer } from "./mockServerUtils";
 import { createDocument } from "../data/testDataUtils";
 import useListReducer from "../../lib/useListReducer";
@@ -12,7 +12,7 @@ const resource = "/myWork";
 const resourceUrlWithWorkId = `express:${resource}/:workType/:workId`;
 
 interface KeyWorkIds {
-  workType: WorkType;
+  workType: IWorkType;
   workId: string;
 }
 const matchWorkIds: MatchFunction<KeyWorkIds> = match<KeyWorkIds>(
@@ -46,7 +46,7 @@ export const useMockServer = (): MockServer => {
       const { workId, workType } = getWorkTypeAndId(url);
       const found = myWork[workId];
       if (!!found) {
-        return found;
+        return found.workContent;
       } else {
         return createDocument({
           workId,
@@ -55,12 +55,15 @@ export const useMockServer = (): MockServer => {
       }
     });
     fetchMock.post(resourceUrlWithWorkId, (url, options) => {
-      //   const id = getId(resource, url);
+      const { workId, workType } = getWorkTypeAndId(url);
       const body = JSON.parse(options.body as string) as IWork<any>;
-      const work: IWorkDoc<any> = createDocument(body);
+      const work: IWorkDoc<any> = createDocument({
+        workId,
+        workType,
+        workContent: body,
+      });
       addItem(work);
-
-      return work;
+      return work.workContent;
     });
   }, [myWork, addItem]);
   return { setup, data: myWorkList };

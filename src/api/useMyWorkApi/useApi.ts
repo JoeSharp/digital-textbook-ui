@@ -1,17 +1,17 @@
 import React from "react";
 import { useAuthenticationContext } from "../../lib/authentication";
 import useCheckHttpStatus from "../../lib/useCheckHttpStatus";
-import { IWorkDoc, IWork, WorkType } from "./types";
+import { IWorkType } from "./types";
 
 const RESOURCE = `${process.env.REACT_APP_SERVICE_BASE_URL}/myWork`;
 
 interface UseMyWorkApi<T> {
-  getMyWork: (workType: WorkType, workId: string) => Promise<IWorkDoc<T>>;
+  getMyWork: (workType: IWorkType, workId: string) => Promise<T>;
   saveMyWork: (
-    workType: WorkType,
+    workType: IWorkType,
     workId: string,
-    work: IWork<T>
-  ) => Promise<IWorkDoc<T>>;
+    workContent: T
+  ) => Promise<T>;
 }
 
 const useApi = <T extends {}>(): UseMyWorkApi<T> => {
@@ -20,7 +20,7 @@ const useApi = <T extends {}>(): UseMyWorkApi<T> => {
 
   return {
     getMyWork: React.useCallback(
-      async (workType: WorkType, workId: string) => {
+      async (workType: IWorkType, workId: string) => {
         let headers = {
           Accept: "application/json",
           Authorization: `Bearer ${idToken}`,
@@ -34,7 +34,7 @@ const useApi = <T extends {}>(): UseMyWorkApi<T> => {
       [idToken, handle200]
     ),
     saveMyWork: React.useCallback(
-      async (workType: WorkType, workId: string, work: IWork<T>) => {
+      async (workType: IWorkType, workId: string, workContent: T) => {
         let headers = {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const useApi = <T extends {}>(): UseMyWorkApi<T> => {
         };
         const response = await fetch(`${RESOURCE}/${workType}/${workId}`, {
           method: "post",
-          body: JSON.stringify(work),
+          body: JSON.stringify(workContent),
           headers,
         });
         const r = await handle200(response);

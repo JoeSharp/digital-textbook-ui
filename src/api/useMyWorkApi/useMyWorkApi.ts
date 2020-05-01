@@ -1,44 +1,118 @@
 import React from "react";
 
 import useApi from "./useApi";
-import { IWork, WorkType } from "./types";
-import useAutoSave from "../../lib/useAutoSave";
+import { IWorkType } from "./types";
+import useInterval from "../../lib/useInterval";
 
-interface UseMyWorkApi<T> {
-  work: IWork<T>;
-  isDirty: boolean;
-  isSaving: boolean;
-  localSave: (w: Partial<T>) => void;
+interface WorkAction {
+  type: string;
 }
 
-const useMyWorkApi = <T extends {}>(
-  workType: WorkType,
-  workId: string,
-  defaultContent: T
-): UseMyWorkApi<T> => {
-  const { getMyWork, saveMyWork } = useApi<T>();
-  const defaultWork = React.useMemo(
-    () => ({ workId, workType, workContent: defaultContent }),
-    [workType, workId, defaultContent]
+interface WorkSaving<WORK_CONTENT> {
+  isDirty: boolean;
+  isSaving: boolean;
+  workContent: WORK_CONTENT;
+}
+
+interface Props<WORK_CONTENT, ACTION extends WorkAction> {
+  workType: IWorkType;
+  workId: string;
+  defaultContent: WORK_CONTENT;
+  reducer: React.Reducer<WORK_CONTENT, ACTION>;
+}
+
+export interface UseMyWorkApi<WORK_CONTENT, ACTION extends WorkAction> {
+  workContent: WORK_CONTENT;
+  isDirty: boolean;
+  isSaving: boolean;
+  dispatchUpdate: React.Dispatch<ACTION>;
+}
+
+interface InitialLoadAction<WORK_CONTENT> {
+  type: "initialLoad";
+  value: WORK_CONTENT;
+}
+interface StartSaveAction {
+  type: "startSave";
+}
+interface SaveCompleteAction {
+  type: "saveComplete";
+}
+interface MadeDirty {
+  type: "madeDirty";
+}
+type SavingAction<WORK_CONTENT> =
+  | InitialLoadAction<WORK_CONTENT>
+  | StartSaveAction
+  | SaveCompleteAction
+  | MadeDirty;
+
+const workSavingReducer = <WORK_CONTENT, ACTION extends WorkAction>(
+  reducer: React.Reducer<WORK_CONTENT, ACTION>
+): React.Reducer<
+  WorkSaving<WORK_CONTENT>,
+  SavingAction<WORK_CONTENT> | ACTION
+> => {
+  return (
+    state: WorkSaving<WORK_CONTENT>,
+    action: SavingAction<WORK_CONTENT> | ACTION
+  ): WorkSaving<WORK_CONTENT> => {
+    if (action.type === "initialLoad") {
+      return {
+        isDirty: false,
+        isSaving: false,
+        workContent: (action as InitialLoadAction<WORK_CONTENT>).value,
+      };
+    } else if (action.type === "startSave") {
+      return { ...state, isSaving: true };
+    } else if (action.type === "saveComplete") {
+      return { ...state, isSaving: false, isDirty: false };
+    } else if (action.type === "madeDirty") {
+      return { ...state, isDirty: true };
+    } else {
+      return {
+        ...state,
+        workContent: reducer(state.workContent, action as ACTION),
+      };
+    }
+  };
+};
+
+const useMyWorkApi = <WORK_CONTENT, ACTION extends WorkAction>({
+  workType,
+  workId,
+  defaultContent,
+  reducer,
+}: Props<WORK_CONTENT, ACTION>): UseMyWorkApi<WORK_CONTENT, ACTION> => {
+  const [workState, dispatchUpdate] = React.useReducer(
+    workSavingReducer(reducer),
+    {
+      isSaving: false,
+      isDirty: false,
+      workContent: defaultContent,
+    }
   );
+  const { workContent, isSaving, isDirty } = workState;
 
-  const getInitialValue = React.useCallback(() => getMyWork(workType, workId), [
-    workId,
-    workType,
-    getMyWork,
-  ]);
+  const { getMyWork, saveMyWork } = useApi<WORK_CONTENT>();
 
-  const { localData: work, isDirty, isSaving, localSave } = useAutoSave<
-    IWork<T>
-  >({
-    defaultValue: defaultWork,
-    getInitialValue,
-    saveData: (w) => {
-      return saveMyWork(WorkType.primmChallenge, workId, w);
-    },
+  React.useEffect(() => {
+    async function f() {
+      const value = await getMyWork(workType, workId);
+      dispatchUpdate({ type: "initialLoad", value });
+    }
+
+    f();
+  }, [workType, workId, getMyWork, dispatchUpdate]);
+
+  useInterval({
+    callback: React.useCallback(() => {
+      saveMyWork(workType, workId, workContent);
+    }, [workType, workId, workContent, saveMyWork]),
+    delay: 3000,
   });
 
-  return { work, localSave, isDirty, isSaving };
+  return { workContent, dispatchUpdate, isDirty, isSaving };
 };
 
 export default useMyWorkApi;

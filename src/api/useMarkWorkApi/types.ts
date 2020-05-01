@@ -1,6 +1,6 @@
 import { IMongoDocument } from "../useDocumentApi/types";
 import { IUserDoc } from "../useUserApi/types";
-import { WorkType, IWorkDoc } from "../useMyWorkApi/types";
+import { IWorkType, IWorkDoc } from "../useMyWorkApi/types";
 
 export interface IStudentWorkDoc extends IMongoDocument {
   student: IUserDoc;
@@ -8,7 +8,7 @@ export interface IStudentWorkDoc extends IMongoDocument {
 }
 
 export interface IStudentWorkSubmissionList {
-  workType: WorkType;
+  workType: IWorkType;
   workId: string;
   students: IUserDoc[];
 }

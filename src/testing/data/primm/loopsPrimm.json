@@ -1,0 +1,125 @@
+{
+  "title": "Loops",
+  "description": "Discover what loops are, how they work and how to write them",
+
+  "predict": {
+    "codeWidget": {
+      "system": "gitHubGist",
+      "gistId": "3a08be71dc0fd760141c0c6cddc96cdf"
+    },
+    "scaffoldedQuestions": [
+      {
+        "caption": "Free Flow",
+        "questions": [
+          {
+            "id": "openPredict",
+            "type": "FreeFlow",
+            "question": "What does this code do?"
+          }
+        ]
+      },
+      {
+        "caption": "Clue",
+        "questions": [
+          {
+            "id": "cluePredict",
+            "type": "FreeFlowWithClue",
+            "clue": "A loop will execute the code block a number of times, the code block is the indented portion",
+            "question": "What will this code print to the screen?"
+          }
+        ]
+      },
+      {
+        "caption": "Leading",
+        "questions": [
+          {
+            "id": "leadingAlpha",
+            "type": "MultipleChoice",
+            "question": "How many times will it print 'ALPHA'?",
+            "correctOption": "4",
+            "options": ["1", "4", "5", "3"]
+          },
+          {
+            "id": "leadingBeta",
+            "type": "MultipleChoice",
+            "question": "How many times will it print 'BETA'?",
+            "correctOption": "4",
+            "options": ["1", "4", "5", "3"]
+          },
+          {
+            "id": "leadingCharlie",
+            "type": "MultipleChoice",
+            "question": "How many times will it print 'CHARLIE'?",
+            "correctOption": "1",
+            "options": ["1", "4", "5", "3"]
+          }
+        ]
+      }
+    ]
+  },
+  "run": {
+    "codeWidget": {
+      "system": "Trinket",
+      "trinketId": "0bd9bece4f"
+    }
+  },
+  "investigate": {
+    "codeWidget": {
+      "system": "Trinket",
+      "trinketId": "31a564c775"
+    },
+    "scaffoldedQuestions": [
+      {
+        "caption": "Free Flow",
+        "questions": [
+          {
+            "id": "investigateOpenEnded",
+            "type": "FreeFlow",
+            "question": "Read this code, and summaries what you think it does."
+          },
+          {
+            "id": "investigateRange",
+            "type": "FreeFlow",
+            "question": "Look at the number being passed into range, what do you notice about the number of times the loop executes?"
+          },
+          {
+            "id": "investigateFormat",
+            "type": "FreeFlow",
+            "question": "What do you think the format function does?"
+          }
+        ]
+      }
+    ]
+  },
+  "modify": {
+    "scaffoldedInstructions": [
+      {
+        "caption": "Open",
+        "instructions": ["Change the background colour to..."]
+      },
+      {
+        "caption": "Leading",
+        "instructions": [
+          "Change the value passed into the background colour function..."
+        ]
+      },
+      {
+        "caption": "Closed",
+        "instructions": [
+          "Locate the call to background colour, and change the value from 'blue' to 'red'"
+        ]
+      }
+    ],
+    "codeWidget": {
+      "system": "Trinket",
+      "trinketId": "0bd9bece4f"
+    }
+  },
+  "make": {
+    "codeWidget": {
+      "system": "Trinket",
+      "trinketId": "31a564c775"
+    },
+    "instructions": "Write your own shape"
+  }
+}

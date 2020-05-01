@@ -7,8 +7,8 @@ import {
   IPrimmWork,
   EMPTY_PRIMM_WORK,
 } from "../usePrimmApi/types";
-import useMyWorkApi from ".";
-import { WorkType } from "./types";
+import useMyWorkApi, { UseMyWorkApi } from "./useMyWorkApi";
+import { IWorkType } from "./types";
 import { UseObjectReducer } from "../../lib/useObjectReducer/types";
 
 interface UpdatePredict {
@@ -55,10 +55,7 @@ const workContentReducer = (state: IPrimmWork, action: Action): IPrimmWork => {
   return state;
 };
 
-interface UsePrimmWorkContent {
-  workContent: IPrimmWork;
-  isDirty: boolean;
-  isSaving: boolean;
+interface UsePrimmWorkContent extends UseMyWorkApi<IPrimmWork, Action> {
   predictResponse: UseObjectReducer<IQuestionResponses>;
   runResponse: UseObjectReducer<IPrimmRunResponse>;
   investigateResponse: UseObjectReducer<IQuestionResponses>;
@@ -67,60 +64,58 @@ interface UsePrimmWorkContent {
 }
 
 const usePrimmWorkContent = (challengeId: string): UsePrimmWorkContent => {
-  const { work, isDirty, isSaving, localSave } = useMyWorkApi<IPrimmWork>(
-    WorkType.primmChallenge,
-    challengeId,
-    EMPTY_PRIMM_WORK
-  );
+  const myWorkApi = useMyWorkApi<IPrimmWork, Action>({
+    workType: IWorkType.primmChallenge,
+    workId: challengeId,
+    defaultContent: EMPTY_PRIMM_WORK,
+    reducer: workContentReducer,
+  });
 
-  const [workContent, dispatch] = React.useReducer(
-    workContentReducer,
-    work.workContent
-  );
-
-  React.useEffect(() => localSave(workContent), [workContent, localSave]);
+  const {
+    dispatchUpdate,
+    workContent: { predict, run, investigate, modify, make },
+  } = myWorkApi;
 
   return {
-    workContent,
-    isDirty,
-    isSaving,
+    ...myWorkApi,
     predictResponse: {
-      value: workContent.predict,
+      value: predict,
       onChange: React.useCallback(
         (value: Partial<IQuestionResponses>) =>
-          dispatch({ type: "predict", value }),
-        []
+          dispatchUpdate({ type: "predict", value }),
+        [dispatchUpdate]
       ),
     },
     runResponse: {
-      value: workContent.run,
+      value: run,
       onChange: React.useCallback(
-        (value: Partial<IPrimmRunResponse>) => dispatch({ type: "run", value }),
-        []
+        (value: Partial<IPrimmRunResponse>) =>
+          dispatchUpdate({ type: "run", value }),
+        [dispatchUpdate]
       ),
     },
     investigateResponse: {
-      value: workContent.investigate,
+      value: investigate,
       onChange: React.useCallback(
         (value: Partial<IQuestionResponses>) =>
-          dispatch({ type: "investigate", value }),
-        []
+          dispatchUpdate({ type: "investigate", value }),
+        [dispatchUpdate]
       ),
     },
     modifyResponse: {
-      value: workContent.modify,
+      value: modify,
       onChange: React.useCallback(
         (value: Partial<IPrimmRemixResponse>) =>
-          dispatch({ type: "modify", value }),
-        []
+          dispatchUpdate({ type: "modify", value }),
+        [dispatchUpdate]
       ),
     },
     makeResponse: {
-      value: workContent.make,
+      value: make,
       onChange: React.useCallback(
         (value: Partial<IPrimmRemixResponse>) =>
-          dispatch({ type: "make", value }),
-        []
+          dispatchUpdate({ type: "make", value }),
+        [dispatchUpdate]
       ),
     },
   };
