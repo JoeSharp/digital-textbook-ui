@@ -1,22 +1,29 @@
 import React from "react";
 import fetchMock from "fetch-mock";
 
-import { lessons as initialLessons } from "../data";
+import { lessons as initialLessonList } from "../data";
 import { ILessonDoc, ILesson } from "../../api/useLessonApi/types";
 import { MockServer, getId } from "./mockServerUtils";
-import useListReducer from "../../lib/useListReducer";
 import { createDocument } from "../data/testDataUtils";
+import useObjectReducer from "../../lib/useObjectReducer";
 
 const resource = "/lesson";
 const resourceForCourse = `${resource}/forCourse`;
 const resourceForCourseId = `express:${resourceForCourse}/:id`;
 const resourceWithLessonId = `express:${resource}/:id`;
 
+const initialLessons = initialLessonList.reduce(
+  (acc, curr) => ({ ...acc, [curr._id]: curr }),
+  {}
+);
+
 export const useMockServer = (): MockServer => {
-  const { items: lessons, addItem, removeItem } = useListReducer<ILessonDoc>(
-    (c) => c._id,
-    initialLessons
-  );
+  const {
+    itemsInList: lessons,
+    items: lessonsById,
+    addItem,
+    removeItem,
+  } = useObjectReducer<ILessonDoc>((c) => c._id, initialLessons);
 
   const setup = React.useCallback(() => {
     fetchMock.get(resourceForCourseId, (url) => {
@@ -30,7 +37,7 @@ export const useMockServer = (): MockServer => {
     });
     fetchMock.get(resourceWithLessonId, (url) => {
       const id = getId(resource, url);
-      const lesson = lessons.find((c) => c._id === id);
+      const lesson = lessonsById[id];
       if (!!lesson) {
         return lesson;
       } else {
@@ -57,11 +64,11 @@ export const useMockServer = (): MockServer => {
     });
     fetchMock.delete(resourceWithLessonId, (url) => {
       const id = getId(resource, url);
-      const removed = lessons.find((l) => l._id === id);
+      const removed = lessonsById[id];
       removeItem(id);
       return removed;
     });
-  }, [lessons, addItem, removeItem]);
+  }, [lessons, lessonsById, addItem, removeItem]);
 
   return { setup, data: lessons };
 };

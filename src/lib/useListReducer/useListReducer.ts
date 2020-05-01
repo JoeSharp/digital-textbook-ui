@@ -1,4 +1,5 @@
 import React from "react";
+import { UseListReducer } from "./types";
 
 /**
  * This file exports a custom hook that can be used to manage a list
@@ -28,7 +29,9 @@ interface RemovedByIndexAction {
   index: number;
 }
 
-const createListReducer = <T extends {}>(getKey: (item: T) => string) => {
+export const createListReducer = <T extends {}>(
+  getKey: (item: T) => string
+) => {
   return (
     state: T[],
     action:
@@ -56,15 +59,6 @@ const createListReducer = <T extends {}>(getKey: (item: T) => string) => {
     }
   };
 };
-
-interface UseListReducer<T extends {}> {
-  items: T[];
-  receiveItems: (items: T[]) => void;
-  addItem: (item: T) => void;
-  removeItem: (itemKey: string) => void;
-  updateItemAtIndex: (index: number, newValue: T) => void;
-  removeItemAtIndex: (index: number) => void;
-}
 
 const useListReducer = <T extends {}>(
   getKey: (item: T) => string,

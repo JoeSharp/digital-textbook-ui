@@ -3,9 +3,9 @@ import fetchMock from "fetch-mock";
 import { match, MatchFunction } from "path-to-regexp";
 
 import { IWorkDoc, IWork, WorkType } from "../../api/useMyWorkApi/types";
-import useListReducer from "../../lib/useListReducer";
 import { MockServer } from "./mockServerUtils";
 import { createDocument } from "../data/testDataUtils";
+import useObjectReducer from "../../lib/useObjectReducer";
 
 const resource = "/myWork";
 // const resourceUrl = `${process.env.REACT_APP_SERVICE_BASE_URL}${resource}`;
@@ -37,12 +37,14 @@ export function getWorkTypeAndId(requestUrl: string): KeyWorkIds {
 }
 
 export const useMockServer = (): MockServer => {
-  const { items: myWork, addItem } = useListReducer<IWorkDoc>((c) => c._id, []);
+  const { items: myWork, itemsInList: myWorkList, addItem } = useObjectReducer<
+    IWorkDoc
+  >((c) => c.workId);
 
   const setup = React.useCallback(() => {
     fetchMock.get(resourceUrlWithWorkId, (url) => {
       const { workId, workType } = getWorkTypeAndId(url);
-      const found = myWork.find((c) => c.workId === workId);
+      const found = myWork[workId];
       if (!!found) {
         return found;
       } else {
@@ -61,7 +63,7 @@ export const useMockServer = (): MockServer => {
       return work;
     });
   }, [myWork, addItem]);
-  return { setup, data: myWork };
+  return { setup, data: myWorkList };
 };
 
 export default useMockServer;

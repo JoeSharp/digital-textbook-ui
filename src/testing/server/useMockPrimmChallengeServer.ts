@@ -1,29 +1,40 @@
 import React from "react";
 import fetchMock from "fetch-mock";
 
-import { primmChallenges as initialPrimmChallenges } from "../data";
+import { primmChallenges as initialPrimmChallengeList } from "../data";
 import {
   IPrimmChallengeDoc,
   IPrimmChallenge,
 } from "../../api/usePrimmApi/types";
 import { MockServer, getId } from "./mockServerUtils";
-import useListReducer from "../../lib/useListReducer";
 import { createDocument } from "../data/testDataUtils";
+import useObjectReducer from "../../lib/useObjectReducer";
+
+const initialPrimmChallenges = initialPrimmChallengeList.reduce(
+  (acc, curr) => ({ ...acc, [curr._id]: curr }),
+  {}
+);
 
 const resource = "/primm";
 const resourceUrl = `${process.env.REACT_APP_SERVICE_BASE_URL}${resource}`;
 const resourceUrlWithId = `express:${resource}/:id`;
 
 export const useMockServer = (): MockServer => {
-  const { items: challenges, addItem, removeItem } = useListReducer<
-    IPrimmChallengeDoc
-  >((c) => c._id, initialPrimmChallenges);
+  const {
+    items: challengesById,
+    itemsInList: challenges,
+    addItem,
+    removeItem,
+  } = useObjectReducer<IPrimmChallengeDoc>(
+    (c) => c._id,
+    initialPrimmChallenges
+  );
 
   const setup = React.useCallback(() => {
     fetchMock.get(resourceUrl, challenges);
     fetchMock.get(resourceUrlWithId, (url) => {
       const id = getId(resource, url);
-      const challenge = challenges.find((c) => c._id === id);
+      const challenge = challengesById[id];
       if (!!challenge) {
         return challenge;
       } else {
@@ -53,11 +64,11 @@ export const useMockServer = (): MockServer => {
     });
     fetchMock.delete(resourceUrlWithId, (url) => {
       const id = getId(resource, url);
-      const removed = challenges.find((c) => c._id === id);
+      const removed = challengesById[id];
       removeItem(id);
       return removed;
     });
-  }, [challenges, addItem, removeItem]);
+  }, [challenges, challengesById, addItem, removeItem]);
 
   return { setup, data: challenges };
 };

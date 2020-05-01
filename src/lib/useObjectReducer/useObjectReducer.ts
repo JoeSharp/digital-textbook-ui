@@ -32,8 +32,6 @@ export const getDefaultObjectReducer = <T extends {}>(): UseObjectReducer<
     addItem: (item: T) => console.log("no", item),
     items: {},
     itemsInList: [] as T[],
-    receiveKeyedItems: (items: ObjWithStringKey<T>) =>
-      console.log("Default Implementation", items),
     receiveListOfItems: (items: T[]) =>
       console.log("Default Implementation", items),
     removeItem: (itemKey: string) =>
@@ -85,14 +83,6 @@ const useObjectReducer = <T extends {}>(
   return {
     items,
     itemsInList: React.useMemo(() => Object.values(items), [items]),
-    receiveKeyedItems: React.useCallback(
-      (items: ObjWithStringKey<T>) =>
-        dispatch({
-          type: "keyedItemstemsReceived",
-          items,
-        }),
-      [dispatch]
-    ),
     receiveListOfItems: React.useCallback(
       (items: T[]) =>
         dispatch({
