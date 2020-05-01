@@ -38,14 +38,10 @@ interface StartSaveAction {
 interface SaveCompleteAction {
   type: "saveComplete";
 }
-interface MadeDirty {
-  type: "madeDirty";
-}
 type SavingAction<WORK_CONTENT> =
   | InitialLoadAction<WORK_CONTENT>
   | StartSaveAction
-  | SaveCompleteAction
-  | MadeDirty;
+  | SaveCompleteAction;
 
 const workSavingReducer = <WORK_CONTENT, ACTION extends WorkAction>(
   reducer: React.Reducer<WORK_CONTENT, ACTION>
@@ -67,11 +63,10 @@ const workSavingReducer = <WORK_CONTENT, ACTION extends WorkAction>(
       return { ...state, isSaving: true };
     } else if (action.type === "saveComplete") {
       return { ...state, isSaving: false, isDirty: false };
-    } else if (action.type === "madeDirty") {
-      return { ...state, isDirty: true };
     } else {
       return {
         ...state,
+        isDirty: true,
         workContent: reducer(state.workContent, action as ACTION),
       };
     }
@@ -107,9 +102,14 @@ const useMyWorkApi = <WORK_CONTENT, ACTION extends WorkAction>({
 
   useInterval({
     callback: React.useCallback(() => {
-      saveMyWork(workType, workId, workContent);
+      async function f() {
+        dispatchUpdate({ type: "startSave" });
+        await saveMyWork(workType, workId, workContent);
+        dispatchUpdate({ type: "saveComplete" });
+      }
+      f();
     }, [workType, workId, workContent, saveMyWork]),
-    delay: 3000,
+    delay: isDirty ? 3000 : null,
   });
 
   return { workContent, dispatchUpdate, isDirty, isSaving };
