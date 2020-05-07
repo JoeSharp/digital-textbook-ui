@@ -1,9 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import EmbeddedIframe from "./EmbeddedIframe";
-import { IEmbeddedIframeSystem } from "../../../api/useEmbeddedIframeApi/types";
+import {
+  IEmbeddedIframeSystem,
+  SketchEmbedType,
+} from "../../../api/useEmbeddedIframeApi/types";
 
-storiesOf("General Purpose/Embedded Iframe", module)
+storiesOf("General Purpose/Embedded Iframe/Switched", module)
   .add("Trinket", () => (
     <EmbeddedIframe
       embeddedIframe={{
@@ -17,6 +20,7 @@ storiesOf("General Purpose/Embedded Iframe", module)
       embeddedIframe={{
         system: IEmbeddedIframeSystem.p5js,
         sketchId: "HbRNJwhrZ",
+        embedType: SketchEmbedType.embed,
       }}
     />
   ))

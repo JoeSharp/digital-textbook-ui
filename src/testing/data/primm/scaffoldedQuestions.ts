@@ -5,7 +5,7 @@ import {
 
 const scaffoldedQuestions: IScaffoldedQuestions[] = [
   {
-    caption: "Freeform",
+    caption: "Open Ended",
     questions: [
       {
         id: "openPredict",
@@ -29,7 +29,7 @@ const scaffoldedQuestions: IScaffoldedQuestions[] = [
         clue: "A for loop is used to execute a block of code multiple times",
       },
       {
-        id: "leadingLine3",
+        id: "whatComments",
         question:
           "What comment would you write to describe how this code works to another developer?",
         type: IQuestionType.FreeFlowWithClue,

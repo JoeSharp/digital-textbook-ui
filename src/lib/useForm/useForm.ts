@@ -9,6 +9,7 @@ import { Form, ControlledInput } from "./types";
 interface UseForm<T> {
   initialValues?: T;
   onValidate?: (updates: Partial<T>) => void;
+  onChange?: (v: T) => void;
 }
 
 const reducer = <T extends {}>(state: T, action: Partial<T>) => {
@@ -18,16 +19,13 @@ const reducer = <T extends {}>(state: T, action: Partial<T>) => {
 export const useForm = <T extends {}>({
   initialValues,
   onValidate,
+  onChange,
 }: UseForm<T>): Form<T> => {
   const [v, onUpdate] = React.useReducer(reducer, initialValues || {});
   const value = v as T;
 
-  // Set the current values to the initial values, whenever those change
-  React.useEffect(() => {
-    if (!!initialValues) {
-      onUpdate(initialValues);
-    }
-  }, [initialValues, onUpdate]);
+  // Propagate the change up
+  React.useEffect(() => onChange && onChange(value), [value, onChange]);
 
   // Call out to the validation function when the values change
   React.useEffect(() => {
@@ -48,11 +46,13 @@ export const useForm = <T extends {}>({
   const useCheckboxInput = (s: keyof T) => ({
     type: "checkbox",
     checked: value[s],
-    onChange: React.useCallback(() => {
-      onUpdate(({
-        [s]: !value[s],
-      } as unknown) as Partial<T>);
-    }, [s]),
+    onChange: React.useCallback(
+      (e) =>
+        onUpdate(({
+          [s]: e.target.checked,
+        } as unknown) as Partial<T>),
+      [s]
+    ),
   });
 
   const useControlledInputProps = <FIELD_TYPE>(
@@ -65,7 +65,6 @@ export const useForm = <T extends {}>({
   });
 
   return {
-    onUpdate,
     value,
     useTextInput,
     useCheckboxInput,

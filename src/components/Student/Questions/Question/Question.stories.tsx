@@ -18,9 +18,9 @@ const TestHarness: React.FunctionComponent<Props> = ({ question }) => {
 scaffoldedQuestions.forEach(({ caption, questions }) =>
   questions.forEach((question, i) => {
     storiesOf(
-      "Student/Questions/Question",
+      "Student/Questions/Question/From Test Data",
       module
-    ).add(`${caption}/${question.type}`, () => (
+    ).add(`${caption}/${question.id}`, () => (
       <TestHarness question={question} />
     ));
   })

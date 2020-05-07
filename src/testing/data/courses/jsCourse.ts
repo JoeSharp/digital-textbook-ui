@@ -1,4 +1,7 @@
-import { IEmbeddedIframeSystem } from "../../../api/useEmbeddedIframeApi/types";
+import {
+  IEmbeddedIframeSystem,
+  SketchEmbedType,
+} from "../../../api/useEmbeddedIframeApi/types";
 import { ITaskDoc, ITask, ITaskType } from "../../../api/useTaskApi/types";
 import { ICourseDoc } from "../../../api/useCourseApi/types";
 import { ILesson, ILessonDoc } from "../../../api/useLessonApi/types";
@@ -26,6 +29,7 @@ export const lesson1Task1: ITaskDoc = createDocument<ITask>({
   iframe: {
     system: IEmbeddedIframeSystem.p5js,
     sketchId: "123",
+    embedType: SketchEmbedType.full,
   },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
@@ -39,6 +43,7 @@ export const lesson1Task2: ITaskDoc = createDocument<ITask>({
   iframe: {
     system: IEmbeddedIframeSystem.p5js,
     sketchId: "123",
+    embedType: SketchEmbedType.full,
   },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });
@@ -52,6 +57,7 @@ export const lesson1Task3: ITaskDoc = createDocument<ITask>({
   iframe: {
     system: IEmbeddedIframeSystem.p5js,
     sketchId: "123",
+    embedType: SketchEmbedType.full,
   },
   videoLink: "https://www.youtube.com/watch?v=wturXRf3cZQ",
 });

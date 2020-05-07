@@ -9,7 +9,6 @@ export interface ControlledInput<T> {
 }
 
 export interface Form<T> {
-  onUpdate: (updates: Partial<T>) => void;
   value: T;
   useControlledInputProps: <FIELD_TYPE>(
     s: keyof T
