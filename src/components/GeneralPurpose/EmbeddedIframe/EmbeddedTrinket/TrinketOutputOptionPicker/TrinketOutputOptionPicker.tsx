@@ -1,11 +1,12 @@
 import React from "react";
-import Select, { ValueType } from "react-select";
+import Select from "react-select";
 
 import { ControlledInput } from "../../../../../lib/useForm/types";
 import { ITrinketOutputOption } from "../../../../../api/useEmbeddedIframeApi/types";
 import { BasicOption } from "../../../../../lib/useReactSelect/types";
+import useReactSelect from "../../../../../lib/useReactSelect";
 
-const _options: BasicOption[] = [
+const options: BasicOption[] = [
   {
     label:
       "Show the code and output side by side (smaller screens will only show one at a time)",
@@ -24,18 +25,11 @@ const _options: BasicOption[] = [
 const TrinketOutputOptionPicker: React.FunctionComponent<ControlledInput<
   ITrinketOutputOption
 >> = ({ value, onChange }) => {
-  const _value: BasicOption = React.useMemo(
-    () => _options.find((o) => o.value === value) || _options[0],
-    [value]
-  );
-  const _onChange: (v: ValueType<BasicOption>) => void = React.useCallback(
-    (v) => {
-      if (!!v && (v as BasicOption).value) {
-        onChange(((v as BasicOption).value as unknown) as ITrinketOutputOption);
-      }
-    },
-    [onChange]
-  );
+  const { _onChange, _options, _value } = useReactSelect<ITrinketOutputOption>({
+    value,
+    onChange,
+    options,
+  });
 
   return <Select onChange={_onChange} value={_value} options={_options} />;
 };

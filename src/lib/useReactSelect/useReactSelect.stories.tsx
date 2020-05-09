@@ -3,8 +3,16 @@ import { storiesOf } from "@storybook/react";
 import Select from "react-select";
 import useReactSelect from "./useReactSelect";
 import JsonDebug from "../JsonDebug";
+import { BasicOption } from "./types";
 
-const OPTIONS: string[] = ["Dog", "Cat", "Rat", "Snake", "Badger", "Lion"];
+const OPTIONS: BasicOption[] = [
+  "Dog",
+  "Cat",
+  "Rat",
+  "Snake",
+  "Badger",
+  "Lion",
+].map((s) => ({ label: s, value: s.toLocaleLowerCase() }));
 
 const TestHarness: React.FunctionComponent = () => {
   const [value, onChange] = React.useState<string>("");
