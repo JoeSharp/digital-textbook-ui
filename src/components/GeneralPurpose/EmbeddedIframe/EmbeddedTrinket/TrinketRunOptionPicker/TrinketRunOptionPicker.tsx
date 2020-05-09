@@ -1,11 +1,12 @@
 import React from "react";
-import Select, { ValueType } from "react-select";
+import Select from "react-select";
 
 import { ControlledInput } from "../../../../../lib/useForm/types";
 import { ITrinketRunOption } from "../../../../../api/useEmbeddedIframeApi/types";
 import { BasicOption } from "../../../../../lib/useReactSelect/types";
+import useReactSelect from "../../../../../lib/useReactSelect";
 
-const _options: BasicOption[] = [
+const options: BasicOption[] = [
   {
     label: "Allow either Run or Interactive console",
     value: ITrinketRunOption.either,
@@ -23,18 +24,11 @@ const _options: BasicOption[] = [
 const TrinketRunOptionPicker: React.FunctionComponent<ControlledInput<
   ITrinketRunOption
 >> = ({ value, onChange }) => {
-  const _value: BasicOption = React.useMemo(
-    () => _options.find((o) => o.value === value) || _options[0],
-    [value]
-  );
-  const _onChange: (v: ValueType<BasicOption>) => void = React.useCallback(
-    (v) => {
-      if (!!v && (v as BasicOption).value) {
-        onChange(((v as BasicOption).value as unknown) as ITrinketRunOption);
-      }
-    },
-    [onChange]
-  );
+  const { _onChange, _options, _value } = useReactSelect<ITrinketRunOption>({
+    value,
+    onChange,
+    options,
+  });
 
   return <Select onChange={_onChange} value={_value} options={_options} />;
 };

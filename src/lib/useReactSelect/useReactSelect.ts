@@ -3,7 +3,7 @@ import { ValueType } from "react-select";
 import { BasicOption } from "./types";
 
 interface PropsIn<T> {
-  options: string[];
+  options: BasicOption[];
   value: string | undefined;
   onChange: (v: T) => any;
 }
@@ -14,22 +14,20 @@ interface UseReactSelect {
   _onChange: (v: ValueType<BasicOption>) => void;
 }
 
+/**
+ * This hook basically converts a value/onChange/options trio so
+ * that the options can be {label, value} but the value can just be the 'value'.
+ *
+ * @param props {options, value, onChange} The value is the 'value' of the selected option.
+ */
 const useReactSelect = <T extends {}>({
   options,
   value,
   onChange,
 }: PropsIn<T>): UseReactSelect => {
-  const _options = React.useMemo(
-    () =>
-      options.map((o) => ({
-        label: o,
-        value: o,
-      })),
-    [options]
-  );
   const _value: BasicOption | undefined = React.useMemo(
-    () => _options.find((o) => o.value === value),
-    [_options, value]
+    () => options.find((o) => o.value === value),
+    [options, value]
   );
   const _onChange: (v: ValueType<BasicOption>) => void = React.useCallback(
     (v) => {
@@ -41,7 +39,7 @@ const useReactSelect = <T extends {}>({
   );
 
   return {
-    _options,
+    _options: options,
     _value,
     _onChange,
   };
