@@ -1,33 +1,41 @@
 import React from "react";
+
 import useApi from "./useApi";
-import { useAuthenticationContext } from "../../lib/authentication";
 import { useErrorReporting } from "../../components/App/ErrorPage";
 import { IUserDoc } from "./types";
+import useClientSideData from "../useClientSideData";
+import { ObjWithStringKey } from "../../lib/useListReducer/types";
 
 interface UseUserApi {
-  currentUser: IUserDoc | undefined;
+  users: IUserDoc[];
+  usersById: ObjWithStringKey<IUserDoc>;
+  getUser: (userId: string) => void;
 }
 
 const useUserApi = (): UseUserApi => {
-  const [currentUser, setCurrentUser] = React.useState<IUserDoc>();
   const { reportError } = useErrorReporting();
-  const { idToken } = useAuthenticationContext();
-  const { getCurrentUser } = useApi();
+  const { getUser } = useApi();
+  const {
+    users: { items: usersById, itemsInList: usersInList, addItem },
+  } = useClientSideData();
 
-  React.useEffect(() => {
-    async function f() {
-      try {
-        const currentUser = await getCurrentUser();
-        setCurrentUser(currentUser);
-      } catch (err) {
-        reportError(err);
+  const _getUser = React.useCallback(
+    (userId: string) => {
+      async function f() {
+        try {
+          const lesson = await getUser(userId);
+          addItem(lesson);
+        } catch (err) {
+          reportError(err);
+        }
       }
-    }
 
-    f();
-  }, [idToken, reportError, setCurrentUser, getCurrentUser]);
+      f();
+    },
+    [getUser, addItem, reportError]
+  );
 
-  return { currentUser };
+  return { users: usersInList, usersById, getUser: _getUser };
 };
 
 export default useUserApi;

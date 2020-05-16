@@ -7,6 +7,9 @@ import { useMockServer as useMockTaskServer } from "./useMockTaskServer";
 import { useMockServer as useMockPrimmChallengeServer } from "./useMockPrimmChallengeServer";
 import fetchMock from "fetch-mock";
 
+// Configure fetch mock
+fetchMock.config.overwriteRoutes = true;
+
 export default (): boolean => {
   const [isReady, setReady] = React.useState<boolean>(false);
 

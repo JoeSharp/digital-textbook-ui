@@ -2,17 +2,14 @@ import React from "react";
 import { IUserDoc } from "../../api/useUserApi/types";
 
 interface AuthenticationContextApi {
+  login: (idToken: string) => void;
   idToken?: string;
   currentUser?: IUserDoc;
-  setIdToken: (idToken: string) => void;
 }
 
-const defaultIdToken: string | undefined = undefined;
-
 const defaultContext: AuthenticationContextApi = {
-  idToken: defaultIdToken,
-  setIdToken: (idToken: string) => {
-    console.error("Default Implementation for Authentication Context", idToken);
+  login: (idToken: string) => {
+    console.error("Default Implementation for Authentication Context");
   },
 };
 

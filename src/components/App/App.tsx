@@ -23,8 +23,7 @@ const isOffline = (tbd: any): tbd is GoogleLoginResponseOffline => {
 };
 
 function App() {
-  const [username, setUsername] = React.useState<string | undefined>();
-  const { setIdToken, currentUser } = useAuthenticationContext();
+  const { currentUser, login } = useAuthenticationContext();
 
   const responseGoogle = React.useCallback(
     (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
@@ -32,20 +31,19 @@ function App() {
       console.log(response);
 
       if (isOnline(response)) {
-        setIdToken(response.getAuthResponse().id_token);
-        setUsername(response.profileObj.name);
+        login(response.getAuthResponse().id_token);
       } else if (isOffline(response)) {
         console.log("Offline response");
       }
     },
-    [setIdToken, setUsername]
+    [login]
   );
 
   return (
     <div className="container">
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-        buttonText={username || "Login"}
+        buttonText={currentUser ? currentUser.emailAddress : "Login"}
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={"single_host_origin"}
