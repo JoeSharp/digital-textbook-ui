@@ -11,7 +11,7 @@ import { UseObjectReducer } from "../../../../lib/useObjectReducer/types";
 
 interface Props {
   scaffoldedQuestions: IScaffoldedQuestions[];
-  studentResponse: UseObjectReducer<IQuestionResponses>;
+  studentResponseControlProps: UseObjectReducer<IQuestionResponses>;
 }
 
 interface QuestionWithHandler {
@@ -21,7 +21,7 @@ interface QuestionWithHandler {
 
 const ScaffoldedQuestions: React.FunctionComponent<Props> = ({
   scaffoldedQuestions,
-  studentResponse: { onChange, value },
+  studentResponseControlProps: { onChange, value },
 }) => {
   const { componentProps } = useRequestScaffold({
     levelCaptions: React.useMemo(
@@ -60,7 +60,10 @@ const ScaffoldedQuestions: React.FunctionComponent<Props> = ({
         <Question
           key={question.id}
           question={question}
-          studentResponse={{ onChange, value: value[question.id] || "" }}
+          studentResponseControlProps={{
+            onChange,
+            value: value[question.id] || "",
+          }}
         />
       ))}
     </div>

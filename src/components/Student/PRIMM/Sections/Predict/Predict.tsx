@@ -18,7 +18,7 @@ const Predict: React.FunctionComponent<Props> = ({
       <EmbeddedIframe embeddedIframe={codeWidget} />
       <ScaffoldedQuestions
         scaffoldedQuestions={scaffoldedQuestions}
-        studentResponse={rest.studentResponse}
+        studentResponseControlProps={rest.studentResponseControlProps}
       />
     </Section>
   );

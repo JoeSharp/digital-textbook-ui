@@ -22,11 +22,11 @@ export const PrimmChallenge: React.FunctionComponent<Props> = ({
   const {
     isDirty,
     isSaving,
-    predictResponse,
-    runResponse,
-    investigateResponse,
-    modifyResponse,
-    makeResponse,
+    predictResponseControlProps,
+    runResponseControlProps,
+    investigateResponseControlProps,
+    modifyResponseControlProps,
+    makeResponseControlProps,
   } = usePrimmWorkContent(challenge._id);
 
   const sections: (keyof IPrimmChallenge)[] = React.useMemo(() => {
@@ -52,35 +52,35 @@ export const PrimmChallenge: React.FunctionComponent<Props> = ({
       {currentSection === "predict" && (
         <Predict
           predict={challenge.predict}
-          studentResponse={predictResponse}
+          studentResponseControlProps={predictResponseControlProps}
           {...sectionHandlers}
         />
       )}
       {currentSection === "run" && (
         <Run
           run={challenge.run}
-          studentResponse={runResponse}
+          studentResponseControlProps={runResponseControlProps}
           {...sectionHandlers}
         />
       )}
       {currentSection === "investigate" && (
         <Investigate
           investigate={challenge.investigate}
-          studentResponse={investigateResponse}
+          studentResponseControlProps={investigateResponseControlProps}
           {...sectionHandlers}
         />
       )}
       {currentSection === "modify" && (
         <Modify
           modify={challenge.modify}
-          studentResponse={modifyResponse}
+          studentResponseControlProps={modifyResponseControlProps}
           {...sectionHandlers}
         />
       )}
       {currentSection === "make" && (
         <Make
           make={challenge.make}
-          studentResponse={makeResponse}
+          studentResponseControlProps={makeResponseControlProps}
           {...sectionHandlers}
         />
       )}

@@ -7,29 +7,32 @@ import { ControlledInput } from "../../../../lib/useForm/types";
 
 interface Props {
   question: IQuestion;
-  studentResponse: ControlledInput<string>;
+  studentResponseControlProps: ControlledInput<string>;
 }
 
 const Question: React.FunctionComponent<Props> = ({
   question,
-  studentResponse,
+  studentResponseControlProps,
 }) => {
   if (question.type === IQuestionType.MultipleChoice) {
     return (
       <MultipleChoiceQuestion
         question={question}
-        studentResponse={studentResponse}
+        studentResponseControlProps={studentResponseControlProps}
       />
     );
   } else if (question.type === IQuestionType.FreeFlow) {
     return (
-      <FreeFlowQuestion question={question} studentResponse={studentResponse} />
+      <FreeFlowQuestion
+        question={question}
+        studentResponseControlProps={studentResponseControlProps}
+      />
     );
   } else if (question.type === IQuestionType.FreeFlowWithClue) {
     return (
       <FreeFlowQuestionWithClue
         question={question}
-        studentResponse={studentResponse}
+        studentResponseControlProps={studentResponseControlProps}
       />
     );
   }

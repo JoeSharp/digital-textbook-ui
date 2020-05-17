@@ -14,7 +14,7 @@ const AuthenticationContextProvider: React.FunctionComponent = ({
   const [idToken, setIdToken] = React.useState<string>();
   const [currentUser, setCurrentUser] = React.useState<IUserDoc>();
 
-  const login = React.useCallback(
+  const onLogin = React.useCallback(
     (_idToken: string) => {
       async function f() {
         try {
@@ -30,9 +30,15 @@ const AuthenticationContextProvider: React.FunctionComponent = ({
     },
     [setCurrentUser, setIdToken, reportError, apiLogin]
   );
+  const onLogout = React.useCallback(() => {
+    setCurrentUser(undefined);
+    setIdToken(undefined);
+  }, [setCurrentUser, setIdToken]);
 
   return (
-    <AuthenticationContext.Provider value={{ idToken, login, currentUser }}>
+    <AuthenticationContext.Provider
+      value={{ idToken, onLogin, onLogout, currentUser }}
+    >
       {children}
     </AuthenticationContext.Provider>
   );

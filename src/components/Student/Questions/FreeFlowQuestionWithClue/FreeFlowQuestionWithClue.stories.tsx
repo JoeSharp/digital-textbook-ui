@@ -21,7 +21,7 @@ const TestHarness: React.FunctionComponent = () => {
     <div>
       <FreeFlowQuestionWithClue
         question={question}
-        studentResponse={{ value, onChange }}
+        studentResponseControlProps={{ value, onChange }}
       />
       <JsonDebug value={{ question, value }} />
     </div>

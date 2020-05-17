@@ -4,9 +4,13 @@ import {
   GoogleLogin,
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
+  useGoogleLogout,
 } from "react-google-login";
+
 import Routes from "./Routes";
 import { useAuthenticationContext } from "../../lib/authentication";
+import { IApplicationRoles } from "../../api/useUserApi/types";
+import AuthorisedComponent from "../GeneralPurpose/AuthorisedComponent";
 
 const isOnline = (tbd: any): tbd is GoogleLoginResponse => {
   if ((tbd as GoogleLoginResponse).profileObj) {
@@ -23,21 +27,22 @@ const isOffline = (tbd: any): tbd is GoogleLoginResponseOffline => {
 };
 
 function App() {
-  const { currentUser, login } = useAuthenticationContext();
+  const { currentUser, onLogin, onLogout } = useAuthenticationContext();
 
   const responseGoogle = React.useCallback(
     (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-      console.log("Google Login Done");
-      console.log(response);
-
       if (isOnline(response)) {
-        login(response.getAuthResponse().id_token);
+        onLogin(response.getAuthResponse().id_token);
       } else if (isOffline(response)) {
         console.log("Offline response");
       }
     },
-    [login]
+    [onLogin]
   );
+  const { signOut } = useGoogleLogout({
+    clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    onLogoutSuccess: onLogout,
+  });
 
   return (
     <div className="container">
@@ -49,16 +54,17 @@ function App() {
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
       />
-      {(currentUser && <div>Logged in as {currentUser.emailAddress}</div>) || (
-        <div>Not Logged In</div>
-      )}
+      {(currentUser && (
+        <div>
+          Logged in as {currentUser.emailAddress}
+          <button onClick={signOut}>Logout</button>
+        </div>
+      )) || <div>Not Logged In</div>}
 
-      {currentUser && (
-        <React.Fragment>
-          <NavBar />
-          <Routes />
-        </React.Fragment>
-      )}
+      <AuthorisedComponent requiredRole={IApplicationRoles.viewContent}>
+        <NavBar />
+        <Routes />
+      </AuthorisedComponent>
     </div>
   );
 }

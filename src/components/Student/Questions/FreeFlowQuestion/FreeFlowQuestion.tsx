@@ -4,12 +4,12 @@ import { ControlledInput } from "../../../../lib/useForm/types";
 
 interface Props {
   question: IFreeFlowQuestion;
-  studentResponse: ControlledInput<string>;
+  studentResponseControlProps: ControlledInput<string>;
 }
 
 const FreeFlowQuestion: React.FunctionComponent<Props> = ({
   question,
-  studentResponse: { value, onChange },
+  studentResponseControlProps: { value, onChange },
 }) => {
   const _onChange: React.ChangeEventHandler<HTMLTextAreaElement> = React.useCallback(
     ({ target: { value } }) => onChange(value),

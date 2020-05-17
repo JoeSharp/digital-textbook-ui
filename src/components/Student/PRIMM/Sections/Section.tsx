@@ -9,7 +9,7 @@ export interface BaseProps<RESPONSE> {
   onPrevious: () => any;
   canGoNext: boolean;
   onNext: () => any;
-  studentResponse: UseObjectReducer<RESPONSE>;
+  studentResponseControlProps: UseObjectReducer<RESPONSE>;
 }
 
 interface Props extends BaseProps<any> {

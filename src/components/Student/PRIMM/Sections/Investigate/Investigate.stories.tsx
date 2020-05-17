@@ -14,9 +14,11 @@ interface Props {
 }
 
 const TestHarness: React.FunctionComponent<Props> = ({ challenge }) => {
-  const studentResponse = useObjectReducer(EMPTY_PRIMM_WORK.investigate);
+  const studentResponseControlProps = useObjectReducer(
+    EMPTY_PRIMM_WORK.investigate
+  );
 
-  const testBaseProps = createTestBaseProps(studentResponse);
+  const testBaseProps = createTestBaseProps(studentResponseControlProps);
 
   return <Investigate investigate={challenge.investigate} {...testBaseProps} />;
 };

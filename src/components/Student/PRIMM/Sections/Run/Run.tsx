@@ -11,7 +11,7 @@ interface Props extends BaseProps<IPrimmRunResponse> {
 }
 
 const Run: React.FunctionComponent<Props> = ({ run, ...rest }) => {
-  const { value, onChange } = rest.studentResponse;
+  const { value, onChange } = rest.studentResponseControlProps;
 
   const onCompareChange: React.ChangeEventHandler<HTMLTextAreaElement> = React.useCallback(
     ({ target: { value } }) => {

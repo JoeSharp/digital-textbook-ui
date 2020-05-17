@@ -12,7 +12,12 @@ interface Props {
 const TestHarness: React.FunctionComponent<Props> = ({ question }) => {
   const [value, onChange] = React.useState<string>("");
 
-  return <Question question={question} studentResponse={{ value, onChange }} />;
+  return (
+    <Question
+      question={question}
+      studentResponseControlProps={{ value, onChange }}
+    />
+  );
 };
 
 scaffoldedQuestions.forEach(({ caption, questions }) =>

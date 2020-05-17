@@ -22,7 +22,7 @@ const TestHarness: React.FunctionComponent = () => {
     <div>
       <MultipleChoiceQuestion
         question={question}
-        studentResponse={{ value, onChange }}
+        studentResponseControlProps={{ value, onChange }}
       />
       <JsonDebug value={{ question, value }} />
     </div>

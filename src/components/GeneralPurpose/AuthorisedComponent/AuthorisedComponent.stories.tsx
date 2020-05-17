@@ -42,17 +42,21 @@ const TestHarness: React.FunctionComponent<Props> = ({
   );
 
   // Cause a login to occur, this should put the above test user into the auth context
-  const { login } = useAuthenticationContext();
-  React.useEffect(() => login("foo"), [login]);
+  const { onLogin } = useAuthenticationContext();
+  React.useEffect(() => onLogin("foo"), [onLogin]);
 
   return (
-    <AuthorisedComponent
-      requiredRole={REQUIRED_PERMISSION}
-      alternative={alternative}
-    >
-      <h1>This was a protected page</h1>
-      <p>If you can see this page, then you are clearly authorised</p>
-    </AuthorisedComponent>
+    <div>
+      <h1>Protected Funtionality</h1>
+      <p>This page contains components that require user permissions.</p>
+      <AuthorisedComponent
+        requiredRole={REQUIRED_PERMISSION}
+        alternative={alternative}
+      >
+        <h2>This was a protected page</h2>
+        <p>If you can see this page, then you are clearly authorised</p>
+      </AuthorisedComponent>
+    </div>
   );
 };
 
@@ -63,5 +67,4 @@ storiesOf("General Purpose/Authorised Component", module)
   .add("Unauthorised", () => (
     <TestHarness authorised={false} alternative={CONFIGURED_ALTERNATIVE} />
   ))
-  .add("Authorised (default alt)", () => <TestHarness authorised={true} />)
   .add("Unauthorised (default alt)", () => <TestHarness authorised={false} />);

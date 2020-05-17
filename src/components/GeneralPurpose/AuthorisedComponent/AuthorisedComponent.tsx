@@ -13,9 +13,7 @@ const AuthorisedComponent: React.FunctionComponent<Props> = ({
   alternative,
 }) => {
   const { currentUser } = useAuthenticationContext();
-  const alt = alternative || (
-    <div>Unauthorised, you require {requiredRole}</div>
-  );
+  const alt = alternative || null;
 
   if (!currentUser || !children) {
     return alt;

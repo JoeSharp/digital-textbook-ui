@@ -1,16 +1,27 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import ScaffoldedQuestions from "./ScaffoldedQuestions";
-import scaffoldedQuestions from "../../../../testing/data/primm/scaffoldedQuestions";
+import {
+  leadingQuestions,
+  multipleChoiceQuestions,
+  openEndedQuestions,
+} from "../../../../testing/data/primm/scaffoldedQuestions";
 import {
   IQuestionResponses,
   EMPTY_SCAFFOLDED_QUESTION_RESPONSES,
+  IScaffoldedQuestions,
 } from "../../../../api/useQuestionApi/types";
 import JsonDebug from "../../../../lib/JsonDebug";
 import useObjectReducer from "../../../../lib/useObjectReducer";
 
-const TestHarness: React.FunctionComponent = () => {
-  const studentResponse = useObjectReducer<IQuestionResponses>(
+interface Props {
+  scaffoldedQuestions: IScaffoldedQuestions[];
+}
+
+const TestHarness: React.FunctionComponent<Props> = ({
+  scaffoldedQuestions,
+}) => {
+  const studentResponseControlProps = useObjectReducer<IQuestionResponses>(
     EMPTY_SCAFFOLDED_QUESTION_RESPONSES
   );
 
@@ -18,13 +29,29 @@ const TestHarness: React.FunctionComponent = () => {
     <div>
       <ScaffoldedQuestions
         scaffoldedQuestions={scaffoldedQuestions}
-        studentResponse={studentResponse}
+        studentResponseControlProps={studentResponseControlProps}
       />
-      <JsonDebug value={{ value: studentResponse.value }} />
+      <JsonDebug value={{ value: studentResponseControlProps.value }} />
     </div>
   );
 };
 
-storiesOf("Student/Questions/Scaffolded Questions", module).add("basic", () => (
-  <TestHarness />
-));
+storiesOf("Student/Questions/Scaffolded Questions", module)
+  .add("series", () => (
+    <TestHarness
+      scaffoldedQuestions={[
+        openEndedQuestions,
+        leadingQuestions,
+        multipleChoiceQuestions,
+      ]}
+    />
+  ))
+  .add("openEnded", () => (
+    <TestHarness scaffoldedQuestions={[openEndedQuestions]} />
+  ))
+  .add("leading", () => (
+    <TestHarness scaffoldedQuestions={[leadingQuestions]} />
+  ))
+  .add("multipleChoice", () => (
+    <TestHarness scaffoldedQuestions={[multipleChoiceQuestions]} />
+  ));

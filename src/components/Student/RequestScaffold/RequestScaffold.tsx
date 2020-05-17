@@ -79,7 +79,7 @@ export const useRequestScaffold = ({
 }: InProps): UseRequestScaffold => {
   const [state, dispatch] = React.useReducer(helpReducer, {
     index: 0,
-    canRequestMoreHelp: true,
+    canRequestMoreHelp: levelCaptions.length > 1,
     levelCaptions,
   });
 

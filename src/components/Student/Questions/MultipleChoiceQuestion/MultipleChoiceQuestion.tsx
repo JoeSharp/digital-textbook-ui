@@ -4,13 +4,18 @@ import { ControlledInput } from "../../../../lib/useForm/types";
 
 interface Props {
   question: IMultipleChoiceQuestion;
-  studentResponse: ControlledInput<string>;
+  studentResponseControlProps: ControlledInput<string>;
 }
 
 const MultipleChoiceQuestion: React.FunctionComponent<Props> = ({
   question: { question, options },
-  studentResponse: { value, onChange },
+  studentResponseControlProps: { value, onChange },
 }) => {
+  const _onChange: React.ChangeEventHandler<HTMLInputElement> = React.useCallback(
+    ({ target: { value } }) => onChange(value),
+    [onChange]
+  );
+
   return (
     <div className="form-group">
       <label>{question}</label>
@@ -19,8 +24,11 @@ const MultipleChoiceQuestion: React.FunctionComponent<Props> = ({
           <input
             type="radio"
             id={option}
+            value={option}
             name={question}
             className="custom-control-input"
+            onChange={_onChange}
+            checked={value === option}
           />
           <label className="custom-control-label" htmlFor={option}>
             {option}

@@ -26,10 +26,14 @@ const TestHarness: React.FunctionComponent = () => {
   } = useProgress({
     sections,
   });
-  const studentResponse = useObjectReducer({});
+  const studentResponseControlProps = useObjectReducer({});
 
   return (
-    <Section title={title} {...rest} studentResponse={studentResponse}>
+    <Section
+      title={title}
+      {...rest}
+      studentResponseControlProps={studentResponseControlProps}
+    >
       {content}
     </Section>
   );

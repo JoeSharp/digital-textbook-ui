@@ -1,11 +1,16 @@
 import React from "react";
 
-import { IQuestionResponses } from "../useQuestionApi/types";
+import {
+  IQuestionResponses,
+  EMPTY_SCAFFOLDED_QUESTION_RESPONSES,
+} from "../useQuestionApi/types";
 import {
   IPrimmRunResponse,
   IPrimmRemixResponse,
   IPrimmWork,
   EMPTY_PRIMM_WORK,
+  EMPTY_RUN_RESPONSE,
+  EMPTY_URL_REMIX,
 } from "../usePrimmApi/types";
 import useMyWorkApi, { UseMyWorkApi } from "./useMyWorkApi";
 import { IWorkType } from "./types";
@@ -56,11 +61,11 @@ const workContentReducer = (state: IPrimmWork, action: Action): IPrimmWork => {
 };
 
 interface UsePrimmWorkContent extends UseMyWorkApi<IPrimmWork, Action> {
-  predictResponse: UseObjectReducer<IQuestionResponses>;
-  runResponse: UseObjectReducer<IPrimmRunResponse>;
-  investigateResponse: UseObjectReducer<IQuestionResponses>;
-  modifyResponse: UseObjectReducer<IPrimmRemixResponse>;
-  makeResponse: UseObjectReducer<IPrimmRemixResponse>;
+  predictResponseControlProps: UseObjectReducer<IQuestionResponses>;
+  runResponseControlProps: UseObjectReducer<IPrimmRunResponse>;
+  investigateResponseControlProps: UseObjectReducer<IQuestionResponses>;
+  modifyResponseControlProps: UseObjectReducer<IPrimmRemixResponse>;
+  makeResponseControlProps: UseObjectReducer<IPrimmRemixResponse>;
 }
 
 const usePrimmWorkContent = (challengeId: string): UsePrimmWorkContent => {
@@ -73,12 +78,18 @@ const usePrimmWorkContent = (challengeId: string): UsePrimmWorkContent => {
 
   const {
     dispatchUpdate,
-    workContent: { predict, run, investigate, modify, make },
+    workContent: {
+      predict = EMPTY_SCAFFOLDED_QUESTION_RESPONSES,
+      run = EMPTY_RUN_RESPONSE,
+      investigate = EMPTY_SCAFFOLDED_QUESTION_RESPONSES,
+      modify = EMPTY_URL_REMIX,
+      make = EMPTY_URL_REMIX,
+    },
   } = myWorkApi;
 
   return {
     ...myWorkApi,
-    predictResponse: {
+    predictResponseControlProps: {
       value: predict,
       onChange: React.useCallback(
         (value: Partial<IQuestionResponses>) =>
@@ -86,7 +97,7 @@ const usePrimmWorkContent = (challengeId: string): UsePrimmWorkContent => {
         [dispatchUpdate]
       ),
     },
-    runResponse: {
+    runResponseControlProps: {
       value: run,
       onChange: React.useCallback(
         (value: Partial<IPrimmRunResponse>) =>
@@ -94,7 +105,7 @@ const usePrimmWorkContent = (challengeId: string): UsePrimmWorkContent => {
         [dispatchUpdate]
       ),
     },
-    investigateResponse: {
+    investigateResponseControlProps: {
       value: investigate,
       onChange: React.useCallback(
         (value: Partial<IQuestionResponses>) =>
@@ -102,7 +113,7 @@ const usePrimmWorkContent = (challengeId: string): UsePrimmWorkContent => {
         [dispatchUpdate]
       ),
     },
-    modifyResponse: {
+    modifyResponseControlProps: {
       value: modify,
       onChange: React.useCallback(
         (value: Partial<IPrimmRemixResponse>) =>
@@ -110,7 +121,7 @@ const usePrimmWorkContent = (challengeId: string): UsePrimmWorkContent => {
         [dispatchUpdate]
       ),
     },
-    makeResponse: {
+    makeResponseControlProps: {
       value: make,
       onChange: React.useCallback(
         (value: Partial<IPrimmRemixResponse>) =>
